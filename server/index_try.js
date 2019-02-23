@@ -33,6 +33,22 @@ app.get('/img/sunny.png',function(req,res){
 	res.sendFile(__dirname + '/img/sunny.png');
 });
 
+app.get('/img/david.jpg',function(req,res){
+	res.sendFile(__dirname + '/img/david.jpg');
+});
+
+app.get('/img/andrew.png',function(req,res){
+	res.sendFile(__dirname + '/img/andrew.png');
+});
+
+app.get('/img/zolboo.jpg',function(req,res){
+	res.sendFile(__dirname + '/img/zolboo.jpg');
+});
+
+app.get('/img/sagar.png',function(req,res){
+	res.sendFile(__dirname + '/img/sagar.png');
+});
+
 app.get('/vendor/fontawesome-free/css/all.min.css',function(req,res){
 	res.sendFile(__dirname + '/vendor/fontawesome-free/css/all.min.css');
 });
