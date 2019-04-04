@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src=app.js></script>
+</head>
+<body>
+   <h1>Gator Housing</h1> 
+</body>
+<!-- Search Bar -->
+<form>
+    <!-- Pass these search values over to node. -->
+    <input id="search" type="text" name="search" value="" placeholder="Search...">
+
+    <!-- Category Dropdown -->
+    <!-- Pass these category values over to node after clicking Search. -->
+    <select name="category">
+        <option value=""> All Categories </option>
+        <option value="apartment"> Apartment </option>
+        <option value="house"> House </option>
+        <option value="room"> Room </option>
+    </select>
+
+
+    <button id="btnSearch" onClick="this.form.submit()"> Search </button>
+
+    <!-- Displaying ejs variables to html-->
+        <p>There are <%= results %> results</p>
+    
+        <ul>
+        <% searchResult.forEach((result) => { %>
+            <table>
+                <tr> <h1> Name: <%= result.post_name %> </h1> </tr>
+                <tr><h2> Price: <%= result.price%> </h2> </tr>
+                <tr><li> Location: <%= result.location %></li> </tr>
+                <tr><li> Status: <%= result.status %></li> </tr>
+                <tr><li> Details: <%= result.description %></li> </tr>
+                <tr><li> Type: <%= result.category %></li> </tr>
+                </table>
+        <% });%>
+        </ul>
+</form>
+</html>
