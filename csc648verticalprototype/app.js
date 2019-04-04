@@ -21,10 +21,11 @@ database.connect((err) => {
 });
 
 app.get('/',search, (req, res) => {
-    
 var searchResult = req.searchResult;
     console.log(searchResult);
+    // Tells node to render this ejs file named index 
     res.render('index', {
+        // Ejs variables being passed into index.ejs
         results: searchResult.length,
         searchTerm: req.searchTerm,
         searchResult: searchResult
