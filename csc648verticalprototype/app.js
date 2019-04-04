@@ -42,10 +42,12 @@ function search (req, res, next) {
     
    // Make sure WHERE statement is wrapped in single quotes is like this: WHERE something = 'this'
    if(searchTerm !=undefined && searchCategory == ""){
-    query = "SELECT * FROM post WHERE post_name LIKE '%" + searchTerm +"%'";
+    query = "SELECT * FROM post WHERE post_name LIKE '%" + searchTerm +"%'" + " OR location LIKE '%" + searchTerm +"%'"
+    + " OR price LIKE '%" + searchTerm +"%'" + " OR category LIKE '%" + searchTerm +"%'";
     }
     else if(searchTerm != undefined && searchCategory != undefined){
-        query = "SELECT * FROM post WHERE category = '" + searchCategory + "' AND post_name LIKE '%" + searchTerm +"%'";
+        query = "SELECT * FROM post WHERE category = '" + searchCategory + "' AND (post_name LIKE '%" + searchTerm +"%'" 
+        + " OR price LIKE '%" + searchTerm +"%'"+ " OR location LIKE '%" + searchTerm +"%')";
     }
     else if (searchTerm ==undefined && searchCategory != undefined){
         query = "SELECT * FROM post WHERE category = '" + searchCategory + "'";
