@@ -1,11 +1,17 @@
+var url = require('url');
+var page = url.pathname;
 const mysql = require('mysql');
 var express = require('express');
 var path = require('path');
 
+console.log(page);
 
 var app = express();
-var port = 5000;
+var port = 3000;
 app.set('view engine', 'ejs');
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 const database = mysql.createConnection({
     host: 'team12db.ccdqjwmvzqxn.us-west-1.rds.amazonaws.com',
@@ -31,6 +37,9 @@ var searchResult = req.searchResult;
         searchResult: searchResult
     });
 });
+
+
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
