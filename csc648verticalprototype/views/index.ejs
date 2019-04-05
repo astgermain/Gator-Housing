@@ -42,7 +42,7 @@
 			<option value="house"> House </option>
         		<option value="room"> Room </option>
     		</select>
-              <div class="input-group">
+              <div class="input-group" style="width: 280px;">
                 <input id="search" name="search" value="" type="text" class="form-control" placeholder="Search">
 		
 		
@@ -155,6 +155,7 @@
 	      <div class="item">
                 <div class="pad15">
                   <p class="lead"><%= result.post_name %> </p>
+		  <p><img src="/img/<%= result.image %>" class="rounded-circle player-img" alt="" style="width: 235px;">
                   <p> <%= result.price%> </p>
                   <p> <%= result.location %></p>
                   <p> <%= result.status %></p>
