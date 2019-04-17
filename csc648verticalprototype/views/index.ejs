@@ -37,13 +37,15 @@
             <form class="navbar-form navbar" id="search" role="search">
            
 		<select name="category">
-	        	<option value=""> All Categories </option>
-       			<option value="apartment"> Apartment </option>
-			<option value="house"> House </option>
-        		<option value="room"> Room </option>
+            <!-- JS to check the search category matches the option selected;
+                  keyword 'selected' keeps the dropdown option after submitting apparently-->
+	        	<option value=""<%if(searchCategory == ""){%> selected <%}%>> All Categories </option>
+       			<option value="apartment"<%if(searchCategory == "apartment"){%> selected <%}%>> Apartment </option>
+			<option value="house"<%if(searchCategory == "house"){%> selected <%}%>> House </option>
+        		<option value="room"<%if(searchCategory == "room"){%> selected <%}%>> Room </option>
     		</select>
               <div class="input-group" style="width: 280px;">
-                <input id="search" name="search" value="" type="text" class="form-control" placeholder="Search">
+                <input id="search" name="search" value="<%=searchTerm%>" type="text" class="form-control" placeholder="Search">
 		
 		
 
