@@ -34,7 +34,8 @@ var searchResult = req.searchResult;
         // Ejs variables being passed into index.ejs
         results: searchResult.length,
         searchTerm: req.searchTerm,
-        searchResult: searchResult
+        searchResult: searchResult,
+        searchCategory: req.query.category
     });
 });
 
@@ -71,7 +72,7 @@ function search (req, res, next) {
         }
         req.searchResult = result;
         req.searchTerm = searchTerm;
-        req.searchCategory = "";
+        req.searchCategory = searchCategory;
          next();
     });
     
