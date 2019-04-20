@@ -39,6 +39,19 @@ var searchResult = req.searchResult;
     });
 });
 
+app.get('/results',search, (req, res) => {
+    var searchResult = req.searchResult;
+        console.log(searchResult);
+        // Tells node to render this ejs file named results
+        res.render('results', {
+            // Ejs variables being passed into results.ejs
+            results: searchResult.length,
+            searchTerm: req.searchTerm,
+            searchResult: searchResult,
+            searchCategory: req.query.category
+        });
+    });
+
 
 
 

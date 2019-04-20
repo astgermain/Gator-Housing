@@ -34,26 +34,27 @@
             <a class="navbar-brand" href="#">Gator Housing</a>
           </div>
           <div id="navbar-collapse" class="collapse navbar-collapse">
-            <form class="navbar-form navbar" id="search" role="search" action="/results">
-           
-		      <select name="category">
+            <form class="navbar-form navbar" id="search" role="search">
+	        	<select name="category">
             <!-- JS to check the search category matches the option selected;
                   keyword 'selected' keeps the dropdown option after submitting apparently-->
-	        	<option value=""<%if(searchCategory == ""){%> selected <%}%>> All Categories </option>
-       			<option value="apartment"<%if(searchCategory == "apartment"){%> selected <%}%>> Apartment </option>
-			      <option value="house"<%if(searchCategory == "house"){%> selected <%}%>> House </option>
-        		<option value="room"<%if(searchCategory == "room"){%> selected <%}%>> Room </option>
-    		  </select>
+	        	  <option value=""<%if(searchCategory == ""){%> selected <%}%>> All Categories </option>
+       			  <option value="apartment"<%if(searchCategory == "apartment"){%> selected <%}%>> Apartment </option>
+			        <option value="house"<%if(searchCategory == "house"){%> selected <%}%>> House </option>
+        		  <option value="room"<%if(searchCategory == "room"){%> selected <%}%>> Room </option>
+    	    	</select>
               <div class="input-group" style="width: 280px;">
                 <input id="search" name="search" value="<%=searchTerm%>" type="text" class="form-control" placeholder="Search">
                   <span class="input-group-btn" style="right: -263px;">
-                    <button class="btn btn-default" onClick="this.form.submit()" type="submit">
+                    <button class="btn btn-default" onClick="this.form.submit()"  type="submit">
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     </button>
                   </span>
 
 		<!-- Display results -->
 		<p>There are <%= results %> listings</p>
+
+
               </div>
               <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;margin-top: -6px;">
               <li class="dropdown">
@@ -145,22 +146,26 @@
           <div class="MultiCarousel" data-items="1,3,5,4" data-slide="1" id="MultiCarousel" data-interval="1000">
             <div class="MultiCarousel-inner">
            
-              <!-- Displaying ejs variables to html-->
+    <!-- Displaying ejs variables to html-->
 
-              <% searchResult.forEach((result) => { %>
+ <% searchResult.forEach((result) => { %>
 
-	            <div class="item">
+	      <div class="item">
                 <div class="pad15">
                   <p><img src="/img/<%= result.image %>" class="rounded-circle player-img" alt="" style="width: 235px;">
                   <p class="lead"><%= result.post_name %> </p>
                   <p> <%= result.price%> </p>
                   <p> <%= result.location %></p>
+                  <p> <%= result.status %></p>
+		              <p> <%= result.description %></p>
+		              <p> <%= result.category %></p> 
                 </div>
               </div>
-              <% });%>
+ <% });%>
             
             </div>
             
+	      
             <button class="btn btn-primary leftLst"><</button>
             <button class="btn btn-primary rightLst">></button>
           </div>
@@ -171,8 +176,8 @@
       </div>
 
 
-</main>
-</div>
+	</main>
+  </div>
 
        
 </form>
