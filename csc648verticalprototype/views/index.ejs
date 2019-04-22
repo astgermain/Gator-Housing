@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
+    <script src=app.js></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <script src="js/main.js"></script>
+    <!------ Include the above in your HEAD tag (sidebar + navbar)---------->
+
+   
+</head>
+<body>
+    
+
+<!-- Nav Bar -->
+<div id="navbar-wrapper">
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+            <a class="navbar-brand" href="#">Gator Housing</a>
+          </div>
+          <div id="navbar-collapse" class="collapse navbar-collapse">
+            <form class="navbar-form navbar" id="search" role="search" action="/results">
+           
+		      <select name="category">
+            <!-- JS to check the search category matches the option selected;
+                  keyword 'selected' keeps the dropdown option after submitting apparently-->
+	        	<option value=""<%if(searchCategory == ""){%> selected <%}%>> All Categories </option>
+       			<option value="apartment"<%if(searchCategory == "apartment"){%> selected <%}%>> Apartment </option>
+			      <option value="house"<%if(searchCategory == "house"){%> selected <%}%>> House </option>
+        		<option value="room"<%if(searchCategory == "room"){%> selected <%}%>> Room </option>
+    		  </select>
+              <div class="input-group" style="width: 280px;">
+                <input id="search" name="search" value="<%=searchTerm%>" type="text" class="form-control" placeholder="Search">
+                  <span class="input-group-btn" style="right: -263px;">
+                    <button class="btn btn-default" onClick="this.form.submit()" type="submit">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+
+		<!-- Display results -->
+		<p>There are <%= results %> listings</p>
+              </div>
+              <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;margin-top: -6px;">
+              <li class="dropdown">
+                <a id="flag" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="http://www.country-dialing-codes.net/img/png-country-4x2-fancy-res-1280x960/gb.png" alt="English" width="28px" height="18px">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-flag" role="menu">
+                  <li>
+                    <a href="#">
+                      <img src="http://www.country-dialing-codes.net/img/png-country-4x2-flat-res-640x480/gf.png" alt="Français" width="28px" height="18px">
+                      <span>Français</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="http://lorempixel.com/100/100/people/9/" class="img-responsive img-thumbnail img-circle"> Username</a>
+                <ul class="dropdown-menu dropdown-block" role="menu">
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Admin</a></li>
+                  <li><a href="#">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+            </form>
+
+
+          </div>
+        </div>
+      </nav>
+    </header>
+  </div>
+
+  <!-- Sidebar -->
+  <div id="wrapper">
+  <div id="sidebar-wrapper">
+      <aside id="sidebar">
+        <ul id="sidemenu" class="sidebar-nav">
+          <li>
+            <a href="#">
+                            <span class="sidebar-icon"><i class="fa fa-dashboard"></i></span>
+                            <span class="sidebar-title">Post Something!</span>
+                        </a>
+          </li>
+          <li>
+            <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-2">
+                            <!--<span class="sidebar-icon"><i class="fa fa-users"></i></span>
+                            <span class="sidebar-title">Management</span>
+                            <b class="caret"></b>
+                        </a>
+            <ul id="submenu-2" class="panel-collapse collapse panel-switch" role="menu">
+              <li><a href="#"><i class="fa fa-caret-right"></i>Users</a></li>
+              <li><a href="#"><i class="fa fa-caret-right"></i>Roles</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-3">
+                            <span class="sidebar-icon"><i class="fa fa-newspaper-o"></i></span>
+                            <span class="sidebar-title">Blog</span>
+                            <b class="caret"></b>
+                        </a>
+            <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
+              <li><a href="#"><i class="fa fa-caret-right"></i>Posts</a></li>
+              <li><a href="#"><i class="fa fa-caret-right"></i>Comments</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#"> -->
+                            <span class="sidebar-icon"><i class="fa fa-database"></i></span>
+                            <span class="sidebar-title">All Postings</span>
+                        </a>
+          </li>
+          <li>
+            <a href="#">
+                            <span class="sidebar-icon"><i class="fa fa-terminal"></i></span>
+                            <span class="sidebar-title">FAQ</span>
+                        </a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+
+ 
+
+<main id="page-content-wrapper" role="main">
+    <!--- carousel 1 --->
+      <div class="container">
+        <div class="row">
+          <div class="MultiCarousel" data-items="1,3,5,4" data-slide="1" id="MultiCarousel" data-interval="1000">
+            <div class="MultiCarousel-inner">
+           
+              <!-- Displaying ejs variables to html-->
+
+              <% searchResult.forEach((result) => { %>
+
+	            <div class="item">
+                <div class="pad15">
+                  <p><img src="/img/<%= result.image %>" class="rounded-circle player-img" alt="" style="width: 235px;">
+                  <p class="lead"><%= result.post_name %> </p>
+                  <p> <%= result.price%> </p>
+                  <p> <%= result.location %></p>
+                </div>
+              </div>
+              <% });%>
+            
+            </div>
+            
+            <button class="btn btn-primary leftLst"><</button>
+            <button class="btn btn-primary rightLst">></button>
+          </div>
+        </div>
+        <div class="row">
+
+        </div>
+      </div>
+
+
+</main>
+</div>
+
+       
+</form>
+</body>
+</html>
