@@ -2,6 +2,10 @@
 
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
 
+.admin-nav {
+    padding-left: 225px;
+}
+
 body {
     background: lightgray;
 }
@@ -181,6 +185,8 @@ body {
     background: #245682 !important;
     color: #fff !important;
 }
+
+
 
 /**************** carousel ****************/
 .MultiCarousel { float: left; overflow: hidden; padding: 15px; width: 100%; position:relative; }
