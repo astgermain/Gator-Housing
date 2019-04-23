@@ -1,4 +1,3 @@
-
 var express = require('express');
 var router = express.Router();
 var db = require('../db');
@@ -11,11 +10,15 @@ router.get('/',search, (req, res) => {
         // Tells node to render this ejs file named index 
         res.render('admin', {
             // Ejs variables being passed into index.ejs
+            searchResult: searchResult,
             searchTerm: req.searchTerm,
             searchCategory: req.query.category
         });
     });
 
+
+    db.query("Select * from post");
+    
 
     router.get('/removepost', (req, res) =>{
         res.send("UI to remove post");
