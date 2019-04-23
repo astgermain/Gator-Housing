@@ -136,17 +136,27 @@
     </div>
 </div>
 
-<!-- Admin Buttons -->
+<!-- Admin Tab Buttons -->
 <div class="admin-nav"> 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" href="#">Pending Posts</a>
+    <a class="nav-link active" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending Posts</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Remove Post</a>
+    <a class="nav-link" id="remove-tab" data-toggle="tab" href="#remove" role="tab" aria-controls="remove" aria-selected="false">Remove Posts</a>
   </li>
 </ul>
+<!-- Admin Tab Contents -->
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+  Pending view of posts.
+  </div>
+  <div class="tab-pane fade" id="remove" role="tabpanel" aria-labelledby="remove-tab">
+  Table to remove posts.
+  </div>
 </div>
+</div>
+
 
 </body>
 </html>

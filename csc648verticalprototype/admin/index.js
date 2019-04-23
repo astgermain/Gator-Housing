@@ -17,6 +17,11 @@ router.get('/',search, (req, res) => {
     });
 
 
+    router.get('/removepost', (req, res) =>{
+        res.send("UI to remove post");
+    }); 
+
+
 
  function search (req, res, next) {
     // User's search term
