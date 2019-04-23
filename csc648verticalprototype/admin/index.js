@@ -15,11 +15,7 @@ router.get('/',search, (req, res) => {
             searchCategory: req.query.category
         });
     });
-
-
-    db.query("Select * from post");
     
-
     router.get('/removepost', (req, res) =>{
         res.send("UI to remove post");
     }); 
