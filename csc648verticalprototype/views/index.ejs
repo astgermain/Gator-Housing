@@ -148,7 +148,7 @@
               <!-- Displaying ejs variables to html-->
 
               <% searchResult.forEach((result) => { %>
-
+                  <%if(result.isLive != 0) {%>
 	            <div class="item">
                 <div class="pad15">
                   <p><img src="/img/<%= result.image %>" class="rounded-circle player-img" alt="" style="width: 235px;">
@@ -157,6 +157,7 @@
                   <p> <%= result.location %></p>
                 </div>
               </div>
+                  <%}%>
               <% });%>
             
             </div>

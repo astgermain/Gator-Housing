@@ -105,3 +105,26 @@ $(document).ready(function () {
     }
 
 });
+
+// Used for admin delete button
+$(document).ready(() =>{
+    $('.delete-post').on('click', () =>{
+        console.log(document.activeElement.getAttribute("id"));
+        var id = document.activeElement.getAttribute("id")
+        console.log("ID is: " + id);
+        var url = '/admin/delete/'+ id;
+        if(confirm('Delete Post?')){
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: (result) => {
+                    console.log('Deleting Post...');
+                    window.location.href='/admin';
+                },
+                error: (err) => {
+                    console.log(err);
+                }
+            });
+        }
+    });
+});

@@ -16,9 +16,23 @@ router.get('/',search, (req, res) => {
         });
     });
     
-    router.get('/removepost', (req, res) =>{
-        res.send("UI to remove post");
-    }); 
+
+router.post('/delete/:id', (req, res) => {
+
+    var postID = req.params.id;
+    console.log("Post id is: " + postID);
+    let query = "DELETE FROM post where post_id = '" + postID + "'";
+
+    db.query(query, (err, result) => {
+        if (err){
+            req.searchResult = "Cannot delete post with ID: " + postID;
+        }
+        console.log('Deleted Row(s):', result);
+    });
+ 
+    res.redirect('/admin');
+});
+
 
  function search (req, res, next) {
     // User's search term
