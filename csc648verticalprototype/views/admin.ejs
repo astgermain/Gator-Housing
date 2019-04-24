@@ -152,24 +152,37 @@
 <!-- Admin Tab Contents -->
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-  Pending view of posts.
-   <!-- Displaying ejs variables to html-->
-
-              <% searchResult.forEach((result) => { %>
-
-	            <div class="item">
-                <div class="pad15">
-                  <p><img src="/img/<%= result.image %>" class="rounded-circle player-img" alt="" style="width: 235px;">
-                  <p class="lead"><%= result.post_name %> </p>
-                  <p> <%= result.price%> </p>
-                  <p> <%= result.location %></p>
-                  <p> <%= result.description %></p>
-                  <p> <%= result.category %></p>
-                  <p> <%= result.status %></p>
-                  <p> <%= result.user_id %></p>
-                </div>
-              </div>
-              <% });%>
+   <table class="table table-sm">
+     <thead>
+        <tr>
+          <th scope="col">Post ID</th>
+          <th scope="col">Image</th>
+          <th scope="col">Post Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Description</th>
+          <th scope="col">Category</th>
+          <th scope="col">Status</th>
+          <th scope="col">User ID</th>
+        </tr>
+    </thead>
+    <% searchResult.forEach((result) => { %>
+  <tbody class="post">   
+  <tr>
+  
+      <th scope="row"><%= result.post_id%> </th>
+      <td><%= result.image%> </td>
+      <td><%= result.post_name%> </td>
+      <td><%= result.price%> </td>
+      <td><%= result.desciption%> </td>
+      <td><%= result.category%> </td>
+      <td><%= result.status%> </td>
+      <td><%= result.user_id%> </td>
+     
+    </tr>
+  </tbody>
+   <% });%>
+</table>
+              
   </div>
   <div class="tab-pane fade" id="approve" role="tabpanel" aria-labelledby="approve-tab">
   Table to approve posts.

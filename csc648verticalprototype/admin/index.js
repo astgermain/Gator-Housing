@@ -20,13 +20,11 @@ router.get('/',search, (req, res) => {
         res.send("UI to remove post");
     }); 
 
-
-
  function search (req, res, next) {
     // User's search term
     var searchTerm = req.query.search;
     var searchCategory = req.query.category;
-    let query = null;
+    let query = 'SELECT * FROM post';
     
    // Make sure WHERE statement is wrapped in single quotes is like this: WHERE something = 'this'
    if(searchTerm !=undefined && searchCategory == ""){
