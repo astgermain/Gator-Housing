@@ -165,12 +165,13 @@
           <th scope="col">User ID</th>
         </tr>
     </thead>
+
+<!-- Displaying EJS variables from node -->
     <% searchResult.forEach((result) => { %>
   <tbody class="post">   
   <tr>
-  
       <th scope="row"><%= result.post_id%> </th>
-      <td><%= result.image%> </td>
+      <td><img src="/img/<%= result.image %>" class="rounded-circle player-img" alt="" style="width: 100px;"></td>
       <td><%= result.post_name%> </td>
       <td><%= result.price%> </td>
       <td><%= result.description%> </td>
