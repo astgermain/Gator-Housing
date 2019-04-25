@@ -181,10 +181,16 @@
       <td><%= result.user_id%> </td>
       <!-- Deleting -->
       <td>
-      <form action='/admin/delete/<%=result.post_id%>' method="POST">
-      <button type="button" class="btn btn-danger delete-post" id="<%=result.post_id%>"
+      <form action='/admin/approve/<%=result.post_id%>' method="POST">
+      <button type="button" class="btn btn-success btn-sm approve-post" id="<%=result.post_id%>"
                 onClick="this.form.submit()" type="submit">
-      Remove
+        Approve
+      </button> 
+      </form>
+      <form action='/admin/delete/<%=result.post_id%>' method="POST">
+      <button type="button" class="btn btn-danger btn-sm delete-post" id="<%=result.post_id%>"
+                onClick="this.form.submit()" type="submit">
+        Remove
       </button> 
       </form>
       </td>

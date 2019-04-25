@@ -128,3 +128,26 @@ $(document).ready(() =>{
         }
     });
 });
+
+// Used for admin approve button
+$(document).ready(() =>{
+    $('.approve-post').on('click', () =>{
+        console.log(document.activeElement.getAttribute("id"));
+        var id = document.activeElement.getAttribute("id")
+        console.log("ID is: " + id);
+        var url = '/admin/approve/'+ id;
+        if(confirm('Approve Post?')){
+            $.ajax({
+                url: url,
+                type: 'POST',
+                success: (result) => {
+                    console.log('Approving Post...');
+                    window.location.href='/admin';
+                },
+                error: (err) => {
+                    console.log(err);
+                }
+            });
+        }
+    });
+});
