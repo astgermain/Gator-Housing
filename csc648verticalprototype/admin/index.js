@@ -34,7 +34,6 @@ router.post('/delete/:id', (req, res) => {
 });
 
 router.post('/approve/:id', (req, res) => {
-
     var postID = req.params.id;
     console.log("Post id is: " + postID);
     let query = "UPDATE post set isLive = '1' where post_id = '" + postID + "'";

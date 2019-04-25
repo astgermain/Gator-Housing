@@ -113,19 +113,6 @@ $(document).ready(() =>{
         var id = document.activeElement.getAttribute("id")
         console.log("ID is: " + id);
         var url = '/admin/delete/'+ id;
-        if(confirm('Delete Post?')){
-            $.ajax({
-                url: url,
-                type: 'DELETE',
-                success: (result) => {
-                    console.log('Deleting Post...');
-                    window.location.href='/admin';
-                },
-                error: (err) => {
-                    console.log(err);
-                }
-            });
-        }
     });
 });
 
@@ -136,18 +123,7 @@ $(document).ready(() =>{
         var id = document.activeElement.getAttribute("id")
         console.log("ID is: " + id);
         var url = '/admin/approve/'+ id;
-        if(confirm('Approve Post?')){
-            $.ajax({
-                url: url,
-                type: 'POST',
-                success: (result) => {
-                    console.log('Approving Post...');
-                    window.location.href='/admin';
-                },
-                error: (err) => {
-                    console.log(err);
-                }
-            });
-        }
     });
 });
+
+
