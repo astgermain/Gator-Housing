@@ -105,3 +105,25 @@ $(document).ready(function () {
     }
 
 });
+
+// Used for admin delete button
+$(document).ready(() =>{
+    $('.delete-post').on('click', () =>{
+        console.log(document.activeElement.getAttribute("id"));
+        var id = document.activeElement.getAttribute("id")
+        console.log("ID is: " + id);
+        var url = '/admin/delete/'+ id;
+    });
+});
+
+// Used for admin approve button
+$(document).ready(() =>{
+    $('.approve-post').on('click', () =>{
+        console.log(document.activeElement.getAttribute("id"));
+        var id = document.activeElement.getAttribute("id")
+        console.log("ID is: " + id);
+        var url = '/admin/approve/'+ id;
+    });
+});
+
+

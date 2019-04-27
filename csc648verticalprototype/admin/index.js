@@ -1,57 +1,59 @@
-var url = require('url');
-var page = url.pathname;
-const mysql = require('mysql');
 var express = require('express');
-var path = require('path');
-var database = require('./db')
-var adminPage = require('./admin');
-
-console.log(page);
+var router = express.Router();
+var db = require('../db');
 
 var app = express();
-var port = 3000;
 app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/admin', adminPage);
-
-app.get('/',search, (req, res) => {
-var searchResult = req.searchResult;
-    console.log(searchResult);
-    // Tells node to render this ejs file named index 
-    res.render('index', {
-        // Ejs variables being passed into index.ejs
-        results: searchResult.length,
-        searchTerm: req.searchTerm,
-        searchResult: searchResult,
-        searchCategory: req.query.category
-    });
-});
-
-app.get('/results',search, (req, res) => {
+router.get('/',search, (req, res) => {
     var searchResult = req.searchResult;
-        console.log(searchResult);
-        // Tells node to render this ejs file named results
-        res.render('results', {
-            // Ejs variables being passed into results.ejs
-            results: searchResult.length,
-            searchTerm: req.searchTerm,
+        // Tells node to render this ejs file named index 
+        res.render('admin', {
+            // Ejs variables being passed into index.ejs
             searchResult: searchResult,
+            searchTerm: req.searchTerm,
             searchCategory: req.query.category
         });
     });
+    
+
+router.post('/delete/:id', (req, res) => {
+
+    var postID = req.params.id;
+    console.log("Post id is: " + postID);
+    let query = "DELETE FROM post where post_id = '" + postID + "'";
+
+    db.query(query, (err, result) => {
+        if (err){
+            req.searchResult = "Cannot delete post with ID: " + postID;
+        }
+        console.log('Deleted Row(s):', result);
+    });
+ 
+    res.redirect('/admin');
+});
+
+router.post('/approve/:id', (req, res) => {
+    var postID = req.params.id;
+    console.log("Post id is: " + postID);
+    let query = "UPDATE post set isLive = '1' where post_id = '" + postID + "'";
+
+    db.query(query, (err, result) => {
+        if (err){
+            req.searchResult = "Cannot delete post with ID: " + postID;
+        }
+        console.log('Deleted Row(s):', result);
+    });
+ 
+    res.redirect('/admin');
+});
 
 
-
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-
-function search (req, res, next) {
+ function search (req, res, next) {
     // User's search term
     var searchTerm = req.query.search;
     var searchCategory = req.query.category;
-    let query = null;
+    let query = 'SELECT * FROM post';
     
    // Make sure WHERE statement is wrapped in single quotes is like this: WHERE something = 'this'
    if(searchTerm !=undefined && searchCategory == ""){
@@ -68,7 +70,7 @@ function search (req, res, next) {
         query = 'SELECT * FROM post';
     }
 
-    database.query(query, (err, result) => {
+    db.query(query, (err, result) => {
         if (err){
             req.searchResult = "Cannot find result";
             req.searchTerm = "Cannot find search term";
@@ -80,4 +82,6 @@ function search (req, res, next) {
     });
     
 }
+
+module.exports = router;
 

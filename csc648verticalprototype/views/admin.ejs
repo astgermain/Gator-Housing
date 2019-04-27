@@ -46,14 +46,13 @@
     		  </select>
               <div class="input-group" style="width: 280px;">
                 <input id="search" name="search" value="<%=searchTerm%>" type="text" class="form-control" placeholder="Search">
-                  <span class="input-group-btn" style="right: -263px;">
+                  <span class="input-group-btn" style="right: -159px;">
                     <button class="btn btn-default" onClick="this.form.submit()" type="submit">
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     </button>
                   </span>
 
-		<!-- Display results -->
-		<p>There are <%= results %> listings</p>
+
               </div>
               <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;margin-top: -6px;">
               <li class="dropdown">
@@ -135,47 +134,85 @@
         </ul>
       </aside>
     </div>
-
- 
-
-<main id="page-content-wrapper" role="main">
-    <!--- carousel 1 --->
-      <div class="container">
-        <div class="row">
-          <div class="MultiCarousel" data-items="1,3,5,4" data-slide="1" id="MultiCarousel" data-interval="1000">
-            <div class="MultiCarousel-inner">
-           
-              <!-- Displaying ejs variables to html-->
-
-              <% searchResult.forEach((result) => { %>
-                  <%if(result.isLive != 0) {%>
-	            <div class="item">
-                <div class="pad15">
-                  <p><img src="/img/<%= result.image %>" class="rounded-circle player-img" alt="" style="width: 235px;">
-                  <p class="lead"><%= result.post_name %> </p>
-                  <p> <%= result.price%> </p>
-                  <p> <%= result.location %></p>
-                </div>
-              </div>
-                  <%}%>
-              <% });%>
-            
-            </div>
-            
-            <button class="btn btn-primary leftLst"><</button>
-            <button class="btn btn-primary rightLst">></button>
-          </div>
-        </div>
-        <div class="row">
-
-        </div>
-      </div>
-
-
-</main>
 </div>
 
-       
-</form>
+<!-- Admin Tab Buttons -->
+<div class="admin-nav"> 
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item active">
+    <a class="nav-link" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="false">Pending Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="approve-tab" data-toggle="tab" href="#approve" role="tab" aria-controls="approve" aria-selected="false">Approve Posts</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" id="remove-tab" data-toggle="tab" href="#remove" role="tab" aria-controls="remove" aria-selected="false">Remove Posts</a>
+  </li>
+</ul>
+<!-- Admin Tab Contents -->
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+   <table class="table table-sm">
+     <thead>
+        <tr>
+          <th scope="col">Post ID</th>
+          <th scope="col">Image</th>
+          <th scope="col">Post Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Description</th>
+          <th scope="col">Category</th>
+          <th scope="col">Status</th>
+          <th scope="col">User ID</th>
+        </tr>
+    </thead>
+        <form action='/admin'>
+      <button type="button" class="btn btn-primary btn-sm get-post" onClick="this.form.submit()" type="submit">
+        Get Posts
+      </button> 
+      </form>
+<!-- Displaying EJS variables from node -->
+    <% searchResult.forEach((result) => { %>
+      <%if (result.isLive == 0) {%>
+  <tbody class="post">   
+  <tr>
+      <th scope="row"><%= result.post_id%> </th>
+      <td><img src="/img/<%= result.image %>" class="rounded-circle player-img" alt="" style="width: 100px;"></td>
+      <td><%= result.post_name%> </td>
+      <td><%= result.price%> </td>
+      <td><%= result.description%> </td>
+      <td><%= result.category%> </td>
+      <td><%= result.status%> </td>
+      <td><%= result.user_id%> </td>
+      <!-- Deleting -->
+      <td>
+      <form action='/admin/approve/<%=result.post_id%>' method="POST">
+      <button type="button" class="btn btn-success btn-sm approve-post" id="<%=result.post_id%>"
+                onClick="this.form.submit()" type="submit">
+        Approve
+      </button> 
+      </form>
+      <form action='/admin/delete/<%=result.post_id%>' method="POST">
+      <button type="button" class="btn btn-danger btn-sm delete-post" id="<%=result.post_id%>"
+                onClick="this.form.submit()" type="submit">
+        Remove
+      </button> 
+      </form>
+      </td>
+    </tr>
+  </tbody>
+        <%}%>
+   <% });%>
+</table>
+              
+  </div>
+  <div class="tab-pane fade" id="approve" role="tabpanel" aria-labelledby="approve-tab">
+      Priority 2: Admin can search and approve.
+  </div>
+    <div class="tab-pane fade" id="remove" role="tabpanel" aria-labelledby="remove-tab">
+      Priority 2: Admin can search and remove.
+  </div>
+</div>
+</div>
+
 </body>
 </html>
