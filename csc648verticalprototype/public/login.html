@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  
+  
+  
+      <link rel="stylesheet" type="text/css" href="css/main.css">
+
+  
+</head>
+
+<body>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag (sidebar + navbar)---------->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- Needed for Dropdown in Navbar -->
+
+<body>
+<!--  Begin Navbar  -->
+  <div id="navbar-wrapper">
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+          </div>
+          <div id="navbar-collapse" class="collapse navbar-collapse">
+            <form class="navbar-form navbar" id="search" role="search">
+              <div class="input-group">
+                <div class="input-group-btn">
+        <select class="form-control" id="housingtype">
+      <option value="All">All</option>
+                <option value="House">House</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Room">Room</option>
+    </select>
+      </div><!-- /btn-group -->
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="submit">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </button>
+                </span>
+              </div>
+              <ul class="nav navbar-nav navbar-right">
+              
+              <li class="dropdown">
+                <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <!--<img src="http://lorempixel.com/100/100/people/9/" class="img-responsive img-thumbnail img-circle">--> Login</a>
+                <ul class="dropdown-menu dropdown-block" role="menu">
+                  <li><a href="#">Profile edition</a></li>
+                  <li><a href="#">Admin</a></li>
+                  <li><a href="#">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+  </div>
+  <div id="link-wrapper">
+    <div class="container-fluid">
+      <div class="link-row">
+    
+        
+        <ul class="nav nav-pills nav-justified">
+          <li role="presentation" class="active"><a href="#">Home</a></li>
+          <li role="presentation" class="active"><a href="#">Profile</a></li>
+          <li role="presentation" class="active"><a href="#">Messages</a></li>
+          <li role="presentation" class="active"><a href="#">Contact</a></li>
+          <li role="presentation" class="active"><a href="#">About</a></li>
+        </ul>
+        
+        
+      </div>
+    </div>
+  </div>
+<!--  End Navbar  -->
+  
+
+  <div id="wrapper">
+<!--  Begin Sidebar Wrapper  -->
+   <div id="sidebar-wrapper">
+      <aside id="sidebar">
+        <ul id="sidemenu" class="sidebar-nav">
+          <li>
+            <a href="#">
+              
+              <span class="sidebar-title">Gator Housing</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="https://i.imgur.com/UGvI4zF.jpg" class="img-responsive img-thumbnail img">
+              
+              
+            </a>
+          </li>
+          
+          <div id="filter-wrapper">
+          
+            <li>
+              <span class="sidebar-title">Sort by:</span>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <select class="form-control" id="filtertype">
+                      <option value="All">Price: Lowest First</option>
+                      <option value="House">House</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Room">Room</option>
+                    </select>
+                  </div>
+              </div>
+            </li>
+
+
+            <li>  
+              <span class="sidebar-title">Filters:</span>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <select class="form-control" id="pricetype">
+                      <option value="All">Any Price</option>
+                      <option value="House">House</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Room">Room</option>
+                    </select>
+                  </div>
+              </div>
+            </li>
+
+            <li>  
+              <br>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <select class="form-control" id="pricetype">
+                      <option value="All">0+ Bedrooms</option>
+                      <option value="House">House</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Room">Room</option>
+                    </select>
+                  </div>
+              </div>
+            </li>
+
+            <li>  
+              <br>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <select class="form-control" id="pricetype">
+                      <option value="All">0+ Bath</option>
+                      <option value="House">House</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Room">Room</option>
+                    </select>
+                  </div>
+              </div>
+            </li>
+
+            <li>  
+              <br>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <select class="form-control" id="pricetype">
+                      <option value="All">Distance</option>
+                      <option value="House">House</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Room">Room</option>
+                    </select>
+                  </div>
+              </div>
+            </li>
+          </div>
+         
+        </ul>
+      </aside>
+    </div>
+<!--   End Sidebar Wrapper   -->
+    
+<!--   Begin Welcome to Dashboard   -->
+    <section class="wrapper"> 
+      
+        <div class="container-fluid">
+          <h1 class="well">Login</h1>
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">E-Mail</label>
+                  <div class="col-sm-12">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="E-Mail">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                  <div class="col-sm-12">
+                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm col-sm-12">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox"> Remember me
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm col-sm-12">
+                      <div class="forgotpass">
+                        <a class="purplink" href="#">Forgot Your Password?</a>
+                      </div>
+                      <div class="reghere">
+                        <a class="purplink" href="#">Register Here!</a>
+                      </div>
+                  </div>
+                </div>  
+                <div class="form-group">
+                  <div class="col-sm-centered col-sm-12">
+                    <button type="submit" class="btn btn-login">Login</button>
+                  </div>
+                </div>
+              </form>
+          
+        </div>
+
+      
+    
+</section>
+
+  
+<!-- Begin Copyright Section -->
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <br/><br/><br/>
+        <hr/>
+        <p>Copyright</p>
+    </div>
+  </div>
+<!-- End Copyright Section -->
+</body>
+  
+  
+
+</body>
+
+</html>
