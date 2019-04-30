@@ -24,6 +24,7 @@
 <!-- Needed for Dropdown in Navbar -->
 
 <body>
+
 <!--  Begin Navbar  -->
   <div id="navbar-wrapper">
     <header>
@@ -42,29 +43,29 @@
             <form class="navbar-form navbar" id="search" role="search">
               <div class="input-group">
                 <div class="input-group-btn">
-        <select class="form-control" id="housingtype">
-      <option value="All">All</option>
-                <option value="House">House</option>
-                <option value="Apartment">Apartment</option>
-                <option value="Room">Room</option>
+        <select class="form-control" name="category">
+			<option value=""<%if(searchCategory == ""){%> selected <%}%>> All Categories </option>
+       		<option value="apartment"<%if(searchCategory == "apartment"){%> selected <%}%>> Apartment </option>
+			<option value="house"<%if(searchCategory == "house"){%> selected <%}%>> House </option>
+        	<option value="room"<%if(searchCategory == "room"){%> selected <%}%>> Room </option>
     </select>
       </div><!-- /btn-group -->
-                <input type="text" class="form-control" placeholder="Search">
+                <input id="search" name="search" value="<%=searchTerm%>" type="text" class="form-control" placeholder="Search">
                 <span class="input-group-btn">
-                  <button class="btn btn-default" type="submit">
+                  <button class="btn btn-default" onClick="this.form.submit()" type="submit">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                   </button>
                 </span>
+				
               </div>
               <ul class="nav navbar-nav navbar-right">
               
               <li class="dropdown">
-                <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <!--<img src="http://lorempixel.com/100/100/people/9/" class="img-responsive img-thumbnail img-circle">--> Login</a>
+                <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown">Login</a>
                 <ul class="dropdown-menu dropdown-block" role="menu">
-                  <li><a href="#">Profile edition</a></li>
-                  <li><a href="#">Admin</a></li>
-                  <li><a href="#">Logout</a></li>
+                  <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/userdash">Profile</a></li>
+                  <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/admindash">Admin</a></li>
+                  <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/logout">Logout</a></li>
                 </ul>
               </li>
             </ul>
@@ -80,11 +81,11 @@
     
         
         <ul class="nav nav-pills nav-justified">
-          <li role="presentation" class="active"><a href="#">Home</a></li>
-          <li role="presentation" class="active"><a href="#">Profile</a></li>
-          <li role="presentation" class="active"><a href="#">Messages</a></li>
-          <li role="presentation" class="active"><a href="#">Contact</a></li>
-          <li role="presentation" class="active"><a href="#">About</a></li>
+          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000">Home</a></li>
+          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about">About</a></li>
+          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/post">Post</a></li>
+          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/login">Login</a></li>
+          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/registration">Register</a></li>
         </ul>
         
         
