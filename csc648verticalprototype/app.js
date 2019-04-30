@@ -28,6 +28,20 @@ var searchResult = req.searchResult;
     });
 });
 
+app.get('/post',search, (req, res) => {
+var searchResult = req.searchResult;
+    console.log(searchResult);
+    // Tells node to render this ejs file named index 
+    res.render('posting', {
+        // Ejs variables being passed into index.ejs
+        results: searchResult.length,
+        searchTerm: req.searchTerm,
+        searchResult: searchResult,
+        searchCategory: req.query.category
+    });
+});
+
+
 app.get('/results',search, (req, res) => {
     var searchResult = req.searchResult;
         console.log(searchResult);
