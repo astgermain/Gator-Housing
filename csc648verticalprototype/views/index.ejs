@@ -206,34 +206,38 @@
         <div class="row">                 
     <!-- Displaying ejs variables to html-->
 
- <% if (searchResult.length > 3) { for (var i = 0; i < 4; i++) { %>
+ <% if (searchResult.length > 3) { var i = 5; for (var j = searchResult.length - 1; j > searchResult.length - i; j--) {  if (searchResult[j].isLive != 0) { %>
+ 
 
 					<div class="col-xs-12 col-sm-4 col-lg-3">
                         <div class="card">
                             <a class="img-card" href="#">
-                            <img src="/img/<%= searchResult[i].image %>"/>
+                            <img src="/img/<%= searchResult[j].image %>"/>
                           </a>
                             <div class="card-content">
                                 <h4 class="card-title">
-                                    <a href=""> <%= searchResult[i].post_name %>
+                                    <a href=""> <%= searchResult[j].post_name %>
                                   </a>
                                 </h4>
 								
-								<p> <%= searchResult[i].location %></p>
-								<p> <%= searchResult[i].status %></p>
-								<p>  <%= searchResult[i].description %></p>
-								<p>   <%= searchResult[i].category %></p>
+								<p> <%= searchResult[j].location %></p>
+								<p> <%= searchResult[j].status %></p>
+								<p>  <%= searchResult[j].description %></p>
+								<p>   <%= searchResult[j].category %></p>
                             </div>
                             <div class="card-read-more">
                                 <a href="" class="btn btn-link btn-block">
-                                    $<%= searchResult[i].price%>
+                                    $<%= searchResult[j].price%>
                                 </a>
                             </div>
                         </div>
                     </div>
-	     
+					
+			<% } else{ i = 5 + 1; %>		
+	    
+		 
             
- <% } } %>
+ <%   } } } %>
             
 			</div>
             
@@ -243,7 +247,7 @@
          
         <div class="row">
 			<!-- Display results -->
-			<p class="text-center center-block">Homes Available Now <%= i/4 %> - 4  Out of: <%= results %></p>
+			<p class="text-center center-block">Newly Added Listings <%= j/4 %> - 4  Out of: <%= results %></p>
         </div>
 		<div class="row">
 		<% if (searchResult.length > 7) { for (var i = 4; i < 8; i++) { %>
@@ -280,7 +284,7 @@
          
         <div class="row">
 			<!-- Display results -->
-			<p class="text-center center-block">Recently Sold Listings <%= i/4 %> - 4  Out of: <%= results %></p>
+			<p class="text-center center-block">Listings Available Now <%= i/4 %> - 4  Out of: <%= results %></p>
         </div>
 		
 		
@@ -320,7 +324,7 @@
          
         <div class="row">
 			<!-- Display results -->
-			<p class="text-center center-block">Recently Viewed Listings <%= i/4 %> - 4  Out of: <%= results %></p>
+			<p class="text-center center-block">Recently Sold Listings <%= i/4 %> - 4  Out of: <%= results %></p>
         </div>
 		
 		
