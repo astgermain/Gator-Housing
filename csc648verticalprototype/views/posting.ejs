@@ -82,8 +82,18 @@
         
         <ul class="nav nav-pills nav-justified">
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000">Home</a></li>
-          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about">About</a></li>
-          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/post">Post</a></li>
+<li role="presentation" class="active">
+		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/andrew">Andrew</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/david">David</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/peter">Peter</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/sagar">Sagar</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/steven">Steven</a></li>
+			<li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/sunny">Sunny</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/zolboo">Zolboo</a></li>
+          </ul>
+		  </li>          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/post">Post</a></li>
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/login">Login</a></li>
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/registration">Register</a></li>
         </ul>
@@ -200,21 +210,21 @@
           <h1 class="well">Post a Listing!</h1>
 	<div class="col-lg-12 well">
 	<div class="row">
-				<form>
+				<form action="/userPost" method="POST">
 					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>Title of Post <font color="red">*</font></label>
-								<input type="text" placeholder="Enter Title of Listing Here.." class="form-control">
+								<input type="text" placeholder="Enter Title of Listing Here.." class="form-control" name="title">
 							</div>
 							<div class="col-sm-6 form-group">
 								<label>Price <font color="red">*</font></label>
-								<input type="text" placeholder="Enter Price of Listing Here.." class="form-control">
+								<input type="text" placeholder="Enter Price of Listing Here.." class="form-control" name="price">
 							</div>
 						</div>				
 <div class="row">						
 						<div class="col-sm-4 form-group">
-								<select class="form-control" id="filtertype">
+								<select class="form-control" id="filtertype" name="beds";>
 								  <option value="All">Number of Beds</option>
 								  <option value="st">Studio</option>
 								  <option value="1b">1+</option>
@@ -222,7 +232,7 @@
 								</select>
 						</div>
 						<div class="col-sm-4 form-group">
-								<select class="form-control" id="filtertype">
+								<select class="form-control" id="filtertype" name="baths">
 								  <option value="All">Number of Baths</option>
 								  <option value="1p">1+</option>
 								  <option value="2p">2+</option>
@@ -230,7 +240,7 @@
 								</select>
 						</div>
 						<div class="col-sm-4 form-group">
-								<select class="form-control" id="filtertype">
+								<select class="form-control" id="filtertype" name="category">
 								  <option value="All">Category</option>
 								  <option value="room">Room</option>
 								  <option value="apartment">Apartment</option>
@@ -241,16 +251,16 @@
 						  
 						<div class="form-group">
 							<label>Street Address <font color="red">*</font></label>
-							<textarea placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+							<textarea placeholder="Enter Address Here.." rows="3" class="form-control" name="location"></textarea>
 						</div>	
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>City <font color="red">*</font></label>
-								<input type="text" placeholder="Enter City Name Here.." class="form-control">
+								<input type="text" placeholder="Enter City Name Here.." class="form-control" name="city">
 							</div>	
 							<div class="col-sm-6 form-group">
 								<label>State <font color="red">*</font></label>
-								<input type="text" placeholder="Enter State Name Here.." class="form-control">
+								<input type="text" placeholder="Enter State Name Here.." class="form-control" name="state">
 							</div>	
 								
 						</div>
@@ -259,22 +269,22 @@
 						</div>						
 					<div class="form-group">
 						<label>Phone Number <font color="red">*</font></label>
-						<input type="text" placeholder="Enter Phone Number Here.." class="form-control">
+						<input type="text" placeholder="Enter Phone Number Here.." class="form-control" name="phone">
 					</div>	
 					<div class="form-group">
 						<label>E-Mail <font color="red">*</font></label>
-						<input type="text" placeholder="Enter E-Mail Here.." class="form-control">
+						<input type="text" placeholder="Enter E-Mail Here.." class="form-control" name="email">
 					</div>						
 					<div class="form-group">
 							<label>Description <font color="red">*</font></label>
-							<textarea placeholder="Enter Description of Listing Here.." rows="3" class="form-control"></textarea>
+							<textarea placeholder="Enter Description of Listing Here.." rows="3" class="form-control" name="description"></textarea>
 						</div>	
             <div class="form-group">
 								<label>Add Images <font color="red">*</font></label>
-								<input type="text" placeholder="Add Images Here.." class="form-control"><button type="button" class="btn btn-sm btn-info">Add Image</button>
+								<input type="text" placeholder="Add Images Here.." class="form-control"><button type="button" class="btn btn-sm btn-info" name="image">Add Image</button>
 							</div>
             
-					<button type="button" class="btn btn-lg btn-info">Submit</button>					
+					<button type="button" onClick="this.form.submit()" class="btn btn-lg btn-info">Submit</button>					
 					</div>
 				</form> 
 				</div>

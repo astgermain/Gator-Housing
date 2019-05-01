@@ -43,22 +43,22 @@
             <form class="navbar-form navbar" id="search" role="search" action="/results">
               <div class="input-group">
                 <div class="input-group-btn">
-        <select class="form-control" name="category">
-			<option value=""<%if(searchCategory == ""){%> selected <%}%>> All Categories </option>
+					<select class="form-control" name="category">
+						<option value=""<%if(searchCategory == ""){%> selected <%}%>> All Categories </option>
        		<option value="apartment"<%if(searchCategory == "apartment"){%> selected <%}%>> Apartment </option>
 			<option value="house"<%if(searchCategory == "house"){%> selected <%}%>> House </option>
         	<option value="room"<%if(searchCategory == "room"){%> selected <%}%>> Room </option>
     </select>
-      </div><!-- /btn-group -->
-                <input id="search" name="search" value="<%=searchTerm%>" type="text" class="form-control" placeholder="Search">
+	</div>
+	 <input id="search" name="search" value="<%=searchTerm%>" type="text" class="form-control" placeholder="Search">
                 <span class="input-group-btn">
                   <button class="btn btn-default" onClick="this.form.submit()" type="submit">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                   </button>
                 </span>
-				
-              </div>
-              <ul class="nav navbar-nav navbar-right">
+				</div>
+	</div>
+	<ul class="nav navbar-nav navbar-right">
               
               <li class="dropdown">
                 <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown">Login</a>
@@ -69,6 +69,118 @@
                 </ul>
               </li>
             </ul>
+
+  <!-- Sidebar -->
+  <div id="wrapper">
+    <!--  Begin Sidebar Wrapper  -->
+       <div id="sidebar-wrapper">
+        <aside id="sidebar">
+        <ul id="sidemenu" class="sidebar-nav">
+          <li>
+          <a href="#">
+            
+            <span class="sidebar-title">Gator Housing</span>
+          </a>
+          </li>
+          <li>
+          <a href="#">
+            <img src="https://i.imgur.com/UGvI4zF.jpg" class="img-responsive img-thumbnail img">
+            
+            
+          </a>
+          </li>
+          
+          <div id="filter-wrapper">
+          
+          <li>
+            <span class="sidebar-title">Sort by:</span>
+            <div class="input-group">
+              <div class="input-group-btn">
+              <select class="form-control" name="sortType">
+                <option value="ASC"<%if(sortType == "ASC"){%> selected <%}%>> Sort by Price: Low to high </option>
+                <option value="DESC"<%if(sortType == "DESC"){%> selected <%}%>> Sort by Price: High to low </option>
+              </select>
+              </div>
+            </div>
+          </li>
+  
+  
+          <li>  
+            <span class="sidebar-title">Filters:</span>
+            <div class="input-group">
+              <div class="input-group-btn">
+              <select class="form-control" name="priceFilter">
+                <option value=""<%if(priceFilter == ""){%> selected <%}%>> Price filter: None </option>
+                  <option value="500"<%if(priceFilter == "500"){%> selected <%}%>> Under $500 </option>
+                  <option value="750"<%if(priceFilter == "750"){%> selected <%}%>> Under $750 </option>
+                  <option value="1000"<%if(priceFilter == "1000"){%> selected <%}%>> Under $1000 </option>
+                  <option value="1250"<%if(priceFilter == "1250"){%> selected <%}%>> Under $1250 </option>
+                  <option value="1500"<%if(priceFilter == "1500"){%> selected <%}%>> Under $1500 </option>
+                  <option value="1750"<%if(priceFilter == "1750"){%> selected <%}%>> Under $1750 </option>
+                  <option value="2000"<%if(priceFilter == "2000"){%> selected <%}%>> Under $2000 </option>
+              </select>
+              </div>
+            </div>
+          </li>
+  
+          <li>  
+            <br>
+            <div class="input-group">
+              <div class="input-group-btn">
+              <select class="form-control" id="pricetype">
+                <option value="All">0+ Bedrooms</option>
+                <option value="House">House</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Room">Room</option>
+              </select>
+              </div>
+            </div>
+          </li>
+  
+          <li>  
+            <br>
+            <div class="input-group">
+              <div class="input-group-btn">
+              <select class="form-control" id="pricetype">
+                <option value="All">0+ Bath</option>
+                <option value="House">House</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Room">Room</option>
+              </select>
+              </div>
+            </div>
+          </li>
+  
+          <li>  
+            <br>
+            <div class="input-group">
+              <div class="input-group-btn">
+              <select class="form-control" name="distanceFilter">
+                <option value=""<%if(distanceFilter == ""){%> selected <%}%>> Distance filter: None </option>
+                  <option value="5"<%if(distanceFilter == "5"){%> selected <%}%>> Under 5 miles </option>
+                  <option value="10"<%if(distanceFilter == "10"){%> selected <%}%>> Under 10 miles </option>
+                  <option value="20"<%if(distanceFilter == "20"){%> selected <%}%>> Under 20 miles </option>
+                  <option value="30"<%if(distanceFilter == "30"){%> selected <%}%>> Under 30 miles </option>
+                  <option value="40"<%if(distanceFilter == "40"){%> selected <%}%>> Under 40 miles </option>
+                  <option value="50"<%if(distanceFilter == "50"){%> selected <%}%>> Under 50 miles </option>
+              </select>
+              </div>
+            
+          </li>
+          </div>
+         
+        </ul>
+        </aside>
+      </div>
+    <!--   End Sidebar Wrapper   -->
+
+
+
+  </div><!-- /btn-group -->
+               
+				
+              </div>
+              
             </form>
           </div>
         </div>
@@ -76,14 +188,26 @@
     </header>
   </div>
   <div id="link-wrapper">
-    <div class="container-fluid">
+    <div class="container-fluid" style="
+    margin-left: 225px;
+">
       <div class="link-row">
     
         
         <ul class="nav nav-pills nav-justified">
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000">Home</a></li>
-          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about">About</a></li>
-          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/post">Post</a></li>
+<li role="presentation" class="active">
+		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/andrew">Andrew</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/david">David</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/peter">Peter</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/sagar">Sagar</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/steven">Steven</a></li>
+			<li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/sunny">Sunny</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/zolboo">Zolboo</a></li>
+          </ul>
+		  </li>          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/post">Post</a></li>
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/login">Login</a></li>
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/registration">Register</a></li>
         </ul>
@@ -95,103 +219,7 @@
 <!--  End Navbar  -->
 
 
-  <div id="wrapper">
-    <!--  Begin Sidebar Wrapper  -->
-   <div id="sidebar-wrapper">
-      <aside id="sidebar">
-        <ul id="sidemenu" class="sidebar-nav">
-          <li>
-            <a href="#">
-              
-              <span class="sidebar-title">Gator Housing</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="https://i.imgur.com/UGvI4zF.jpg" class="img-responsive img-thumbnail img">
-              
-              
-            </a>
-          </li>
-          
-          <div id="filter-wrapper">
-          
-            <li>
-              <span class="sidebar-title">Sort by:</span>
-                <div class="input-group">
-                  <div class="input-group-btn">
-                    <select class="form-control" id="filtertype">
-                      <option value="All">Price: Lowest First</option>
-                      <option value="House">House</option>
-                      <option value="Apartment">Apartment</option>
-                      <option value="Room">Room</option>
-                    </select>
-                  </div>
-              </div>
-            </li>
-
-
-            <li>  
-              <span class="sidebar-title">Filters:</span>
-                <div class="input-group">
-                  <div class="input-group-btn">
-                    <select class="form-control" id="pricetype">
-                      <option value="All">Any Price</option>
-                      <option value="House">House</option>
-                      <option value="Apartment">Apartment</option>
-                      <option value="Room">Room</option>
-                    </select>
-                  </div>
-              </div>
-            </li>
-
-            <li>  
-              <br>
-                <div class="input-group">
-                  <div class="input-group-btn">
-                    <select class="form-control" id="pricetype">
-                      <option value="All">0+ Bedrooms</option>
-                      <option value="House">House</option>
-                      <option value="Apartment">Apartment</option>
-                      <option value="Room">Room</option>
-                    </select>
-                  </div>
-              </div>
-            </li>
-
-            <li>  
-              <br>
-                <div class="input-group">
-                  <div class="input-group-btn">
-                    <select class="form-control" id="pricetype">
-                      <option value="All">0+ Bath</option>
-                      <option value="House">House</option>
-                      <option value="Apartment">Apartment</option>
-                      <option value="Room">Room</option>
-                    </select>
-                  </div>
-              </div>
-            </li>
-
-            <li>  
-              <br>
-                <div class="input-group">
-                  <div class="input-group-btn">
-                    <select class="form-control" id="pricetype">
-                      <option value="All">Distance</option>
-                      <option value="House">House</option>
-                      <option value="Apartment">Apartment</option>
-                      <option value="Room">Room</option>
-                    </select>
-                  </div>
-              </div>
-            </li>
-          </div>
-         
-        </ul>
-      </aside>
-    </div>
-<!--   End Sidebar Wrapper   -->
+  
     <section class="wrapper">
    
       <div class="container-fluid">
@@ -200,7 +228,6 @@
                 <div class="row">
 				 <% var j = 16; for (var i = 0; i < j; i++) { if (searchResult[i] == null) { break } if (searchResult[i].isLive != 0) { %>
  
-
 					<div class="col-xs-12 col-sm-4 col-lg-3">
                         <div class="card">
                             <a class="img-card" href="#">
