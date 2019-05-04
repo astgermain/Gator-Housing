@@ -213,9 +213,19 @@
      <!--- REGISTRATION PAGE --->
       <div class="container-fluid">
     <h1 class="well">Registration</h1>
+<% if (typeof errors!='undefined') { %>
+
+      <div class="alert alert-danger" role="alert">
+          <h1><span class="badge badge-danger">Errors Occured!! </span></h1>
+            <% errors.forEach(function(errors) { %>
+                 <h5><%= errors.msg %> </h5>
+            <% });
+       } 
+ %>
 	<div class="col-lg-12 well">
 	<div class="row">
-				<form action="/register" method="POST">
+				<form action="/registration" method="POST">
+        
 					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-6 form-group">
@@ -229,7 +239,9 @@
 						</div>					
 						<div class="col-sm-6 form-group">
 							<label>Password <font color="red">*</font></label>
-							<input type="text" placeholder="Enter Password Here..." class="form-control" name="password">
+							<input type="password" placeholder="Enter Password Here..." class="form-control" name="password">
+              <label>Confirm Password <font color="red">*</font></label>
+              <input type="password" placeholder="Confirm Password Here..." class="form-control" name="password2">
 						</div>		
 	
             

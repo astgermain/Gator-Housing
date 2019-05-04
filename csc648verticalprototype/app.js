@@ -8,6 +8,7 @@ var adminPage = require('./admin');
 var userPage = require('./user');
 var bodyParser = require('body-parser');
 var bcrypt = require('bcryptjs');
+var expressValidator = require('express-validator');
 
 
 
@@ -16,7 +17,7 @@ var port = 3000;
 const saltRounts = 10; // used for encrypting password
 app.set('view engine', 'ejs');
 
-
+app.use(expressValidator());
 app.use(bodyParser.urlencoded({extended: true})); 
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -39,133 +40,116 @@ var searchResult = req.searchResult;
     });
 });
 
-app.get('/andrew',search, (req, res) => {
-var searchResult = req.searchResult;
-    console.log(searchResult);
+app.get('/andrew', (req, res) => {
     // Tells node to render this ejs file named index 
     res.render('andrew', {
         // Ejs variables being passed into index.ejs
-        results: searchResult.length,
-        searchTerm: req.searchTerm,
-        searchResult: searchResult,
-        searchCategory: req.query.category,
-        sortType: req.query.sortType,
-        priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
+        results: 0,
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
     });
 });
 
-app.get('/david',search, (req, res) => {
-var searchResult = req.searchResult;
-    console.log(searchResult);
+app.get('/david', (req, res) => {
     // Tells node to render this ejs file named index 
     res.render('david', {
         // Ejs variables being passed into index.ejs
-        results: searchResult.length,
-        searchTerm: req.searchTerm,
-        searchResult: searchResult,
-        searchCategory: req.query.category,
-        sortType: req.query.sortType,
-        priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
+        results: 0,
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
     });
 });
 
-app.get('/peter',search, (req, res) => {
-var searchResult = req.searchResult;
-    console.log(searchResult);
+app.get('/peter', (req, res) => {
     // Tells node to render this ejs file named index 
     res.render('peter', {
         // Ejs variables being passed into index.ejs
-        results: searchResult.length,
-        searchTerm: req.searchTerm,
-        searchResult: searchResult,
-        searchCategory: req.query.category,
-        sortType: req.query.sortType,
-        priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
+        results: 0,
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
     });
 });
 
-app.get('/sagar',search, (req, res) => {
-var searchResult = req.searchResult;
-    console.log(searchResult);
+app.get('/sagar', (req, res) => {
     // Tells node to render this ejs file named index 
     res.render('sagar', {
         // Ejs variables being passed into index.ejs
-        results: searchResult.length,
-        searchTerm: req.searchTerm,
-        searchResult: searchResult,
-        searchCategory: req.query.category,
-        sortType: req.query.sortType,
-        priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
+        results: 0,
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
     });
 });
 
 
-app.get('/steven',search, (req, res) => {
-var searchResult = req.searchResult;
-    console.log(searchResult);
+app.get('/steven', (req, res) => {
     // Tells node to render this ejs file named index 
     res.render('steven', {
         // Ejs variables being passed into index.ejs
-        results: searchResult.length,
-        searchTerm: req.searchTerm,
-        searchResult: searchResult,
-        searchCategory: req.query.category,
-        sortType: req.query.sortType,
-        priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
+        results: 0,
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
     });
 });
 
-app.get('/sunny',search, (req, res) => {
-var searchResult = req.searchResult;
-    console.log(searchResult);
+app.get('/sunny', (req, res) => {
     // Tells node to render this ejs file named index 
     res.render('sunny', {
         // Ejs variables being passed into index.ejs
-        results: searchResult.length,
-        searchTerm: req.searchTerm,
-        searchResult: searchResult,
-        searchCategory: req.query.category,
-        sortType: req.query.sortType,
-        priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
+        results: 0,
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
     });
 });
 
-app.get('/zolboo',search, (req, res) => {
-var searchResult = req.searchResult;
-    console.log(searchResult);
+app.get('/zolboo', (req, res) => {
     // Tells node to render this ejs file named index 
     res.render('zolboo', {
         // Ejs variables being passed into index.ejs
-        results: searchResult.length,
-        searchTerm: req.searchTerm,
-        searchResult: searchResult,
-        searchCategory: req.query.category,
-        sortType: req.query.sortType,
-        priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
+        results: 0,
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
     });
 });
 
-app.get('/post',search, (req, res) => {
-var searchResult = req.searchResult;
-    console.log(searchResult);
-    // Tells node to render this ejs file named index 
+app.get('/post', (req, res) => {
     // USING DUMMY POST EJS, CHANGE LATER
     res.render('dummyPost', {
         // Ejs variables being passed into index.ejs
-        results: searchResult.length,
-        searchTerm: req.searchTerm,
-        searchResult: searchResult,
-        searchCategory: req.query.category,
-        sortType: req.query.sortType,
-        priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
+        results: 0,
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
     });
 });
 
@@ -203,44 +187,84 @@ app.get('/results',search, (req, res) => {
         });
     });
 	
-app.get('/login',search, (req, res) => {
-var searchResult = req.searchResult;
-    console.log(searchResult);
+app.get('/login', (req, res) => {
     // Tells node to render this ejs file named index 
     res.render('login', {
         // Ejs variables being passed into index.ejs
-        results: searchResult.length,
-        searchTerm: req.searchTerm,
-        searchResult: searchResult,
-        searchCategory: req.query.category,
-        sortType: req.query.sortType,
-        priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
     });
 });
 
-app.get('/registration',search, (req, res) => {
-var searchResult = req.searchResult;
-    console.log(searchResult);
+app.get('/registration', (req, res) => {
+
     // Tells node to render this ejs file named index 
     // USING DUMMY REGISTRATION EJS, CHANGE LATER
     res.render('dummyRegistration', {
         // Ejs variables being passed into index.ejs
-        results: searchResult.length,
-        searchTerm: req.searchTerm,
-        searchResult: searchResult,
-        searchCategory: req.query.category,
-        sortType: req.query.sortType,
-        priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
     });
 });
 
 
 
 
-app.post('/register', userRegister, (req,res) => {
-    console.log("Registered user");
+app.post('/registration', (req,res) => {
+    var searchResult = req.searchResult;
+    var userName = req.body.name;
+        var email = req.body.email;
+        var password = req.body.password;
+        var password2 = req.body.password2;
+        //Make sure to validate each name attribute from the form.
+        req.checkBody('name').not().isEmpty().withMessage("Username required!");
+        req.checkBody('email').isEmail().withMessage("Invalid Email!");
+        req.checkBody('password')
+        .not().isEmpty().withMessage("Password cannot be empty!")
+        .isAlphanumeric().withMessage('Alphanumeric characters only!')
+        .isLength({min:10}).withMessage('Password must be at least 10 characters long!');
+        req.checkBody('password2').equals(password).withMessage("Passwords do not match!");
+        
+    
+    const errors = req.validationErrors();
+    if(errors){
+        res.render('dummyRegistration', {
+        errors: errors,
+        results: 0,
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
+        });
+    
+    } else {
+        
+        bcrypt.hash(password, saltRounts, (err, hash) => {
+            // Storing hash password in DB
+            let query = ` INSERT INTO users (name, email, password)
+                              VALUES ('${userName}', '${email}', '${hash}')`;
+    
+            console.log(query);
+    
+            database.query(query, (err, result) => {
+                if (err) {
+                    console.log("Failed to insert into user table: " + err)
+                }
+                console.log("Inserted row: " + result);
+                res.redirect('/');
+            });
+        });
+    }
 });
 
 app.post('/userPost',userPost, (req, res) => {
@@ -362,27 +386,7 @@ app.get('/img/sagar.png',function(req,res){
 	res.sendFile(__dirname + '/img/sagar.png');
 });
 
-function userRegister(req, res) {
-    var userName = req.body.name;
-    var email = req.body.email;
-    var password = req.body.password;
 
-    bcrypt.hash(password, saltRounts, (err, hash) => {
-        // Storing hash password in DB
-        let query = ` INSERT INTO users (name, email, password)
-                      VALUES ('${userName}', '${email}', '${hash}')`;
-
-        console.log(query);
-        database.query(query, (err, result) => {
-            if (err) {
-                console.log("Failed to insert into user table: " + err)
-            }
-            console.log("Inserted row: " + result);
-            res.redirect('/');
-        });
-    });
-
-}
 function userPost(req, res){
     var postName = req.body.title;
     var price = req.body.price;
