@@ -3,13 +3,13 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Login Page</title>
-  
-  
-  
-      <link rel="stylesheet" href="css/main.css">
+  <title>About Page</title>
 
-  
+
+
+      <link rel="stylesheet" href="../css/main.css">
+
+
 </head>
 
 <body>
@@ -37,7 +37,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            
+
           </div>
           <div id="navbar-collapse" class="collapse navbar-collapse">
             <form class="navbar-form navbar" id="search" role="search" action="/results">
@@ -56,10 +56,10 @@
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                   </button>
                 </span>
-				
+
               </div>
               <ul class="nav navbar-nav navbar-right">
-              
+
               <li class="dropdown">
                 <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown">Login</a>
                 <ul class="dropdown-menu dropdown-block" role="menu">
@@ -78,8 +78,8 @@
   <div id="link-wrapper">
     <div class="container-fluid">
       <div class="link-row">
-    
-        
+
+
         <ul class="nav nav-pills nav-justified">
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000">Home</a></li>
 <li role="presentation" class="active">
@@ -97,13 +97,13 @@
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/login">Login</a></li>
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/registration">Register</a></li>
         </ul>
-        
-        
+
+
       </div>
     </div>
   </div>
 <!--  End Navbar  -->
-  
+
 
   <div id="wrapper">
 <!--  Begin Sidebar Wrapper  -->
@@ -112,20 +112,20 @@
         <ul id="sidemenu" class="sidebar-nav">
           <li>
             <a href="#">
-              
+
               <span class="sidebar-title">Gator Housing</span>
             </a>
           </li>
           <li>
             <a href="#">
               <img src="https://i.imgur.com/UGvI4zF.jpg" class="img-responsive img-thumbnail img">
-              
-              
+
+
             </a>
           </li>
-          
+
           <div id="filter-wrapper">
-          
+
             <li>
               <span class="sidebar-title">Sort by:</span>
                 <div class="input-group">
@@ -141,7 +141,7 @@
             </li>
 
 
-            <li>  
+            <li>
               <span class="sidebar-title">Filters:</span>
                 <div class="input-group">
                   <div class="input-group-btn">
@@ -155,7 +155,7 @@
               </div>
             </li>
 
-            <li>  
+            <li>
               <br>
                 <div class="input-group">
                   <div class="input-group-btn">
@@ -169,7 +169,7 @@
               </div>
             </li>
 
-            <li>  
+            <li>
               <br>
                 <div class="input-group">
                   <div class="input-group-btn">
@@ -183,7 +183,7 @@
               </div>
             </li>
 
-            <li>  
+            <li>
               <br>
                 <div class="input-group">
                   <div class="input-group-btn">
@@ -197,88 +197,50 @@
               </div>
             </li>
           </div>
-         
+
         </ul>
       </aside>
     </div>
 <!--   End Sidebar Wrapper   -->
-    
-<!--   Begin Welcome to Dashboard   -->
-    <section class="wrapper"> 
-      
+
+<!-- Begin Main Section -->
+    <section class="wrapper">
         <div class="container-fluid">
-          <h1 class="well">Post a Listing!</h1>
-	<div class="col-lg-12 well">
-	<div class="row">
-				<form action="/userPost" method="POST">
-					<div class="col-sm-12">
-						<div class="row">
-							<div class="col-sm-6 form-group">
-								<label>Title of Post <font color="red">*</font></label>
-								<input type="text" placeholder="Enter Title of Listing Here.." class="form-control" name="title">
-							</div>
-							<div class="col-sm-6 form-group">
-								<label>Price <font color="red">*</font></label>
-								<input type="text" placeholder="Enter Price of Listing Here.." class="form-control" name="price">
-							</div>
-						</div>				
-<div class="row">						
-						<div class="col-sm-4 form-group">
-								<select class="form-control" id="filtertype" name="beds";>
-								  <option value="All">Number of Beds</option>
-								  <option value="st">Studio</option>
-								  <option value="1b">1+</option>
-								  <option value="2b">2+</option>
-								</select>
-						</div>
-						<div class="col-sm-4 form-group">
-								<select class="form-control" id="filtertype" name="baths">
-								  <option value="All">Number of Baths</option>
-								  <option value="1p">1+</option>
-								  <option value="2p">2+</option>
-								  <option value="3p">3+</option>
-								</select>
-						</div>
-						<div class="col-sm-4 form-group">
-								<select class="form-control" id="filtertype" name="category">
-								  <option value="All">Category</option>
-								  <option value="room">Room</option>
-								  <option value="apartment">Apartment</option>
-								  <option value="house">House</option>
-								</select>
-						</div>
-						</div>
-						  
-						<div class="form-group">
-							<label>Street Address <font color="red">*</font></label>
-							<textarea placeholder="Enter Address Here.." rows="3" class="form-control" name="location"></textarea>
-						</div>	
-						<div class="row">
-							<div class="col-sm-6 form-group">
-								<label>City <font color="red">*</font></label>
-								<input type="text" placeholder="Enter City Name Here.." class="form-control" name="city">
-							</div>	
-							<div class="col-sm-6 form-group">
-								<label>State <font color="red">*</font></label>
-								<input type="text" placeholder="Enter State Name Here.." class="form-control" name="state">
-							</div>	
-								
-						</div>
-
-            
-					<button type="button" onClick="this.form.submit()" class="btn btn-lg btn-info">Submit</button>					
-					</div>
-				</form> 
-				</div>
-	</div>
-          
+          <div class="row">
+            <div class="col-md-2 col-md-offset-5">
+              <div class="ratio img-responsive img-circle" style="background-image: url(../img/sunny.png);">
+              </div>
+            </div>
+          </div>
+          <div class="top-about">
+            <h3>Sunny Wong - Github Master / Backend</h3>
+          </div>
+          <div class="mid-about">
+            <h2>Interests</h2>
+            <ul>
+              <li>Dogs</li>
+              <li>Games</li>
+              <li>Sports</li>
+              <li>Knitting</li>
+              <li>Eating</li>
+              <li>Sleeping</li>
+              <li>Talking</li>
+              <li>Listing</li>
+          </ul>
         </div>
+        <div class="bottom-about">
+          <h2>Background</h2>
+          <p>Hi! My name is Sunny Wong and I am currently attending San Francisco State University, studying computer science. I am originally from Sacramento, California. When I'm not busy, I like to socialize with friends, eat, or relax by listening to music.
+</p>
+        </div>
+      </div>
+<!-- End Main Section -->
 
-      
-    
+
+
 </section>
 
-  
+
 <!-- Begin Copyright Section -->
   <div class="row">
     <div class="col-md-12 text-center">
@@ -289,8 +251,8 @@
   </div>
 <!-- End Copyright Section -->
 </body>
-  
-  
+
+
 
 </body>
 

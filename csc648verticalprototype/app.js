@@ -6,6 +6,7 @@ var path = require('path');
 var database = require('./db')
 var adminPage = require('./admin');
 var userPage = require('./user');
+var aboutPage = require('./about');
 var bodyParser = require('body-parser');
 var bcrypt = require('bcryptjs');
 var expressValidator = require('express-validator');
@@ -16,13 +17,14 @@ var app = express();
 var port = 3000;
 const saltRounts = 10; // used for encrypting password
 app.set('view engine', 'ejs');
-
+app.set('views', [__dirname + '/views', __dirname + '/about/views']);
 app.use(expressValidator());
 app.use(bodyParser.urlencoded({extended: true})); 
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/admin', adminPage);
 app.use('/userdash', userPage);
+app.use('/about', aboutPage);
 
 app.get('/',search, (req, res) => {
 var searchResult = req.searchResult;
@@ -37,105 +39,6 @@ var searchResult = req.searchResult;
         sortType: req.query.sortType,
         priceFilter: req.query.priceFilter,
         distanceFilter: req.query.distanceFilter
-    });
-});
-
-app.get('/andrew', (req, res) => {
-    // Tells node to render this ejs file named index 
-    res.render('andrew', {
-        // Ejs variables being passed into index.ejs
-        results: 0,
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
-    });
-});
-
-app.get('/david', (req, res) => {
-    // Tells node to render this ejs file named index 
-    res.render('david', {
-        // Ejs variables being passed into index.ejs
-        results: 0,
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
-    });
-});
-
-app.get('/peter', (req, res) => {
-    // Tells node to render this ejs file named index 
-    res.render('peter', {
-        // Ejs variables being passed into index.ejs
-        results: 0,
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
-    });
-});
-
-app.get('/sagar', (req, res) => {
-    // Tells node to render this ejs file named index 
-    res.render('sagar', {
-        // Ejs variables being passed into index.ejs
-        results: 0,
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
-    });
-});
-
-
-app.get('/steven', (req, res) => {
-    // Tells node to render this ejs file named index 
-    res.render('steven', {
-        // Ejs variables being passed into index.ejs
-        results: 0,
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
-    });
-});
-
-app.get('/sunny', (req, res) => {
-    // Tells node to render this ejs file named index 
-    res.render('sunny', {
-        // Ejs variables being passed into index.ejs
-        results: 0,
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
-    });
-});
-
-app.get('/zolboo', (req, res) => {
-    // Tells node to render this ejs file named index 
-    res.render('zolboo', {
-        // Ejs variables being passed into index.ejs
-        results: 0,
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
     });
 });
 

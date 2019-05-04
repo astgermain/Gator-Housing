@@ -3,13 +3,13 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Registration</title>
-  
-  
-  
-      <link rel="stylesheet" href="css/main.css">
+  <title>About Page</title>
 
-  
+
+
+      <link rel="stylesheet" href="../css/main.css">
+
+
 </head>
 
 <body>
@@ -18,15 +18,13 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag (sidebar + navbar)---------->
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag (registration page) ---------->
+<!-- Needed for Dropdown in Navbar -->
 
 <body>
-   
- 
+
 <!--  Begin Navbar  -->
   <div id="navbar-wrapper">
     <header>
@@ -39,7 +37,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            
+
           </div>
           <div id="navbar-collapse" class="collapse navbar-collapse">
             <form class="navbar-form navbar" id="search" role="search" action="/results">
@@ -58,15 +56,15 @@
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                   </button>
                 </span>
-				
+
               </div>
               <ul class="nav navbar-nav navbar-right">
-              
+
               <li class="dropdown">
                 <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown">Login</a>
                 <ul class="dropdown-menu dropdown-block" role="menu">
                   <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/userdash">Profile</a></li>
-                  <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/admin">Admin</a></li>
+                  <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/admindash">Admin</a></li>
                   <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/logout">Logout</a></li>
                 </ul>
               </li>
@@ -80,56 +78,54 @@
   <div id="link-wrapper">
     <div class="container-fluid">
       <div class="link-row">
-    
-        
+
+
         <ul class="nav nav-pills nav-justified">
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000">Home</a></li>
-          <li role="presentation" class="active">
+<li role="presentation" class="active">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/andrew">Andrew</a></li>
-            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/david">David</a></li>
-            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/peter">Peter</a></li>
-            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/sagar">Sagar</a></li>
-            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/steven">Steven</a></li>
-			<li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/sunny">Sunny</a></li>
-            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/zolboo">Zolboo</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/andrew">Andrew</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/david">David</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/peter">Peter</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/sagar">Sagar</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/steven">Steven</a></li>
+			      <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/sunny">Sunny</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/zolboo">Zolboo</a></li>
           </ul>
-		  </li>
-          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/post">Post</a></li>
+		  </li>          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/post">Post</a></li>
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/login">Login</a></li>
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/registration">Register</a></li>
         </ul>
-        
-        
+
+
       </div>
     </div>
   </div>
 <!--  End Navbar  -->
-  
-<!--  Begin Sidebar Wrapper  -->
-  
+
+
   <div id="wrapper">
-    
-     <div id="sidebar-wrapper">
+<!--  Begin Sidebar Wrapper  -->
+   <div id="sidebar-wrapper">
       <aside id="sidebar">
         <ul id="sidemenu" class="sidebar-nav">
           <li>
             <a href="#">
-              
+
               <span class="sidebar-title">Gator Housing</span>
             </a>
           </li>
           <li>
             <a href="#">
               <img src="https://i.imgur.com/UGvI4zF.jpg" class="img-responsive img-thumbnail img">
-              
-              
+
+
             </a>
           </li>
-          
+
           <div id="filter-wrapper">
-          
+
             <li>
               <span class="sidebar-title">Sort by:</span>
                 <div class="input-group">
@@ -145,7 +141,7 @@
             </li>
 
 
-            <li>  
+            <li>
               <span class="sidebar-title">Filters:</span>
                 <div class="input-group">
                   <div class="input-group-btn">
@@ -159,7 +155,7 @@
               </div>
             </li>
 
-            <li>  
+            <li>
               <br>
                 <div class="input-group">
                   <div class="input-group-btn">
@@ -173,7 +169,7 @@
               </div>
             </li>
 
-            <li>  
+            <li>
               <br>
                 <div class="input-group">
                   <div class="input-group-btn">
@@ -187,7 +183,7 @@
               </div>
             </li>
 
-            <li>  
+            <li>
               <br>
                 <div class="input-group">
                   <div class="input-group-btn">
@@ -201,60 +197,59 @@
               </div>
             </li>
           </div>
-         
+
         </ul>
       </aside>
     </div>
-    <!--   End Sidebar Wrapper   -->
-    
-    
-    <main id="page-content-wrapper" role="main">
+<!--   End Sidebar Wrapper   -->
 
-     <!--- REGISTRATION PAGE --->
-      <div class="container-fluid">
-    <h1 class="well">Registration</h1>
-    <p><%= errors %></p>
-	<div class="col-lg-12 well">
-	<div class="row">
-				<form action="/register" method="POST">
-        
-					<div class="col-sm-12">
-						<div class="row">
-							<div class="col-sm-6 form-group">
-								<label>Username <font color="red">*</font></label>
-								<input type="text" placeholder="Enter User Name Here..." class="form-control" name="name">
-							</div>
-							<div class="col-sm-6 form-group">
-								<label>E-mail <font color="red">*</font></label>
-								<input type="text" placeholder="Enter E-mail Here..." class="form-control" name="email">
-							</div>
-						</div>					
-						<div class="col-sm-6 form-group">
-							<label>Password <font color="red">*</font></label>
-							<input type="text" placeholder="Enter Password Here..." class="form-control" name="password">
-              <label>Confirm Password <font color="red">*</font></label>
-              <input type="text" placeholder="Confirm Password Here..." class="form-control" name="password2">
-						</div>		
-	
-            
-            <div class="checkbox">
-              <label><input type="checkbox" value="">I agree to the <a class="purplink" href = "">Terms and Services</a></label>
-</div>
-					<button type="button" onClick="this.form.submit()" class="btn btn-lg btn-info">Submit</button>					
-					</div>
-				</form> 
-				</div>
-	</div>
-	</div>
+<!-- Begin Main Section -->
+    <section class="wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-2 col-md-offset-5">
+              <div class="ratio img-responsive img-circle" style="background-image: url(../img/zolboo.jpg);">
+              </div>
+            </div>
+          </div>
+          <div class="top-about">
+            <h3>Zolboo - Frontend</h3>
+          </div>
+          <div class="mid-about">
+            <h2>Interests</h2>
+            <ul>
+              <li>Dogs</li>
+              <li>Games</li>
+              <li>Sports</li>
+              <li>Knitting</li>
+              <li>Eating</li>
+              <li>Sleeping</li>
+              <li>Talking</li>
+              <li>Listing</li>
+          </ul>
+        </div>
+        <div class="bottom-about">
+          <h2>Background</h2>
+          <p>Also known as Zolboo. Computer Science student at SFSU. Enjoys adventurous outings, live music, and great food.</p>
+        </div>
+      </div>
+<!-- End Main Section -->
 
-    </main>
+
+
+</section>
+
+
+<!-- Begin Copyright Section -->
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <br/><br/><br/>
+        <hr/>
+        <p>Copyright</p>
+    </div>
   </div>
+<!-- End Copyright Section -->
 </body>
-  
-  
-
-    <script type="module" src="js/index.js"></script>
-
 
 
 
