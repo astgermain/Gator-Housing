@@ -9,6 +9,7 @@
   "author": "Sunny Wong",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mysql": "^2.16.0",

@@ -6,14 +6,18 @@ var path = require('path');
 var database = require('./db')
 var adminPage = require('./admin');
 var userPage = require('./user');
+var bodyParser = require('body-parser');
+var bcrypt = require('bcrypt');
+
 
 
 var app = express();
 var port = 3000;
+const saltRounts = 10; // used for encrypting password
 app.set('view engine', 'ejs');
 
 
-app.use(express.urlencoded());
+app.use(bodyParser.urlencoded({extended: true})); 
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/admin', adminPage);
@@ -152,7 +156,7 @@ app.get('/post',search, (req, res) => {
 var searchResult = req.searchResult;
     console.log(searchResult);
     // Tells node to render this ejs file named index 
-    res.render('posting', {
+    res.render('dummyPost', {
         // Ejs variables being passed into index.ejs
         results: searchResult.length,
         searchTerm: req.searchTerm,
@@ -218,7 +222,7 @@ app.get('/registration',search, (req, res) => {
 var searchResult = req.searchResult;
     console.log(searchResult);
     // Tells node to render this ejs file named index 
-    res.render('registration', {
+    res.render('dummyRegistration', {
         // Ejs variables being passed into index.ejs
         results: searchResult.length,
         searchTerm: req.searchTerm,
@@ -233,7 +237,9 @@ var searchResult = req.searchResult;
 
 
 
-
+app.post('/register', userRegister, (req,res) => {
+    console.log("Registered user");
+});
 app.post('/userPost',userPost, (req, res) => {
     console.log("Posting");
    
@@ -354,9 +360,28 @@ app.get('/img/sagar.png',function(req,res){
 	res.sendFile(__dirname + '/img/sagar.png');
 });
 
+function userRegister(req, res) {
+    var userName = req.body.name;
+    var email = req.body.email;
+    var password = req.body.password;
 
-function userPost(req, res)
-{
+    bcrypt.hash(password, saltRounts, (err, hash) => {
+        // Storing hash password in DB
+        let query = ` INSERT INTO users (name, email, password)
+                      VALUES ('${userName}', '${email}', '${hash}')`;
+
+        console.log(query);
+        database.query(query, (err, result) => {
+            if (err) {
+                console.log("Failed to insert into user table: " + err)
+            }
+            console.log("Inserted row: " + result);
+            res.redirect('/');
+        });
+    });
+
+}
+function userPost(req, res){
     var postName = req.body.title;
     var price = req.body.price;
     var beds = req.body.beds;
