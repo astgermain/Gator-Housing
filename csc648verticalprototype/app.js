@@ -7,7 +7,7 @@ var database = require('./db')
 var adminPage = require('./admin');
 var userPage = require('./user');
 var bodyParser = require('body-parser');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 
 
@@ -156,6 +156,7 @@ app.get('/post',search, (req, res) => {
 var searchResult = req.searchResult;
     console.log(searchResult);
     // Tells node to render this ejs file named index 
+    // USING DUMMY POST EJS, CHANGE LATER
     res.render('dummyPost', {
         // Ejs variables being passed into index.ejs
         results: searchResult.length,
@@ -222,6 +223,7 @@ app.get('/registration',search, (req, res) => {
 var searchResult = req.searchResult;
     console.log(searchResult);
     // Tells node to render this ejs file named index 
+    // USING DUMMY REGISTRATION EJS, CHANGE LATER
     res.render('dummyRegistration', {
         // Ejs variables being passed into index.ejs
         results: searchResult.length,
@@ -240,9 +242,9 @@ var searchResult = req.searchResult;
 app.post('/register', userRegister, (req,res) => {
     console.log("Registered user");
 });
+
 app.post('/userPost',userPost, (req, res) => {
     console.log("Posting");
-   
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
