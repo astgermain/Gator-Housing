@@ -216,12 +216,13 @@
 <% if (typeof errors!='undefined') { %>
 
       <div class="alert alert-danger" role="alert">
-          <h1><span class="badge badge-danger">Errors Occured!! </span></h1>
+          
             <% errors.forEach(function(errors) { %>
                  <h5><%= errors.msg %> </h5>
             <% });
        } 
  %>
+      </div>
 	<div class="col-lg-12 well">
 	<div class="row">
 				<form action="/registration" method="POST">

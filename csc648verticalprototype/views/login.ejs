@@ -208,8 +208,10 @@
     <section class="wrapper"> 
       
         <div class="container-fluid">
+        
           <h1 class="well">Login</h1>
-              <form class="form-horizontal">
+          <%- messages('messages', locals) %>
+              <form class="form-horizontal" method='POST'>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">E-Mail</label>
                   <div class="col-sm-12">
@@ -243,7 +245,7 @@
                 </div>  
                 <div class="form-group">
                   <div class="col-sm-centered col-sm-12">
-                    <button type="submit" class="btn btn-login">Login</button>
+                    <button type="submit" onClick="this.form.submit()" class="btn btn-login">Login</button>
                   </div>
                 </div>
               </form>

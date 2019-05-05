@@ -1,27 +1,49 @@
-var url = require('url');
-var page = url.pathname;
+const url = require('url');
+const page = url.pathname;
 const mysql = require('mysql');
-var express = require('express');
-var path = require('path');
-var database = require('./db')
-var adminPage = require('./admin');
-var userPage = require('./user');
-var aboutPage = require('./about');
-var bodyParser = require('body-parser');
-var bcrypt = require('bcryptjs');
-var expressValidator = require('express-validator');
+const express = require('express');
+const path = require('path');
+const database = require('./db')
+const adminPage = require('./admin');
+const userPage = require('./user');
+const aboutPage = require('./about');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
+const expressValidator = require('express-validator');
+const passport = require('passport');
+const session = require('express-session');
+
+// Passport config file
+require('./config/passport')(passport)
 
 
 
 var app = express();
 var port = 3000;
-const saltRounts = 10; // used for encrypting password
 app.set('view engine', 'ejs');
 app.set('views', [__dirname + '/views', __dirname + '/about/views']);
+
+// Middleware
 app.use(expressValidator());
 app.use(bodyParser.urlencoded({extended: true})); 
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(session({
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true
+  }));
+app.use(passport.initialize());
+app.use(passport.session());
+// For displaying messages on success or error to user
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
 
+
+
+// Routes
 app.use('/admin', adminPage);
 app.use('/userdash', userPage);
 app.use('/about', aboutPage);
@@ -103,6 +125,16 @@ app.get('/login', (req, res) => {
     });
 });
 
+// Authenticate login
+app.post('/login', (req, res, next) => {
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        successFlash: 'Welcome!',
+        failureFlash: true
+    })(req, res, next);
+});
+
 app.get('/registration', (req, res) => {
 
     // Tells node to render this ejs file named index 
@@ -128,13 +160,13 @@ app.post('/registration', (req,res) => {
         var password = req.body.password;
         var password2 = req.body.password2;
         //Make sure to validate each name attribute from the form.
-        req.checkBody('name').not().isEmpty().withMessage("Username required!");
-        req.checkBody('email').isEmail().withMessage("Invalid Email!");
+        req.checkBody('name').not().isEmpty().withMessage("Username required");
+        req.checkBody('email').isEmail().withMessage("Invalid Email");
         req.checkBody('password')
-        .not().isEmpty().withMessage("Password cannot be empty!")
-        .isAlphanumeric().withMessage('Alphanumeric characters only!')
-        .isLength({min:10}).withMessage('Password must be at least 10 characters long!');
-        req.checkBody('password2').equals(password).withMessage("Passwords do not match!");
+        .not().isEmpty().withMessage("Password cannot be empty")
+        .isAlphanumeric().withMessage('Alphanumeric characters only')
+        .isLength({min:10}).withMessage('Password must be at least 10 characters long');
+        req.checkBody('password2').equals(password).withMessage("Passwords do not match");
         
     
     const errors = req.validationErrors();
@@ -151,8 +183,8 @@ app.post('/registration', (req,res) => {
         });
     
     } else {
-        
-        bcrypt.hash(password, saltRounts, (err, hash) => {
+        bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(password, salt, (err, hash) => {
             // Storing hash password in DB
             let query = ` INSERT INTO users (name, email, password)
                               VALUES ('${userName}', '${email}', '${hash}')`;
@@ -164,9 +196,11 @@ app.post('/registration', (req,res) => {
                     console.log("Failed to insert into user table: " + err)
                 }
                 console.log("Inserted row: " + result);
-                res.redirect('/');
+                req.flash('success', "Successfully registered! Please login.")
+                res.redirect('/login');
             });
         });
+    });
     }
 });
 
@@ -239,7 +273,7 @@ function search (req, res, next) {
     
 }
 
-
+// For displaying the post that a user clicked
 function displayPost(req, res, next){
     var searchTerm = req.query.search;
     var searchCategory = req.query.category;
@@ -315,8 +349,10 @@ function userPost(req, res){
             console.log("Failed to insert into post table: " + err)
         }
         console.log("Inserted row: " + result);
-        res.redirect('/');
+        
     });
+    req.flash('success', "Successfully submitted a post! Please wait at least 24 hours to give us a chance to review your post!")
+    res.redirect('/');
     
 }
 
