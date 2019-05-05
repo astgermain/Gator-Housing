@@ -10,9 +10,13 @@ const aboutPage = require('./about');
 const registrationPage = require('./registration');
 const loginPage = require('./login');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
+const expressValidator = require('express-validator');
+const passport = require('passport');
 const session = require('express-session');
 
-
+// Passport config file
+require('./config/passport')(passport)
 
 var app = express();
 var port = 3000;
@@ -24,7 +28,10 @@ app.use(session({
     secret: 'keyboard cat',
     resave: true,
     saveUninitialized: true
+
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({extended: true})); 
 
@@ -45,6 +52,8 @@ app.use('/login', loginPage);
 app.get('/', search, (req, res) => {
     var searchResult = req.searchResult;
     console.log(searchResult);
+    console.log(req.session);
+    if(req.session.passport != undefined)console.log(req.user);
     // Tells node to render this ejs file named index 
     res.render('index', {
         // Ejs variables being passed into index.ejs

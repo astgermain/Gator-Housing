@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db');
-
+const {ensureAuthenticated} = require('../config/auth.js');
 var app = express();
 app.set('view engine', 'ejs');
 
-router.get('/',userdashfnc, (req, res) => {
+router.get('/', ensureAuthenticated ,userdashfnc, (req, res) => {
     var searchResult = req.searchResult;
         // Tells node to render this ejs file named user 
         res.render('userdash', {
