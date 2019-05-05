@@ -9,6 +9,7 @@ const userPage = require('./user');
 const aboutPage = require('./about');
 const registrationPage = require('./registration');
 const loginPage = require('./login');
+const postPage = require('./post');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const expressValidator = require('express-validator');
@@ -48,6 +49,7 @@ app.use('/userdash', userPage);
 app.use('/about', aboutPage);
 app.use('/registration', registrationPage);
 app.use('/login', loginPage);
+app.use('/post', postPage);
 
 app.get('/', search, (req, res) => {
     var searchResult = req.searchResult;
@@ -99,38 +101,6 @@ app.get('/results/:id', displayPost, (req, res) => {
         sortType: req.query.sortType,
         priceFilter: req.query.priceFilter,
         distanceFilter: req.query.distanceFilter
-    });
-});
-
-app.get('/post', (req, res) => {
-    // USING DUMMY POST EJS, CHANGE LATER
-    res.render('dummyPost', {
-        // Ejs variables being passed into index.ejs
-        results: 0,
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
-    });
-});
-
-
-// Processing user post data; need to move to user folder
-app.post('/post', userPost, (req, res) => {
-    // Need to do input validation here
-    console.log("Posting");
-    // USING DUMMY POST EJS, CHANGE LATER
-    res.render('dummyPost', {
-        // Ejs variables being passed into index.ejs
-        results: 0,
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
     });
 });
 
@@ -247,39 +217,4 @@ app.get('/img/sagar.png', function (req, res) {
     res.sendFile(__dirname + '/img/sagar.png');
 });
 
-// For registered user to be able to post; need to move to user folder
-function userPost(req, res) {
-    var postName = req.body.title;
-    var price = req.body.price;
-    var beds = req.body.beds;
-    var baths = req.body.baths;
-    var category = req.body.category;
-    var location = req.body.location;
-    var city = req.body.city;
-    var state = req.body.state;
-    var phone = req.body.phone;
-    var email = req.body.email;
-    var description = req.body.description;
-    var image = req.body.image;
 
-    if (req.user != undefined) {
-        let query = ` INSERT INTO post (post_name, price, beds, baths, category, location, city, state, phone, email, description, image)
-        VALUES('${postName}', '${price}', '${beds}', '${baths}', '${category}', '${location}', '${city}', '${state}', '${phone}', 
-            '${email}', '${description}', '${image}') `;
-
-        console.log(query);
-        database.query(query, (err, result) => {
-            if (err) {
-                console.log("Failed to insert into post table: " + err)
-            }
-            console.log("Inserted row: " + result);
-
-        });
-        req.flash('success', "Successfully submitted a post! Please wait at least 24 hours to give us a chance to review your post!")
-        res.redirect('/');
-    } else {
-        req.flash('danger', "Please login to post");
-        res.redirect('/registration');
-    }
-
-}
