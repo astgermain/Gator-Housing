@@ -67,7 +67,7 @@ function userPost(req, res) {
         res.redirect('/');
     } else {
         req.flash('danger', "Please login to post");
-        res.redirect('/registration');
+        res.redirect('/login');
     }
 
 }
