@@ -20,7 +20,12 @@ router.get('/', ensureAuthenticated ,userdashfnc, (req, res) => {
 function userdashfnc (req, res, next) {
 	var searchTerm = req.query.search;
     var searchCategory = req.query.category;
-    let query = 'SELECT * FROM post where user_id="1"';
+    let query = null;
+    if(req.user != undefined) {
+        console.log("User ID is: " + req.user);
+        query = `SELECT * FROM post where user_id= ${req.user}`;
+    }
+    
     
     db.query(query, (err, result) => {
         if (err){
