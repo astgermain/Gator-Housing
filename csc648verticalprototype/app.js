@@ -262,20 +262,24 @@ function userPost(req, res) {
     var description = req.body.description;
     var image = req.body.image;
 
+    if (req.user != undefined) {
+        let query = ` INSERT INTO post (post_name, price, beds, baths, category, location, city, state, phone, email, description, image)
+        VALUES('${postName}', '${price}', '${beds}', '${baths}', '${category}', '${location}', '${city}', '${state}', '${phone}', 
+            '${email}', '${description}', '${image}') `;
 
-    let query = ` INSERT INTO post (post_name, price, beds, baths, category, location, city, state, phone, email, description, image)
-                VALUES('${postName}', '${price}', '${beds}', '${baths}', '${category}', '${location}', '${city}', '${state}', '${phone}', 
-                    '${email}', '${description}', '${image}') `;
+        console.log(query);
+        database.query(query, (err, result) => {
+            if (err) {
+                console.log("Failed to insert into post table: " + err)
+            }
+            console.log("Inserted row: " + result);
 
-    console.log(query);
-    database.query(query, (err, result) => {
-        if (err) {
-            console.log("Failed to insert into post table: " + err)
-        }
-        console.log("Inserted row: " + result);
-
-    });
-    req.flash('success', "Successfully submitted a post! Please wait at least 24 hours to give us a chance to review your post!")
-    res.redirect('/');
+        });
+        req.flash('success', "Successfully submitted a post! Please wait at least 24 hours to give us a chance to review your post!")
+        res.redirect('/');
+    } else {
+        req.flash('danger', "Please login to post");
+        res.redirect('/registration');
+    }
 
 }
