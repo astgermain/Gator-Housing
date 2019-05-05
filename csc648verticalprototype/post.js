@@ -37,6 +37,7 @@ router.post('/', userPost, (req, res) => {
 
 // For registered user to be able to post; need to move to user folder
 function userPost(req, res) {
+    var id = req.user;
     var postName = req.body.title;
     var price = req.body.price;
     var beds = req.body.beds;
@@ -51,8 +52,9 @@ function userPost(req, res) {
     var image = req.body.image;
 
     if (req.user != undefined) {
-        let query = ` INSERT INTO post (post_name, price, beds, baths, category, location, city, state, phone, email, description, image)
-        VALUES('${postName}', '${price}', '${beds}', '${baths}', '${category}', '${location}', '${city}', '${state}', '${phone}', 
+        console.log("post user id is: " + id);
+        let query = ` INSERT INTO post (post_name, price, beds, baths, category, user_id, location, city, state, phone, email, description, image)
+        VALUES('${postName}', '${price}', '${beds}', '${baths}', '${category}', '${id}', '${location}', '${city}', '${state}', '${phone}', 
             '${email}', '${description}', '${image}') `;
 
         console.log(query);
