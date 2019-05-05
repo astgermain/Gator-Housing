@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 const expressValidator = require('express-validator');
 const bodyParser = require('body-parser');
 
+
 // Middleware
 router.use(expressValidator());
 router.use(bodyParser.urlencoded({extended: true})); 

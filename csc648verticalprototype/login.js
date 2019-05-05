@@ -2,15 +2,17 @@
 
 var express = require('express');
 var router = express.Router();
-var db = require('./db');
-const bcrypt = require('bcryptjs');
 const expressValidator = require('express-validator');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const session = require('express-session');
 
+// Passport config file
+require('./config/passport')(passport)
 // Middleware
+router.use(expressValidator());
 router.use(bodyParser.urlencoded({extended: true})); 
+router.use(passport.initialize());
+router.use(passport.session());
 
 router.get('/', (req, res) => {
     // Tells node to render this ejs file named index 

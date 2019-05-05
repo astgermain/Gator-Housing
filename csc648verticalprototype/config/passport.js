@@ -31,7 +31,7 @@ module.exports = (passport) => {
                             console.log(result[0].password);
                         if(isMatch){
                             console.log("Successfully logged in");
-                            return done(null, result[0].user_id);
+                            return done(null, result[0].id);
                         }else {
                             console.log("Failed to login");
                             return done(null, false, req.flash('danger', "Invalid password"));
@@ -48,7 +48,7 @@ module.exports = (passport) => {
 
     // Deserialize user for the session
     passport.deserializeUser(function (id, done) {
-        let query = ` SELECT user_id FROM users WHERE user_id = '${id}'`;
+        let query = ` SELECT id FROM users WHERE id = '${id}'`;
         db.query(query, (err, result) =>{
             done(err, id);
         });
