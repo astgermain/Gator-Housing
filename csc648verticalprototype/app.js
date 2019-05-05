@@ -10,6 +10,7 @@ const aboutPage = require('./about');
 const registrationPage = require('./registration');
 const loginPage = require('./login');
 const postPage = require('./post');
+const resultsPage = require('./results');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const expressValidator = require('express-validator');
@@ -50,6 +51,7 @@ app.use('/about', aboutPage);
 app.use('/registration', registrationPage);
 app.use('/login', loginPage);
 app.use('/post', postPage);
+app.use('/results', resultsPage);
 
 app.get('/', search, (req, res) => {
     var searchResult = req.searchResult;
@@ -69,40 +71,6 @@ app.get('/', search, (req, res) => {
     });
 });
 
-// Results page
-app.get('/results', search, (req, res) => {
-    var searchResult = req.searchResult;
-    console.log(searchResult);
-    // Tells node to render this ejs file named results
-    res.render('results', {
-        // Ejs variables being passed into results.ejs
-        results: searchResult.length,
-        searchTerm: req.searchTerm,
-        searchResult: searchResult,
-        searchCategory: req.query.category,
-        sortType: req.query.sortType,
-        priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
-    });
-});
-
-// Display information for a specific post a user clicks
-app.get('/results/:id', displayPost, (req, res) => {
-    console.log(req.method, req.path)
-    var searchResult = req.searchResult;
-    //console.log("ID for post is: " + req.params.id);
-    console.log(searchResult);
-    res.render('posting', {
-        // Ejs variables being passed into results.ejs
-        results: searchResult.length,
-        searchTerm: req.searchTerm,
-        searchResult: searchResult,
-        searchCategory: req.query.category,
-        sortType: req.query.sortType,
-        priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
-    });
-});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
@@ -167,27 +135,7 @@ function search(req, res, next) {
 
 }
 
-// For displaying the post that a user clicked
-function displayPost(req, res, next) {
-    var searchTerm = req.query.search;
-    var searchCategory = req.query.category;
-    var postID = req.params.id;
-    let query = "SELECT * FROM post WHERE post_id = '" + postID + "'";
-    database.query(query, (err, result) => {
-        if (err) {
-            req.post_id = "Cannot find post ID.";
-            req.searchResult = "Cannot find result";
-            req.searchTerm = "Cannot find search term";
-        }
-        req.searchResult = result;
-        req.searchTerm = searchTerm;
-        req.searchCategory = searchCategory;
-        req.sortType = sortType;
-        req.priceFilter = priceFilter;
-        req.distanceFilter = distanceFilter;
-        next();
-    });
-}
+
 
 app.get('/img/silhouette.jpeg', function (req, res) {
     res.sendFile(__dirname + '/img/silhouette.jpeg');
