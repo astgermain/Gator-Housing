@@ -131,7 +131,6 @@ app.post('/login', (req, res, next) => {
         successRedirect: '/',
         failureRedirect: '/login',
         successFlash: 'Welcome!',
-        badRequestMessage : req.flash('danger', 'Please enter login information'),
         failureFlash: true
     })(req, res, next);
 });
