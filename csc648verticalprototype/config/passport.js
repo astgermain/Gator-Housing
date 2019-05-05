@@ -16,9 +16,9 @@ module.exports = (passport) => {
                     if (err){
                         console.log("Failed to query:" + err);
                     }
-                    // Try to find user name
+                    // Try to find email
                     if (result.length == 0) {
-                        return done(null, false, {message: "Invalid email"});
+                        return done(null, false, req.flash('danger', "Invalid email"));
                     }
                         
                         
@@ -32,7 +32,7 @@ module.exports = (passport) => {
                             return done(null, result[0].user_id);
                         }else {
                             console.log("Failed to login");
-                            return done(null, false, {message: "Invalid password"});
+                            return done(null, false, req.flash('danger', "Invalid password"));
                         }
                     });
 
