@@ -204,13 +204,26 @@ app.post('/registration', (req,res) => {
     }
 });
 
-app.post('/userPost',userPost, (req, res) => {
+app.post('/post',userPost, (req, res) => {
+    // Need to do input validation here
     console.log("Posting");
+    // USING DUMMY POST EJS, CHANGE LATER
+    res.render('dummyPost', {
+        // Ejs variables being passed into index.ejs
+        results: 0,
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
+    });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 function search (req, res, next) {
+    // Need to do input validation here
     // User's search term
     var searchTerm = req.query.search;
     var searchCategory = req.query.category;
