@@ -1,3 +1,5 @@
+//Passport used for user authentication 
+
 const LocalStrategy = require('passport-local').Strategy;
 const db = require('../db');
 const bycrypt = require('bcryptjs');

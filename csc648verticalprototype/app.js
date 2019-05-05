@@ -7,6 +7,8 @@ const database = require('./db')
 const adminPage = require('./admin');
 const userPage = require('./user');
 const aboutPage = require('./about');
+const registrationPage = require('./registration');
+const loginPage = require('./login');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const expressValidator = require('express-validator');
@@ -16,17 +18,12 @@ const session = require('express-session');
 // Passport config file
 require('./config/passport')(passport)
 
-
-
 var app = express();
 var port = 3000;
 app.set('view engine', 'ejs');
 app.set('views', [__dirname + '/views', __dirname + '/about/views']);
 
 // Middleware
-app.use(expressValidator());
-app.use(bodyParser.urlencoded({extended: true})); 
-app.use(express.static(path.join(__dirname, '/public')));
 app.use(session({
     secret: 'keyboard cat',
     resave: true,
@@ -34,6 +31,8 @@ app.use(session({
   }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static(path.join(__dirname, '/public')));
+
 // For displaying messages on success or error to user
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
@@ -47,6 +46,8 @@ app.use(function (req, res, next) {
 app.use('/admin', adminPage);
 app.use('/userdash', userPage);
 app.use('/about', aboutPage);
+app.use('/registration', registrationPage);
+app.use('/login', loginPage);
 
 app.get('/',search, (req, res) => {
 var searchResult = req.searchResult;
@@ -78,7 +79,7 @@ app.get('/post', (req, res) => {
     });
 });
 
-
+// Results page
 app.get('/results',search, (req, res) => {
     var searchResult = req.searchResult;
         console.log(searchResult);
@@ -95,6 +96,7 @@ app.get('/results',search, (req, res) => {
         });
     });
 
+    // Display information for a specific post a user clicks
     app.get('/results/:id', displayPost, (req, res) => {
         console.log(req.method, req.path)
         var searchResult = req.searchResult;
@@ -112,98 +114,15 @@ app.get('/results',search, (req, res) => {
         });
     });
 	
-app.get('/login', (req, res) => {
-    // Tells node to render this ejs file named index 
-    res.render('login', {
-        // Ejs variables being passed into index.ejs
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
-    });
-});
-
-// Authenticate login
-app.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login',
-        successFlash: 'Welcome!',
-        failureFlash: true
-    })(req, res, next);
-});
-
-app.get('/registration', (req, res) => {
-
-    // Tells node to render this ejs file named index 
-    // USING DUMMY REGISTRATION EJS, CHANGE LATER
-    res.render('dummyRegistration', {
-        // Ejs variables being passed into index.ejs
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
-    });
-});
 
 
 
 
-app.post('/registration', (req,res) => {
-    var searchResult = req.searchResult;
-    var userName = req.body.name;
-        var email = req.body.email;
-        var password = req.body.password;
-        var password2 = req.body.password2;
-        //Make sure to validate each name attribute from the form.
-        req.checkBody('name').not().isEmpty().withMessage("Username required");
-        req.checkBody('email').isEmail().withMessage("Invalid Email");
-        req.checkBody('password')
-        .not().isEmpty().withMessage("Password cannot be empty")
-        .isAlphanumeric().withMessage('Alphanumeric characters only')
-        .isLength({min:10}).withMessage('Password must be at least 10 characters long');
-        req.checkBody('password2').equals(password).withMessage("Passwords do not match");
-        
-    
-    const errors = req.validationErrors();
-    if(errors){
-        res.render('dummyRegistration', {
-        errors: errors,
-        results: 0,
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
-        });
-    
-    } else {
-        bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(password, salt, (err, hash) => {
-            // Storing hash password in DB
-            let query = ` INSERT INTO users (name, email, password)
-                              VALUES ('${userName}', '${email}', '${hash}')`;
-    
-            console.log(query);
-    
-            database.query(query, (err, result) => {
-                if (err) {
-                    console.log("Failed to insert into user table: " + err)
-                }
-                console.log("Inserted row: " + result);
-                req.flash('success', "Successfully registered! Please login.")
-                res.redirect('/login');
-            });
-        });
-    });
-    }
-});
 
+
+
+
+// Processing user post data; need to move to user folder
 app.post('/post',userPost, (req, res) => {
     // Need to do input validation here
     console.log("Posting");
@@ -222,6 +141,7 @@ app.post('/post',userPost, (req, res) => {
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
+//
 function search (req, res, next) {
     // Need to do input validation here
     // User's search term
@@ -336,7 +256,7 @@ app.get('/img/sagar.png',function(req,res){
 	res.sendFile(__dirname + '/img/sagar.png');
 });
 
-
+// For registered user to be able to post; need to move to user folder
 function userPost(req, res){
     var postName = req.body.title;
     var price = req.body.price;

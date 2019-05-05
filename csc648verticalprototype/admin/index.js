@@ -16,7 +16,7 @@ router.get('/',search, (req, res) => {
         });
     });
     
-
+// Delete post 
 router.post('/delete/:id', (req, res) => {
 
     var postID = req.params.id;
@@ -33,6 +33,7 @@ router.post('/delete/:id', (req, res) => {
     res.redirect('/admin');
 });
 
+//Approve post
 router.post('/approve/:id', (req, res) => {
     var postID = req.params.id;
     console.log("Post id is: " + postID);
@@ -48,7 +49,7 @@ router.post('/approve/:id', (req, res) => {
     res.redirect('/admin');
 });
 
-
+// Used for admin to see all posts to be approved
  function search (req, res, next) {
     // User's search term
     var searchTerm = req.query.search;
