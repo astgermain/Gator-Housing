@@ -83,25 +83,4 @@ function search(req, res, next) {
 
 }
 
-// For displaying the post that a user clicked
-function displayPost(req, res, next) {
-    var searchTerm = req.query.search;
-    var searchCategory = req.query.category;
-    var postID = req.params.id;
-    let query = "SELECT * FROM post WHERE post_id = '" + postID + "'";
-    db.query(query, (err, result) => {
-        if (err) {
-            req.post_id = "Cannot find post ID.";
-            req.searchResult = "Cannot find result";
-            req.searchTerm = "Cannot find search term";
-        }
-        req.searchResult = result;
-        req.searchTerm = searchTerm;
-        req.searchCategory = searchCategory;
-        req.sortType = "";
-        req.priceFilter = "";
-        req.distanceFilter = "";
-        next();
-    });
-}
 module.exports = router;
