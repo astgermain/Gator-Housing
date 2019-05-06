@@ -23,7 +23,20 @@ module.exports = (passport) => {
                         return done(null, false, req.flash('danger', "Invalid email"));
                     }
                         
-                        
+                    if(result[0].isAdmin) {
+                        bycrypt.compare(password, result[0].admin_password, (err, isMatch) => {
+                            if(err) throw err;
+                                console.log(password);
+                                console.log(result[0].admin_password);
+                            if(isMatch){
+                                console.log("Successfully logged in");
+                                return done(null, result[0].id);
+                            }else {
+                                console.log("Failed to login");
+                                return done(null, false, req.flash('danger', "Admin invalid password"));
+                            }
+                        });
+                    }else {  
                     // Try to match hash password from database
                     bycrypt.compare(password, result[0].password, (err, isMatch) => {
                         if(err) throw err;
@@ -37,6 +50,7 @@ module.exports = (passport) => {
                             return done(null, false, req.flash('danger', "Invalid password"));
                         }
                     });
+                }
 
                 });
     }));
@@ -48,9 +62,10 @@ module.exports = (passport) => {
 
     // Deserialize user for the session
     passport.deserializeUser(function (id, done) {
-        let query = ` SELECT id FROM users WHERE id = '${id}'`;
+        let query = ` SELECT * FROM users WHERE id = '${id}'`;
         db.query(query, (err, result) =>{
-            done(err, id);
+            // Data from database is stored in the row req.user variable
+            done(err, result);
         });
     });
 }

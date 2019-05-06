@@ -6,8 +6,10 @@ var db = require('./db');
 router.get('/', search, (req, res) => {
     var searchResult = req.searchResult;
     console.log(searchResult);
-    console.log(req.session);
-    if(req.session.passport != undefined)console.log(req.user);
+    
+    // req.user is an object, can call data using the following to access the variables inside
+    if(req.session.passport != undefined)console.log(req.user[0].isAdmin);
+
     // Tells node to render this ejs file named index 
     res.render('index', {
         // Ejs variables being passed into index.ejs
