@@ -25,7 +25,7 @@ router.get('/:id', displayPost, (req, res) => {
     var searchResult = req.searchResult;
     //console.log("ID for post is: " + req.params.id);
     console.log(searchResult);
-    res.render('posting', {
+    res.render('results', {
         // Ejs variables being passed into results.ejs
         results: searchResult.length,
         searchTerm: req.searchTerm,
@@ -113,9 +113,9 @@ function displayPost(req, res, next) {
         req.searchResult = result;
         req.searchTerm = searchTerm;
         req.searchCategory = searchCategory;
-        req.sortType = sortType;
-        req.priceFilter = priceFilter;
-        req.distanceFilter = distanceFilter;
+        req.sortType = "";
+        req.priceFilter = "";
+        req.distanceFilter = "";
         next();
     });
 }

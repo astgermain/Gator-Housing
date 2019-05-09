@@ -22,8 +22,8 @@ function userdashfnc (req, res, next) {
     var searchCategory = req.query.category;
     let query = null;
     if(req.user != undefined) {
-        console.log("User ID is: " + req.user);
-        query = `SELECT * FROM post where user_id= ${req.user}`;
+        console.log("User ID is: " + req.user[0].id);
+        query = `SELECT * FROM post where user_id= ${req.user[0].id}`;
     }
     
     
