@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db');
-
+const {ensureAuthenticated} = require('../config/auth.js');
 var app = express();
 app.set('view engine', 'ejs');
 
-router.get('/',userdashfnc, (req, res) => {
+router.get('/', ensureAuthenticated ,userdashfnc, (req, res) => {
     var searchResult = req.searchResult;
         // Tells node to render this ejs file named user 
         res.render('userdash', {
@@ -20,7 +20,12 @@ router.get('/',userdashfnc, (req, res) => {
 function userdashfnc (req, res, next) {
 	var searchTerm = req.query.search;
     var searchCategory = req.query.category;
-    let query = 'SELECT * FROM post where user_id="1"';
+    let query = null;
+    if(req.user != undefined) {
+        console.log("User ID is: " + req.user[0].id);
+        query = `SELECT * FROM post where user_id= ${req.user[0].id}`;
+    }
+    
     
     db.query(query, (err, result) => {
         if (err){

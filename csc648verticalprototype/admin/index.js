@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db');
-
+const {ensureAuthenticated} = require('../config/auth.js');
 var app = express();
 app.set('view engine', 'ejs');
 
-router.get('/',search, (req, res) => {
+router.get('/', ensureAuthenticated, checkAdmin,  search, (req, res) => {
     var searchResult = req.searchResult;
         // Tells node to render this ejs file named index 
         res.render('admin', {
@@ -16,7 +16,7 @@ router.get('/',search, (req, res) => {
         });
     });
     
-
+// Delete post 
 router.post('/delete/:id', (req, res) => {
 
     var postID = req.params.id;
@@ -33,6 +33,7 @@ router.post('/delete/:id', (req, res) => {
     res.redirect('/admin');
 });
 
+//Approve post
 router.post('/approve/:id', (req, res) => {
     var postID = req.params.id;
     console.log("Post id is: " + postID);
@@ -48,7 +49,7 @@ router.post('/approve/:id', (req, res) => {
     res.redirect('/admin');
 });
 
-
+// Used for admin to see all posts to be approved
  function search (req, res, next) {
     // User's search term
     var searchTerm = req.query.search;
@@ -82,6 +83,21 @@ router.post('/approve/:id', (req, res) => {
     });
     
 }
+
+ function checkAdmin(req, res, next){
+    if(req.user!=undefined) {
+        // req.user is an object, can call data using the following to access the variables inside
+        // Checks if a user has admin access
+        if (req.user[0].isAdmin != 1) {
+            req.flash('danger', "Unauthorized access");
+            res.redirect('/');
+        } else {
+            // If they do, then continue to the next 
+            next();
+        }
+    }
+ }
+
 
 module.exports = router;
 
