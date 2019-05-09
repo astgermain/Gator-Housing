@@ -1,7 +1,7 @@
 // Post page
 var express = require('express');
 var router = express.Router();
-var db = require('./db');
+var db = require('../db');
 
 router.get('/', (req, res) => {
     // USING DUMMY POST EJS, CHANGE LATER

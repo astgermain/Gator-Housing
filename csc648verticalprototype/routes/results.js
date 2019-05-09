@@ -1,18 +1,14 @@
 // Results page
 var express = require('express');
 var router = express.Router();
-var db = require('./db');
+var db = require('../db');
 
 router.get('/', search, (req, res) => {
     var searchResult = req.searchResult;
     console.log(searchResult);
-    
-    // req.user is an object, can call data using the following to access the variables inside
-    if(req.session.passport != undefined)console.log(req.user[0].isAdmin);
-
-    // Tells node to render this ejs file named index 
-    res.render('index', {
-        // Ejs variables being passed into index.ejs
+    // Tells node to render this ejs file named results
+    res.render('results', {
+        // Ejs variables being passed into results.ejs
         results: searchResult.length,
         searchTerm: req.searchTerm,
         searchResult: searchResult,
@@ -23,6 +19,23 @@ router.get('/', search, (req, res) => {
     });
 });
 
+// Display information for a specific post a user clicks
+router.get('/:id', displayPost, (req, res) => {
+    console.log(req.method, req.path)
+    var searchResult = req.searchResult;
+    //console.log("ID for post is: " + req.params.id);
+    console.log(searchResult);
+    res.render('results', {
+        // Ejs variables being passed into results.ejs
+        results: searchResult.length,
+        searchTerm: req.searchTerm,
+        searchResult: searchResult,
+        searchCategory: req.query.category,
+        sortType: req.query.sortType,
+        priceFilter: req.query.priceFilter,
+        distanceFilter: req.query.distanceFilter
+    });
+});
 
 // General search for all users
 function search(req, res, next) {
@@ -85,4 +98,25 @@ function search(req, res, next) {
 
 }
 
+// For displaying the post that a user clicked
+function displayPost(req, res, next) {
+    var searchTerm = req.query.search;
+    var searchCategory = req.query.category;
+    var postID = req.params.id;
+    let query = "SELECT * FROM post WHERE post_id = '" + postID + "'";
+    db.query(query, (err, result) => {
+        if (err) {
+            req.post_id = "Cannot find post ID.";
+            req.searchResult = "Cannot find result";
+            req.searchTerm = "Cannot find search term";
+        }
+        req.searchResult = result;
+        req.searchTerm = searchTerm;
+        req.searchCategory = searchCategory;
+        req.sortType = "";
+        req.priceFilter = "";
+        req.distanceFilter = "";
+        next();
+    });
+}
 module.exports = router;

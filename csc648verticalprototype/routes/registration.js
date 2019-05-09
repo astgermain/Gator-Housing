@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var db = require('./db');
+var db = require('../db');
 const bcrypt = require('bcryptjs');
 const expressValidator = require('express-validator');
 const bodyParser = require('body-parser');
