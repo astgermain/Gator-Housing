@@ -210,7 +210,8 @@
           <h1 class="well">Post a Listing!</h1>
 	<div class="col-lg-12 well">
 	<div class="row">
-				<form action="/post" method="POST">
+				<form action="/post" method="POST" enctype="multipart/form-data">
+         <%- messages('messages', locals) %>
 					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-6 form-group">
@@ -248,20 +249,12 @@
 								</select>
 						</div>
 						</div>
-						  
-						<div class="form-group">
-							<label>Street Address <font color="red">*</font></label>
-							<textarea placeholder="Enter Address Here.." rows="3" class="form-control" name="location"></textarea>
-						</div>	
-						<div class="row">
-							<div class="col-sm-6 form-group">
-								<label>City <font color="red">*</font></label>
-								<input type="text" placeholder="Enter City Name Here.." class="form-control" name="city">
-							</div>	
-							<div class="col-sm-6 form-group">
-								<label>State <font color="red">*</font></label>
-								<input type="text" placeholder="Enter State Name Here.." class="form-control" name="state">
-							</div>	
+	
+              <div class="form-group">
+								<label>Add Images <font color="red">*</font></label>
+								<input type="file" placeholder="Add Images Here.." class="form-control" name="image">
+                
+							</div>
 								
 						</div>
 
