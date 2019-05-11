@@ -125,6 +125,7 @@ function userPost(req, res) {
                     var phone = req.body.phone;
                     var email = req.body.email;
                     var description = req.body.description;
+                    // Image validation already done.
                     var image = req.file.filename;
 
                     // Handle upload to database.
