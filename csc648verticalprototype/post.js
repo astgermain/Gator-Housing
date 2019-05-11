@@ -25,13 +25,13 @@ const upload = multer({
     // Limit file size to 10MB
     limits: {fileSize: 10*1024*1024},
     fileFilter: function(req, file, cb){
-        checkFileType(file, cb);
+        checkFileType(req, file, cb);
     }
     // Single image upload and retrieves the name tag attribute from EJS
 }).single('image');
 
 //Check file type
-function checkFileType(file, cb){
+function checkFileType(req, file, cb){
     // Allowed extensions
     const fileTypes = /jpeg|jpg|png/;
     // Check file extension
@@ -87,9 +87,9 @@ function userPost(req, res) {
     if (req.user != undefined) {
         upload(req, res, (err) => {
             if (err) {
+                req.flash('danger', err);
                 res.render('dummyPost', {
                     // Ejs variables being passed into index.ejs
-                    errors: err,
                     results: 0,
                     searchTerm: "",
                     searchResult: "",
@@ -100,9 +100,9 @@ function userPost(req, res) {
                 });
             } else {
                 if (req.file == undefined) {
+                    req.flash('danger', 'Error: No File Selected!');
                     res.render('dummyPost', {
                         // Ejs variables being passed into index.ejs
-                        errors: 'Error: No File Selected!',
                         results: 0,
                         searchTerm: "",
                         searchResult: "",
@@ -112,6 +112,7 @@ function userPost(req, res) {
                         distanceFilter: ""
                     });
                 } else {
+                    // Need validations for each.
                     var id = req.user[0].id;
                     var postName = req.body.title;
                     var price = req.body.price;
