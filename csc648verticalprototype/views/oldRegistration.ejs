@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Registration</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/main.css">
+      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+<!------ Include the above in your HEAD tag (sidebar + navbar + carousel)---------->
+
+  
+</head>
+
+<body>
+   
+ 
+<!--  Begin Navbar  -->
+  <div id="navbar-wrapper">
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+          </div>
+          <div id="navbar-collapse" class="collapse navbar-collapse">
+            <form class="navbar-form navbar" id="search" role="search" action="/results">
+              <div class="input-group">
+                <div class="input-group-btn">
+        <select class="form-control" name="category">
+			<option value=""<%if(searchCategory == ""){%> selected <%}%>> All Categories </option>
+       		<option value="apartment"<%if(searchCategory == "apartment"){%> selected <%}%>> Apartment </option>
+			<option value="house"<%if(searchCategory == "house"){%> selected <%}%>> House </option>
+        	<option value="room"<%if(searchCategory == "room"){%> selected <%}%>> Room </option>
+    </select>
+      </div><!-- /btn-group -->
+                <input id="search" name="search" value="<%=searchTerm%>" type="text" class="form-control" placeholder="Search">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" onClick="this.form.submit()" type="submit">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </button>
+                </span>
+				
+              </div>
+              <ul class="nav navbar-nav navbar-right">
+              
+              <li class="dropdown">
+                <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown">Login</a>
+                <ul class="dropdown-menu dropdown-block" role="menu">
+                  <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/userdash">Profile</a></li>
+                  <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/admin">Admin</a></li>
+                  <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/logout">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+  </div>
+  <div id="link-wrapper">
+    <div class="container-fluid">
+      <div class="link-row">
+    
+        
+        <ul class="nav nav-pills nav-justified">
+          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000">Home</a></li>
+          <li role="presentation" class="active">
+		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/andrew">Andrew</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/david">David</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/peter">Peter</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/sagar">Sagar</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/steven">Steven</a></li>
+			      <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/sunny">Sunny</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/zolboo">Zolboo</a></li>
+          </ul>
+		  </li>
+          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/post">Post</a></li>
+          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/login">Login</a></li>
+          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/registration">Register</a></li>
+        </ul>
+        
+        
+      </div>
+    </div>
+  </div>
+<!--  End Navbar  -->
+  
+<!--  Begin Sidebar Wrapper  -->
+  
+  <div id="wrapper">
+    
+     <div id="sidebar-wrapper">
+      <aside id="sidebar">
+        <ul id="sidemenu" class="sidebar-nav">
+          <li>
+            <a href="#">
+              
+              <span class="sidebar-title">Gator Housing</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="https://i.imgur.com/UGvI4zF.jpg" class="img-responsive img-thumbnail img">
+              
+              
+            </a>
+          </li>
+          
+          <div id="filter-wrapper">
+          
+            <li>
+              <span class="sidebar-title">Sort by:</span>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <select class="form-control" id="filtertype">
+                      <option value="All">Price: Lowest First</option>
+                      <option value="House">House</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Room">Room</option>
+                    </select>
+                  </div>
+              </div>
+            </li>
+
+
+            <li>  
+              <span class="sidebar-title">Filters:</span>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <select class="form-control" id="pricetype">
+                      <option value="All">Any Price</option>
+                      <option value="House">House</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Room">Room</option>
+                    </select>
+                  </div>
+              </div>
+            </li>
+
+            <li>  
+              <br>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <select class="form-control" id="pricetype">
+                      <option value="All">0+ Bedrooms</option>
+                      <option value="House">House</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Room">Room</option>
+                    </select>
+                  </div>
+              </div>
+            </li>
+
+            <li>  
+              <br>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <select class="form-control" id="pricetype">
+                      <option value="All">0+ Bath</option>
+                      <option value="House">House</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Room">Room</option>
+                    </select>
+                  </div>
+              </div>
+            </li>
+
+            <li>  
+              <br>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <select class="form-control" id="pricetype">
+                      <option value="All">Distance</option>
+                      <option value="House">House</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Room">Room</option>
+                    </select>
+                  </div>
+              </div>
+            </li>
+          </div>
+         
+        </ul>
+      </aside>
+    </div>
+    <!--   End Sidebar Wrapper   -->
+    
+    
+    <main id="page-content-wrapper" role="main">
+
+     <!--- REGISTRATION PAGE --->
+      <div class="container-fluid">
+    <h1 class="well">Registration</h1>
+	<div class="col-lg-12 well">
+	<div class="row">
+				<form>
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>First Name <font color="red">*</font></label>
+								<input type="text" placeholder="Enter First Name Here.." class="form-control">
+							</div>
+							<div class="col-sm-6 form-group">
+								<label>Last Name <font color="red">*</font></label>
+								<input type="text" placeholder="Enter Last Name Here.." class="form-control">
+							</div>
+						</div>					
+						<div class="form-group">
+							<label>Address <font color="red">*</font></label>
+							<textarea placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+						</div>	
+						<div class="row">
+							<div class="col-sm-4 form-group">
+								<label>City <font color="red">*</font></label>
+								<input type="text" placeholder="Enter City Name Here.." class="form-control">
+							</div>	
+							<div class="col-sm-4 form-group">
+								<label>State <font color="red">*</font></label>
+								<input type="text" placeholder="Enter State Name Here.." class="form-control">
+							</div>	
+							<div class="col-sm-4 form-group">
+								<label>Zip <font color="red">*</font></label>
+								<input type="text" placeholder="Enter Zip Code Here.." class="form-control">
+							</div>		
+						</div>
+						<div class="row">
+							
+						</div>						
+					<div class="form-group">
+						<label>Phone Number <font color="red">*</font></label>
+						<input type="text" placeholder="Enter Phone Number Here.." class="form-control">
+					</div>		
+					<div class="form-group">
+						<label>Email Address <font color="red">*</font></label>
+						<input type="text" placeholder="Enter Email Address Here.." class="form-control">
+					</div>	
+            
+            <div class="checkbox">
+              <label><input type="checkbox" value="">I agree to the <a class="purplink" href = "">Terms and Services</a></label>
+</div>
+					<button type="button" class="btn btn-lg btn-info">Submit</button>					
+					</div>
+				</form> 
+				</div>
+	</div>
+	</div>
+
+    </main>
+  </div>
+</body>
+  
+  
+
+    <script type="module" src="js/main.js"></script>
+
+
+</html>

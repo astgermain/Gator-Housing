@@ -6,22 +6,17 @@
   <title>Dashboard For Site</title>
   
   
-  
-      <link rel="stylesheet" href="css/main.css">
+      <link rel="stylesheet" href="/css/main.css">
+      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+<!------ Include the above in your HEAD tag (sidebar + navbar + carousel)---------->
 
   
 </head>
 
-<body>
-
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag (sidebar + navbar)---------->
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!-- Needed for Dropdown in Navbar -->
 
 <body>
 
@@ -82,7 +77,18 @@
         
         <ul class="nav nav-pills nav-justified">
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000">Home</a></li>
-          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about">About</a></li>
+          <li role="presentation" class="active">
+		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/andrew">Andrew</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/david">David</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/peter">Peter</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/sagar">Sagar</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/steven">Steven</a></li>
+			      <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/sunny">Sunny</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/zolboo">Zolboo</a></li>
+          </ul>
+		  </li>
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/post">Post</a></li>
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/login">Login</a></li>
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/registration">Register</a></li>
@@ -194,131 +200,47 @@
     
 <!--   Begin Welcome to Dashboard   -->
     <section class="wrapper"> 
-      <div class="welcome">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="content">
-                <h2>Welcome to Dashboard</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+             <div class="tab-content" id="myTabContent">
+  <div class="tab-pane active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+   <table class="table table-sm">
+     <thead>
+        <tr>
+          <th scope="col">Post ID</th>
+          <th scope="col">Image</th>
+          <th scope="col">Post Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Description</th>
+          <th scope="col">Category</th>
+          <th scope="col">Status</th>
+          <th scope="col">User ID</th>
+        </tr>
+    </thead>
+<!-- Displaying EJS variables from node -->
+    <% searchResult.forEach((result) => { %>
+      <%if (result.isLive == 1) {%>
+  <tbody class="post">   
+  <tr>
+      <th scope="row"><%= result.post_id%> </th>
+      <td><img src="/img/<%= result.image %>" class="rounded-circle player-img" alt="" style="width: 100px;"></td>
+      <td><%= result.post_name%> </td>
+      <td><%= result.price%> </td>
+      <td><%= result.description%> </td>
+      <td><%= result.category%> </td>
+      <td><%= result.status%> </td>
+      <td><%= result.user_id%> </td>
+    </tr>
+  </tbody>
+        <%}%>
+   <% });%>
+</table>
+</div>
+</div>
       </div>
 <!-- End Welcome to Dashboard -->
       
-<!-- Begin Statistics Section -->
-      <section class="statistics">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="box">
-                <i class="fa fa-envelope fa-fw bg-primary"></i>
-                <div class="info">
-                  <h3>5</h3> <span>Messages</span>
-                  <p>Lorem ipsum dolor sit amet</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="box">
-                <i class="fa fa-file fa-fw bg-primary"></i>
-                <div class="info">
-                  <h3>5</h3> <span>House Listings</span>
-                  <p>Lorem ipsum dolor sit amet</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="box">
-                <i class="fa fa-users fa-fw bg-primary"></i>
-                <div class="info">
-                  <h3>24</h3> <span>Tenants</span>
-                  <p>Lorem ipsum dolor sit amet</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-<!-- End Statistic Section -->
-      
-<!-- Begin House Listing Section -->
-      <section class="house">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="card">
-                
-                <div class="house-container">
-                  <h3>4060  Junior Avenue</h3>
-                  <canvas id="myHouse1"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <div class="house-container">
-                  <h3>4223  Courtright Street</h3>
-                  <canvas id="myHouse2"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <div class="house-container">
-                  <h3>281  Stonecoal Road</h3>
-                  <canvas id="myHouse3"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <div class="house-container">
-                  <h3>883  Elsie Drive</h3>
-                  <canvas id="myHouse4"></canvas>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-3">
-              <div class="card">
-                <div class="house-container">
-                  <h3>4939  Leroy Lane</h3>
-                  <canvas id="myHouse5"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <div class="house-container">
-                  <h3>2095  Terra Street</h3>
-                  <canvas id="myHouse6"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <div class="house-container">
-                  <h3>3683  Fancher Drive</h3>
-                  <canvas id="myHouse7"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card">
-                <div class="house-container">
-                  <h3>844 Willow Road</h3>
-                  <canvas id="myHouse8"></canvas>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+
+     
 </section>
 <!-- End House Listing Section -->
   
@@ -332,9 +254,6 @@
   </div>
 <!-- End Copyright Section -->
 </body>
-  
-  
 
-</body>
 
 </html>

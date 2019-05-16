@@ -8,20 +8,17 @@
   
   
       <link rel="stylesheet" href="css/main.css">
+            <link rel="stylesheet" href="/css/main.css">
+      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+<!------ Include the above in your HEAD tag (sidebar + navbar + carousel)---------->
 
   
 </head>
 
-<body>
-
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag (sidebar + navbar)---------->
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!-- Needed for Dropdown in Navbar -->
 
 <body>
 
@@ -82,7 +79,18 @@
         
         <ul class="nav nav-pills nav-justified">
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000">Home</a></li>
-          <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about">About</a></li>
+          <li role="presentation" class="active">
+		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/andrew">Andrew</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/david">David</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/peter">Peter</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/sagar">Sagar</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/steven">Steven</a></li>
+			      <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/sunny">Sunny</a></li>
+            <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/about/zolboo">Zolboo</a></li>
+          </ul>
+		  </li>
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/post">Post</a></li>
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/login">Login</a></li>
           <li role="presentation" class="active"><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/registration">Register</a></li>
@@ -197,18 +205,20 @@
     <section class="wrapper"> 
       
         <div class="container-fluid">
+        
           <h1 class="well">Login</h1>
-              <form class="form-horizontal">
+          <%- messages('messages', locals) %>
+              <form class="form-horizontal" method='POST'>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">E-Mail</label>
                   <div class="col-sm-12">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="E-Mail">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="E-Mail" name="email">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
                   <div class="col-sm-12">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password">
                   </div>
                 </div>
                 <div class="form-group">
@@ -232,7 +242,7 @@
                 </div>  
                 <div class="form-group">
                   <div class="col-sm-centered col-sm-12">
-                    <button type="submit" class="btn btn-login">Login</button>
+                    <button type="submit" onClick="this.form.submit()" class="btn btn-login">Login</button>
                   </div>
                 </div>
               </form>
@@ -254,9 +264,6 @@
   </div>
 <!-- End Copyright Section -->
 </body>
-  
-  
 
-</body>
 
 </html>
