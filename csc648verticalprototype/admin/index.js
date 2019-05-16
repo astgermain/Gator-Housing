@@ -3,7 +3,11 @@ var router = express.Router();
 var db = require('../db');
 const {ensureAuthenticated} = require('../config/auth.js');
 var app = express();
+var fs = require('fs');
+ 
+
 app.set('view engine', 'ejs');
+router.use(express.static('../public'));
 
 router.get('/', ensureAuthenticated, checkAdmin,  search, (req, res) => {
     var searchResult = req.searchResult;
@@ -21,13 +25,21 @@ router.post('/delete/:id', (req, res) => {
 
     var postID = req.params.id;
     console.log("Post id is: " + postID);
-    let query = "DELETE FROM post where post_id = '" + postID + "'";
+    let query = "SELECT * FROM post where post_id = '" + postID + "'";
 
     db.query(query, (err, result) => {
         if (err){
             req.searchResult = "Cannot delete post with ID: " + postID;
         }
-        console.log('Deleted Row(s):', result);
+        // Deletes image from relative path 
+        fs.unlinkSync(`public/img/${result[0].image}`);
+    });
+    
+    query = "DELETE FROM post where post_id = '" + postID + "'";
+    db.query(query, (err, result) => {
+        if (err){
+            req.searchResult = "Cannot delete post with ID: " + postID;
+        }
     });
  
     res.redirect('/admin');

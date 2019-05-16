@@ -7,7 +7,7 @@ const ejs = require('ejs');
 const path = require('path');
 
 // Public folder
-router.use(express.static('./public'));
+router.use(express.static('../public'));
 
 // Set storage engine
 const storage = multer.diskStorage({
@@ -49,7 +49,7 @@ function checkFileType(req, file, cb){
 
 router.get('/', (req, res) => {
     // USING DUMMY POST EJS, CHANGE LATER
-    res.render('post', {
+    res.render('dummyPost', {
         // Ejs variables being passed into index.ejs
         results: 0,
         searchTerm: "",
@@ -67,7 +67,7 @@ router.post('/', userPost, (req, res) => {
     // Need to do input validation here
     console.log("Posting");
     // USING DUMMY POST EJS, CHANGE LATER
-    res.render('post', {
+    res.render('dummyPost', {
         // Ejs variables being passed into index.ejs
         results: 0,
         searchTerm: "",
