@@ -2,14 +2,14 @@
 
 var express = require('express');
 var router = express.Router();
-var db = require('./db');
+var db = require('../db');
 const bcrypt = require('bcryptjs');
 const expressValidator = require('express-validator');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
 // Passport config file
-require('./config/passport')(passport)
+require('../config/passport')(passport)
 // Middleware
 router.use(expressValidator());
 router.use(bodyParser.urlencoded({extended: true})); 
@@ -19,7 +19,7 @@ router.use(passport.session());
 router.get('/', (req, res) => {
     // Tells node to render this ejs file named index 
     // USING DUMMY REGISTRATION EJS, CHANGE LATER
-    res.render('dummyRegistration', {
+    res.render('registration', {
         // Ejs variables being passed into index.ejs
         searchTerm: "",
         searchResult: "",
@@ -92,7 +92,7 @@ function checkRegistration(req, res, next) {
     
     const errors = req.validationErrors();
     if(errors){
-        res.render('dummyRegistration', {
+        res.render('registration', {
         errors: errors,
         results: 0,
         searchTerm: "",
