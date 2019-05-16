@@ -1,11 +1,11 @@
 // Post page
 var express = require('express');
 var router = express.Router();
-var db = require('./db');
+var db = require('../db');
 
 router.get('/', (req, res) => {
     // USING DUMMY POST EJS, CHANGE LATER
-    res.render('dummyPost', {
+    res.render('post', {
         // Ejs variables being passed into index.ejs
         results: 0,
         searchTerm: "",
@@ -23,7 +23,7 @@ router.post('/', userPost, (req, res) => {
     // Need to do input validation here
     console.log("Posting");
     // USING DUMMY POST EJS, CHANGE LATER
-    res.render('dummyPost', {
+    res.render('post', {
         // Ejs variables being passed into index.ejs
         results: 0,
         searchTerm: "",

@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 
 // Passport config file
-require('./config/passport')(passport)
+require('../config/passport')(passport)
 // Middleware
 router.use(expressValidator());
 router.use(bodyParser.urlencoded({extended: true})); 
