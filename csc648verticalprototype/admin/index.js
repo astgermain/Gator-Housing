@@ -97,10 +97,9 @@ router.post('/approve/:id', (req, res) => {
     });
     
 }
-" SELECT m.*, p.post_name, p.image FROM messages m, post p WHERE p.user_id = 1 AND m.post_id = p.post_id; "
+
 function viewMessages(req, res, next) {
-    // Need to replace user id with req.user[0].id later
-    let query = ` SELECT m.*, p.post_name, p.image FROM messages m, post p WHERE p.user_id = 1 AND m.post_id = p.post_id `;
+    let query = ` SELECT m.*, p.post_name, p.image FROM messages m, post p WHERE p.user_id = ${req.user[0].id} AND m.post_id = p.post_id `;
     db.query(query, (err, result) => {
         if (err) {
             console.log("Failed retrieve messages: " + err)
