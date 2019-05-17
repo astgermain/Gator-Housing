@@ -61,7 +61,7 @@
                                   	<div class="container">
                                       <div class="row">
                                         <div class="col-xs-1">
-                                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal">
+                                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal" data-id="<%=searchResult[i].post_id%>">
                                             Contact
                                           </button>
                                         </div>
@@ -80,12 +80,12 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<div class="row">
-						<h2 class="modal-title" id="contactModalLabel" align="center">1234 Hickory Lane</h2>
+						<h2 class="modal-title" id="postTest" align="center"><%= searchResult[i].post_name %></h2>
 					</div>
 				</div>
 				<div class="modal-body">
 					<div class="row">
-						<form method="post" action="contact.php">
+						<form method="POST" action="/message">
               </div>
 						<div class="row form-group">
 							<div class="col-md-2">
@@ -118,13 +118,15 @@
 							<div class="col-md-4">
 								<textarea id="message" name="message" rows="6" cols="38" placeholder="I am interested in this listing"></textarea>
 							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
+            </div>
+            <div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-success">Send Message</button>
+					<button type="button" onClick="this.form.submit()" class="btn btn-success">Send Message</button>
 				</div>
+          </form>
+          
+				</div>
+				
 			</div>
 		</div>
 	</div>

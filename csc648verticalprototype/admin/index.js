@@ -9,11 +9,13 @@ var fs = require('fs');
 app.set('view engine', 'ejs');
 router.use(express.static('../public'));
 
-router.get('/', ensureAuthenticated, checkAdmin,  search, (req, res) => {
+router.get('/', ensureAuthenticated, checkAdmin,  search, viewMessages, (req, res) => {
     var searchResult = req.searchResult;
+    var messages = req.messageResult;
         // Tells node to render this ejs file named index 
         res.render('admin', {
             // Ejs variables being passed into index.ejs
+            messageResult: messages,
             searchResult: searchResult,
             searchTerm: req.searchTerm,
             searchCategory: req.query.category
@@ -94,6 +96,19 @@ router.post('/approve/:id', (req, res) => {
          next();
     });
     
+}
+" SELECT m.*, p.post_name, p.image FROM messages m, post p WHERE p.user_id = 1 AND m.post_id = p.post_id; "
+function viewMessages(req, res, next) {
+    // Need to replace user id with req.user[0].id later
+    let query = ` SELECT m.*, p.post_name, p.image FROM messages m, post p WHERE p.user_id = 1 AND m.post_id = p.post_id `;
+    db.query(query, (err, result) => {
+        if (err) {
+            console.log("Failed retrieve messages: " + err)
+        }
+        console.log("Inserted row: " + result);
+        req.messageResult = result;
+        next();
+    });
 }
 
  function checkAdmin(req, res, next){
