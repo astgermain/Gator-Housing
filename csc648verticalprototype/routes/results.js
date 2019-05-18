@@ -2,8 +2,15 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db');
+const expressValidator = require('express-validator');
+const bodyParser = require('body-parser');
 
-router.get('/', search, (req, res) => {
+
+// Middleware
+router.use(expressValidator());
+router.use(bodyParser.urlencoded({extended: true})); 
+
+router.get('/', checkSearch, search, (req, res) => {
     var searchResult = req.searchResult;
     console.log(searchResult);
     // Tells node to render this ejs file named results
@@ -36,6 +43,25 @@ router.get('/:id', displayPost, (req, res) => {
         distanceFilter: req.query.distanceFilter
     });
 });
+
+function checkSearch(req, res, next) {
+    //Make sure to validate each name attribute from the form.
+    req.checkQuery('search')
+        .isAlphanumeric().withMessage('Please enter a location or price')
+        .isLength({
+            max: 40
+        }).withMessage('Only enter up to at most 40 characters');
+    const errors = req.validationErrors();
+
+    if (errors) {
+        errors.forEach(function (errors) {
+            var msg = errors.msg;
+            req.flash('danger', msg+'\n')
+        });
+    }
+    next();
+}
+
 
 // General search for all users
 function search(req, res, next) {

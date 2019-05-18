@@ -35,8 +35,10 @@
    
       <div class="container-fluid">
         <h1 class="well">Search Results</h1>
+        <%- messages('messages', locals) %>
         <div class="content">
                 <div class="row">
+                
 				 <% var j = 16; for (var i = 0; i < j; i++) { if (searchResult[i] == null) { break } if (searchResult[i].isLive != 0) { %>
 
 
