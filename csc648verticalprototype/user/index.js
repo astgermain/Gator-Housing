@@ -19,6 +19,12 @@ router.get('/', ensureAuthenticated ,userdashfnc, viewMessages, (req, res) => {
         });
     });
 
+router.get('/logout', (req,res) => {
+    req.logout();
+    req.flash('success', 'You have successfully logged out');
+    res.redirect('/');
+});
+
 // Search function works for rendering the page first time
 function userdashfnc (req, res, next) {
 	var searchTerm = req.query.search;

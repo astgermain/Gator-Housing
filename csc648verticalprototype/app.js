@@ -42,6 +42,16 @@ app.use(function (req, res, next) {
     next();
 });
 
+// Global variable to be set if someone logs in
+app.use((req,res,next) => {
+    if (req.user != null){
+        app.locals.user = req.user;
+    } else {
+        app.locals.user = null;
+    }
+    next();
+});
+
 // Routes
 app.use('/admin', adminPage);
 app.use('/userdash', userPage);
@@ -52,6 +62,7 @@ app.use('/post', postPage);
 app.use('/message', message);
 app.use('/results', resultsPage);
 app.use('/', homePage);
+
 
 
 
