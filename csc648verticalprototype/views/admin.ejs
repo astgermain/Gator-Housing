@@ -208,15 +208,13 @@
     <a class="nav-link" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="false">Pending Posts</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="approve-tab" data-toggle="tab" href="#approve" role="tab" aria-controls="approve" aria-selected="false">Approve Posts</a>
-  </li>
-    <li class="nav-item">
-    <a class="nav-link" id="remove-tab" data-toggle="tab" href="#remove" role="tab" aria-controls="remove" aria-selected="false">Remove Posts</a>
+    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
   </li>
 </ul>
 <!-- Admin Tab Contents -->
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+    <!-- Table -->
    <table class="table table-sm">
      <thead>
         <tr>
@@ -235,6 +233,7 @@
         Get Posts
       </button> 
       </form>
+      <!-- Table Body -->
 <!-- Displaying EJS variables from node -->
     <% searchResult.forEach((result) => { %>
       <%if (result.isLive == 0) {%>
@@ -267,14 +266,52 @@
   </tbody>
         <%}%>
    <% });%>
+   <!-- End Table Body -->
 </table>
-              
-  </div>
-  <div class="tab-pane fade" id="approve" role="tabpanel" aria-labelledby="approve-tab">
-      Priority 2: Admin can search and approve.
-  </div>
-    <div class="tab-pane fade" id="remove" role="tabpanel" aria-labelledby="remove-tab">
-      Priority 2: Admin can search and remove.
+<!-- End Table -->    
+</div>
+  <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+  <!-- Table -->
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Message</th>
+          <th scope="col">Post ID</th>
+          <th scope="col">Post Name</th>
+          <th scope="col">Post Image</th>
+        </tr>
+      </thead>
+        <!-- Table Body -->
+        <!-- Displaying EJS variables from node -->
+    <% messageResult.forEach((result) => { %>
+      
+  <tbody class="messages">   
+  <tr>
+      <td><%= result.name%> </td>
+      <td><%= result.email%> </td>
+      <td><%= result.phone%> </td>
+      <td><%= result.text%> </td>
+      <td><%= result.post_id%> </td>
+      <td><%= result.post_name%> </td>
+      <td><img src="/img/<%= result.image %>" class="rounded-circle player-img" alt="" style="width: 100px;"></td>
+      <!-- Deleting -->
+      <td>
+      <form action='/admin/delete/<%=result.post_id%>' method="POST">
+      <button type="button" class="btn btn-danger btn-sm delete-post" id="<%=result.post_id%>"
+                onClick="this.form.submit()" type="submit">
+        Remove
+      </button> 
+      </form>
+      </td>
+    </tr>
+  </tbody>
+   <% });%>
+        <!-- End Table Body -->
+    </table>
+    <!-- End Table -->
   </div>
 </div>
 </div>

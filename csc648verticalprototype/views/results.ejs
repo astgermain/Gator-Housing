@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  
+
 <!--  Begin Navbar  -->
   <div id="navbar-wrapper">
     <!-- Rendering partials -->
@@ -35,10 +35,13 @@
    
       <div class="container-fluid">
         <h1 class="well">Search Results</h1>
+        <%- messages('messages', locals) %>
         <div class="content">
                 <div class="row">
+                
 				 <% var j = 16; for (var i = 0; i < j; i++) { if (searchResult[i] == null) { break } if (searchResult[i].isLive != 0) { %>
- 
+
+
 					<div class="col-xs-12 col-sm-4 col-lg-3">
                         <div class="card">
                             <a class="img-card" href="#">
@@ -49,28 +52,98 @@
                                     <a href=""> <%= searchResult[i].post_name %>
                                   </a>
                                 </h4>
-								
+
 								<p> <%= searchResult[i].location %></p>
 								<p> <%= searchResult[i].status %></p>
 								<p>  <%= searchResult[i].description %></p>
 								<p>   <%= searchResult[i].category %></p>
                             </div>
                             <div class="card-read-more">
-                                <a href="" class="btn btn-link btn-block">
+
+                                  	<div class="container">
+                                      <div class="row">
+                                        <div class="col-xs-1">
+                                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal" data-id="<%=searchResult[i].post_id%>">
+                                            Contact
+                                          </button>
+                                        </div>
+                                        <div class="col-xs-1">
+                                          <a href="" class="btn btn-link btn-block">
                                     $<%= searchResult[i].price%>
                                 </a>
+                                        </div>
+
+
+                                      </div>
+                                  </div>
+	<!-- Modal -->
+	<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="row">
+						<h2 class="modal-title" id="postTest" align="center"><%= searchResult[i].post_name %></h2>
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<form method="POST" action="/message">
+              </div>
+						<div class="row form-group">
+							<div class="col-md-2">
+								<label for="name">Name</label>
+							</div>
+							<div class="col-md-4">
+								<input type="text" id="name" name="name" placeholder="John Doe"/>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-2">
+								<label for="name">Phone</label>
+							</div>
+							<div class="col-md-4">
+								<input type="text" id="phone" name="phone" placeholder="(123)867-5309"/>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-2">
+								<label for="email">Email</label>
+							</div>
+							<div class="col-xs-4">
+								<input type="text" id="email" name="email" size="25" placeholder="johndoe123@mail.com"/>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-2">
+								<label for="message">Message</label>
+							</div>
+							<div class="col-md-4">
+								<textarea id="message" name="message" rows="6" cols="38" placeholder="I am interested in this listing"></textarea>
+							</div>
+            </div>
+            <div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					<button type="button" onClick="this.form.submit()" class="btn btn-success">Send Message</button>
+				</div>
+          </form>
+          
+				</div>
+				
+			</div>
+		</div>
+	</div>
                             </div>
                         </div>
                     </div>
-					
-			<% } else { j = j + 1;  %>		
-	    
-		 
-            
+
+			<% } else { j = j + 1;  %>
+
+
+
  <%   } } %>
-					
-					
-                 
+
+
+
             </div>
         </div>
     </div>

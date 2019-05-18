@@ -7,6 +7,7 @@ const userPage = require('./user');
 const aboutPage = require('./about');
 const registrationPage = require('./routes/registration');
 const loginPage = require('./routes/login');
+const message = require('./routes/message');
 const postPage = require('./routes/post');
 const resultsPage = require('./routes/results');
 const homePage = require('./routes/home');
@@ -48,6 +49,7 @@ app.use('/about', aboutPage);
 app.use('/registration', registrationPage);
 app.use('/login', loginPage);
 app.use('/post', postPage);
+app.use('/message', message);
 app.use('/results', resultsPage);
 app.use('/', homePage);
 
