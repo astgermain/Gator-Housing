@@ -56,7 +56,7 @@ function checkSearch(req, res, next) {
     if (errors) {
         errors.forEach(function (errors) {
             var msg = errors.msg;
-            req.flash('danger', msg+'\n')
+            req.flash('danger', msg);
         });
     }
     next();
