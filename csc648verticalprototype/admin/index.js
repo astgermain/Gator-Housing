@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../db');
 const {ensureAuthenticated} = require('../config/auth.js');
+const functions = require('../functions');
 var app = express();
 var fs = require('fs');
  
@@ -9,7 +10,7 @@ var fs = require('fs');
 app.set('view engine', 'ejs');
 router.use(express.static('../public'));
 
-router.get('/', ensureAuthenticated, checkAdmin,  search, viewMessages, (req, res) => {
+router.get('/', ensureAuthenticated, checkAdmin,  search, functions.viewMessages, (req, res) => {
     var searchResult = req.searchResult;
     var messages = req.messageResult;
         // Tells node to render this ejs file named index 
@@ -69,22 +70,6 @@ router.post('/approve/:id', (req, res) => {
     var searchTerm = req.query.search;
     var searchCategory = req.query.category;
     let query = 'SELECT * FROM post';
-    
-   // Make sure WHERE statement is wrapped in single quotes is like this: WHERE something = 'this'
-   if(searchTerm !=undefined && searchCategory == ""){
-    query = "SELECT * FROM post WHERE post_name LIKE '%" + searchTerm +"%'" + " OR location LIKE '%" + searchTerm +"%'"
-    + " OR price LIKE '%" + searchTerm +"%'" + " OR category LIKE '%" + searchTerm +"%'";
-    }
-    else if(searchTerm != undefined && searchCategory != undefined){
-        query = "SELECT * FROM post WHERE category = '" + searchCategory + "' AND (post_name LIKE '%" + searchTerm +"%'" 
-        + " OR price LIKE '%" + searchTerm +"%'"+ " OR location LIKE '%" + searchTerm +"%')";
-    }
-    else if (searchTerm ==undefined && searchCategory != undefined){
-        query = "SELECT * FROM post WHERE category = '" + searchCategory + "'";
-    }else if(searchTerm ==undefined && searchCategory == undefined){
-        query = 'SELECT * FROM post';
-    }
-
     db.query(query, (err, result) => {
         if (err){
             req.searchResult = "Cannot find result";
@@ -96,18 +81,6 @@ router.post('/approve/:id', (req, res) => {
          next();
     });
     
-}
-
-function viewMessages(req, res, next) {
-    let query = ` SELECT m.*, p.post_name, p.image FROM messages m, post p WHERE p.user_id = ${req.user[0].id} AND m.post_id = p.post_id `;
-    db.query(query, (err, result) => {
-        if (err) {
-            console.log("Failed retrieve messages: " + err)
-        }
-        console.log("Inserted row: " + result);
-        req.messageResult = result;
-        next();
-    });
 }
 
  function checkAdmin(req, res, next){
