@@ -43,12 +43,12 @@
  
 					<div class="col-xs-12 col-sm-4 col-lg-3">
                         <div class="card">
-                            <a class="img-card" href="/results/<%=searchResult[i].post_id%>">
+                            <a class="img-card" href="/results/<%=searchResult[j].post_id%>">
                             <img src="/img/<%= searchResult[j].image %>"/>
                           </a>
                             <div class="card-content">
                                 <h4 class="card-title">
-                                    <a href="/results/<%=searchResult[i].post_id%>"> <%= searchResult[j].post_name %>
+                                    <a href="/results/<%=searchResult[j].post_id%>"> <%= searchResult[j].post_name %>
                                   </a>
                                 </h4>
 								
@@ -58,7 +58,7 @@
 								<p>   <%= searchResult[j].category %></p>
                             </div>
                             <div class="card-read-more">
-                                <a href="/results/<%=searchResult[i].post_id%>" class="btn btn-link btn-block">
+                                <a href="/results/<%=searchResult[j].post_id%>" class="btn btn-link btn-block">
                                     $<%= searchResult[j].price%>
                                 </a>
                             </div>
@@ -128,7 +128,7 @@
                           </a>
                             <div class="card-content">
                                 <h4 class="card-title">
-                                    <a href=""> <%= searchResult[i].post_name %>
+                                    <a href="/results/<%=searchResult[i].post_id%>"> <%= searchResult[i].post_name %>
                                   </a>
                                 </h4>
 								<p> <%= searchResult[i].location %></p>
