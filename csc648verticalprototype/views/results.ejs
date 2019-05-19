@@ -35,6 +35,16 @@
    
       <div class="container-fluid">
         <h1 class="well">Search Results</h1>
+        <% if (typeof errors!='undefined') { %>
+
+      <div class="alert alert-danger" role="alert">
+          
+            <% errors.forEach(function(errors) { %>
+            
+                 <h5><%= errors.msg %> </h5>
+            <% });
+       } 
+ %>
         <%- messages('messages', locals) %>
         <div class="content">
                 <div class="row">
@@ -99,7 +109,7 @@
 						</div>
 						<div class="row form-group">
 							<div class="col-md-2">
-								<label for="name">Phone</label>
+								<label for="phone">Phone</label>
 							</div>
 							<div class="col-md-4">
 								<input type="text" id="phone" name="phone" placeholder="(123)867-5309"/>

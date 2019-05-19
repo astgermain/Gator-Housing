@@ -10,7 +10,7 @@ router.use(bodyParser.urlencoded({extended: true}));
 router.use(express.static('../public'));
 
 //Approve post
-router.post('/', (req, res) => {
+router.post('/', checkMessage, (req, res) => {
     if (req.user != undefined){
     var name = req.body.name;
     var phone = req.body.phone;
@@ -37,6 +37,33 @@ router.post('/', (req, res) => {
     }
     
 });
+
+function checkMessage(req, res, next){
+    //Make sure to validate each name attribute from the form.
+    req.checkBody('name').not().isEmpty().withMessage("Name Required");
+    req.checkBody('phone').optional().isMobilePhone().withMessage("Invalid Phone Number");
+    req.checkBody('email').isEmail().withMessage("Invalid Email");
+    req.checkBody('message').not().isEmpty().withMessage("Message Required")
+                           .isAlphanumeric().withMessage("Alphanumeric Characters Only") 
+        
+    
+    const errors = req.validationErrors();
+    if(errors){
+        res.render('results', {
+        errors: errors,
+        results: 0,
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
+        });
+    
+    } else {
+        next();
+    }
+}
 
     
 module.exports = router;
