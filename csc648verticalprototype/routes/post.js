@@ -49,7 +49,7 @@ function checkFileType(req, file, cb){
 
 router.get('/', (req, res) => {
     // USING DUMMY POST EJS, CHANGE LATER
-    res.render('dummyPost', {
+    res.render('post', {
         // Ejs variables being passed into index.ejs
         results: 0,
         searchTerm: "",
@@ -67,7 +67,7 @@ router.post('/', userPost, (req, res) => {
     // Need to do input validation here
     console.log("Posting");
     // USING DUMMY POST EJS, CHANGE LATER
-    res.render('dummyPost', {
+    res.render('post', {
         // Ejs variables being passed into index.ejs
         results: 0,
         searchTerm: "",
@@ -87,7 +87,7 @@ function userPost(req, res) {
         upload(req, res, (err) => {
             if (err) {
                 req.flash('danger', err);
-                res.render('dummyPost', {
+                res.render('post', {
                     // Ejs variables being passed into index.ejs
                     results: 0,
                     searchTerm: "",
@@ -100,7 +100,7 @@ function userPost(req, res) {
             } else {
                 if (req.file == undefined) {
                     req.flash('danger', 'Error: No File Selected!');
-                    res.render('dummyPost', {
+                    res.render('post', {
                         // Ejs variables being passed into index.ejs
                         results: 0,
                         searchTerm: "",

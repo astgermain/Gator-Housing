@@ -146,7 +146,7 @@ body {
     -moz-transition: all .5s ease;
     -o-transition: all .5s ease;
     transition: all .5s ease;
-    position: fixed;
+    position: relative;
     left: 0;
 	width: 100%;
 }
@@ -205,12 +205,11 @@ body {
 
 #link-wrapper {
         position: fixed;
-        width: 75%;
         /* margin-left: 225px; */
         height: 66px;
         margin-top: 50px;
-        /* background-color: #ffffff; */
-        z-index: 31512314;
+        background-color: #ffffff;
+        z-index: 3;
         border-bottom: 1px solid #cacaca;
         margin-left: 225px;
 }
