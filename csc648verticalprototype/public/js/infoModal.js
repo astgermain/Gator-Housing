@@ -9,9 +9,9 @@ $('#infoModal').on('show.bs.modal', function (event) {
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     var modal = $(this)
     modal.find('.modal-title').text(recipient)
-    modal.find('.description').text(description)
-    modal.find('.location').text(location)
-    modal.find('.city').text(city)
-    modal.find('.state').text(state)
+    modal.find('.description').text("Description: " + description)
+    modal.find('.location').text("Street Address: " +location)
+    modal.find('.city').text("City: " +city)
+    modal.find('.state').text("State: " +state)
     
   })

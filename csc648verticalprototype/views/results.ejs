@@ -1,217 +1,176 @@
 <!DOCTYPE html>
 <html lang="en" >
-
-<head>
-  <meta charset="UTF-8">
-  <title>Search Results Page</title>
-  
+   <head>
+      <meta charset="UTF-8">
+      <title>Search Results Page</title>
       <link rel="stylesheet" href="/css/main.css">
-
       <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
       <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
-
-<!------ Include the above in your HEAD tag (sidebar + navbar + carousel)---------->
-</head>
-
-<body>
-
-<!--  Begin Navbar  -->
-  <div id="navbar-wrapper">
-    <!-- Rendering partials -->
-    <% include partials/headerPlusSidebar.ejs%>
-  </div>
-  <div id="link-wrapper">
-    <% include partials/navbar.ejs%>
-  </div>
-<!--  End Navbar  -->
-
-
-  
-    <section class="wrapper">
-   
-      <div class="container-fluid">
-        <h1 class="well">Search Results</h1>
-        <% if (typeof errors!='undefined') { %>
-
-      <div class="alert alert-danger" role="alert">
-          
-            <% errors.forEach(function(errors) { %>
-            
-                 <h5><%= errors.msg %> </h5>
-            <% });
-       } 
- %>
-        <%- messages('messages', locals) %>
-        <div class="content">
-                <div class="row">
-                
-				 <% var j = 16; for (var i = 0; i < j; i++) { if (searchResult[i] == null) { break } if (searchResult[i].isLive != 0) { %>
-
-
-					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <!------ Include the above in your HEAD tag (sidebar + navbar + carousel)---------->
+   </head>
+   <body>
+      <!--  Begin Navbar  -->
+      <div id="navbar-wrapper">
+         <!-- Rendering partials -->
+         <% include partials/headerPlusSidebar.ejs%>
+      </div>
+      <div id="link-wrapper">
+         <% include partials/navbar.ejs%>
+      </div>
+      <!--  End Navbar  -->
+      <section class="wrapper">
+         <div class="container-fluid">
+            <h1 class="well">Search Results</h1>
+            <% if (typeof errors!='undefined') { %>
+            <div class="alert alert-danger" role="alert">
+               <% errors.forEach(function(errors) { %>
+               <h5><%= errors.msg %> </h5>
+               <% });
+                  } 
+                  %>
+               <%- messages('messages', locals) %>
+               <div class="content">
+                  <div class="row">
+                     <% var j = 16; for (var i = 0; i < j; i++) { if (searchResult[i] == null) { break } if (searchResult[i].isLive != 0) { %>
+                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="card">
-                            <a class="img-card" >
-                            <img src="/img/<%= searchResult[i].image %>"/>
-                          </a>
-                            <div class="card-content">
-                                <h4 class="card-title">
-                                     <%= searchResult[i].post_name %>
-                                </h4>
-
-								<p> <%= searchResult[i].location %></p>
-								<p> <%= searchResult[i].status %></p>
-								<p>  $<%= searchResult[i].price%></p>
-								<p>   <%= searchResult[i].category %></p>
-                            </div>
-                            <div class="card-read-more">
-
-                                  	<div class="container-fluid">
-                                      <div class="row" style="padding-top: 5px; padding-bottom: 5px;">
-                                        <div class="col-xs-6">
-                                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal" 
+                           <a class="img-card" >
+                           <img src="/img/<%= searchResult[i].image %>"/>
+                           </a>
+                           <div class="card-content">
+                              <h4 class="card-title">
+                                 <%= searchResult[i].post_name %>
+                              </h4>
+                              <p> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Font_Awesome_5_solid_bed.svg/512px-Font_Awesome_5_solid_bed.svg.png"height="16" width="16">  Beds: <%= searchResult[i].beds %></p>
+                              <p>   <img src="https://svgsilh.com/svg/145802.svg" height="16" width="16">  Baths: <%= searchResult[i].baths %></p>
+                              <h3> $<%= searchResult[i].price%></h3>
+                           </div>
+                           <div class="card-read-more">
+                              <div class="container-fluid">
+                                 <div class="row" style="padding-top: 5px; padding-bottom: 5px;">
+                                    <div class="col-xs-6">
+                                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal" 
                                           data-name="<%=searchResult[i].post_name%>"
                                           data-id="<%=searchResult[i].post_id%>">
-                                            Contact
-                                          </button>
-                                        </div>
-                                 
-                                        <div class="col-xs-6">
-                                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#infoModal" 
+                                       Contact
+                                       </button>
+                                    </div>
+                                    <div class="col-xs-6">
+                                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#infoModal" 
                                           data-name2="<%=searchResult[i].post_name%>"
                                           data-description="<%=searchResult[i].description%>"
                                           data-location="<%=searchResult[i].location%>"
                                           data-city="<%=searchResult[i].city%>"
                                           data-state="<%=searchResult[i].state%>">
-                                                    
-                                            More Info
-                                          </button>
-                                        </div>
-                                      </div>
-                                  </div>
-	<!-- Modal -->
-	<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModal" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<div class="row">
-						<h2 class="modal-title" align="center"><%= searchResult[i].post_name %></h2>
-					</div>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<form method="POST" action="/message">
-              </div>
-						<div class="row form-group">
-							<div class="col-md-2">
-								<label for="name">Name</label>
-							</div>
-							<div class="col-md-4">
-								<input type="text" id="name" name="name" placeholder="John Doe"/>
-							</div>
-						</div>
-						<div class="row form-group">
-							<div class="col-md-2">
-								<label for="phone">Phone</label>
-							</div>
-							<div class="col-md-4">
-								<input type="text" id="phone" name="phone" placeholder="1234567890"/>
-							</div>
-						</div>
-						<div class="row form-group">
-							<div class="col-md-2">
-								<label for="email">Email</label>
-							</div>
-							<div class="col-xs-4">
-								<input type="text" id="email" name="email" size="25" placeholder="johndoe123@mail.com"/>
-							</div>
-						</div>
-						<div class="row form-group">
-							<div class="col-md-2">
-								<label for="message">Message</label>
-							</div>
-							<div class="col-md-4">
-                <textarea id="message" name="message" rows="6" cols="38" placeholder="I am interested in this listing"></textarea>
-                <input type="hidden" id="postID" name="postID" value="">
-							</div>
-            </div>
-            <div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					<button type="button" onClick="this.form.submit()" class="btn btn-success">Send Message</button>
-				</div>
-          </form>
-          
-				</div>
-				
-			</div>
-		</div>
-  </div>
-  <!-- End Contact Modal -->
-  
-	<!-- Modal -->
-	<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModal" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<div class="row">
-						<h2 class="modal-title" align="center"><%= searchResult[i].post_name %></h2>
-					</div>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-              </div>
-						<div class="row form-group">
-              <div class="container-fluid">
-                <p class="description"><%=searchResult[i].description%></p>
-                <p class="location"><%=searchResult[i].location%></p>
-                <p class="city"><%=searchResult[i].city%></p>
-                <p class="state"><%=searchResult[i].state%></p>
-              </div>
-            </div>
-            <div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-				</div>
-          
-				</div>
-				
-			</div>
-		</div>
-  </div>
-  <!-- End Info Modal -->
-
-
-
-
-
-                            </div>
+                                       More Info
+                                       </button>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- Modal -->
+                              <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModal" aria-hidden="true">
+                                 <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                       <div class="modal-header">
+                                          <div class="row">
+                                             <h2 class="modal-title" align="center"><%= searchResult[i].post_name %></h2>
+                                          </div>
+                                       </div>
+                                       <div class="modal-body">
+                                          <div class="row">
+                                             <form method="POST" action="/message">
+                                          </div>
+                                          <div class="row form-group">
+                                          <div class="col-md-2">
+                                          <label for="name">Name</label>
+                                          </div>
+                                          <div class="col-md-4">
+                                          <input type="text" id="name" name="name" placeholder="John Doe"/>
+                                          </div>
+                                          </div>
+                                          <div class="row form-group">
+                                          <div class="col-md-2">
+                                          <label for="phone">Phone</label>
+                                          </div>
+                                          <div class="col-md-4">
+                                          <input type="text" id="phone" name="phone" placeholder="1234567890"/>
+                                          </div>
+                                          </div>
+                                          <div class="row form-group">
+                                          <div class="col-md-2">
+                                          <label for="email">Email</label>
+                                          </div>
+                                          <div class="col-xs-4">
+                                          <input type="text" id="email" name="email" size="25" placeholder="johndoe123@mail.com"/>
+                                          </div>
+                                          </div>
+                                          <div class="row form-group">
+                                          <div class="col-md-2">
+                                          <label for="message">Message</label>
+                                          </div>
+                                          <div class="col-md-4">
+                                          <textarea id="message" name="message" rows="6" cols="38" placeholder="I am interested in this listing"></textarea>
+                                          <input type="hidden" id="postID" name="postID" value="">
+                                          </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                          <button type="button" onClick="this.form.submit()" class="btn btn-success">Send Message</button>
+                                          </div>
+                                          </form>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End Contact Modal -->
+                              <!-- Modal -->
+                              <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModal" aria-hidden="true">
+                                 <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                       <div class="modal-header">
+                                          <div class="row">
+                                             <h2 class="modal-title" align="center"><%= searchResult[i].post_name %></h2>
+                                          </div>
+                                       </div>
+                                       <div class="modal-body">
+                                          <div class="row">
+                                          </div>
+                                          <div class="row form-group">
+                                             <div class="container-fluid">
+                                                <p class="description">Description: <%=searchResult[i].description%></p>
+                                                <p class="location">Street Adress<%=searchResult[i].location%></p>
+                                                <p class="city">City: <%=searchResult[i].city%></p>
+                                                <p class="state">State: <%=searchResult[i].state%></p>
+                                             </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End Info Modal -->
+                           </div>
                         </div>
-                    </div>
-
-			<% } else { j = j + 1;  %>
-
-
-
- <%   } } %>
-
-
-
+                     </div>
+                     <% } else { j = j + 1;  %>
+                     <%   } } %>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
-</section>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <br/><br/><br/>
-            <hr/>
-            <p>Copyright</p>
-
-          </div>
-        </div>
+      </section>
+      <div class="row">
+      <div class="col-md-12 text-center">
+      <br/><br/><br/>
+      <hr/>
+      <p>Copyright</p>
       </div>
-
-    </main>
-</body>
-      <script src="/js/modal.js"></script>
-      <script src="/js/infoModal.js"></script>
+      </div>
+      </div>
+      </main>
+   </body>
+   <script src="/js/modal.js"></script>
+   <script src="/js/infoModal.js"></script>
 </html>
