@@ -6,6 +6,7 @@
   <title>Search Results Page</title>
   
       <link rel="stylesheet" href="/css/main.css">
+
       <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
       <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -73,7 +74,9 @@
                                   	<div class="container">
                                       <div class="row">
                                         <div class="col-xs-1">
-                                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal" data-id="<%=searchResult[i].post_id%>">
+                                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal" 
+                                          data-name="<%=searchResult[i].post_name%>"
+                                          data-id="<%=searchResult[i].post_id%>">
                                             Contact
                                           </button>
                                         </div>
@@ -92,7 +95,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<div class="row">
-						<h2 class="modal-title" id="postTest" align="center"><%= searchResult[i].post_name %></h2>
+						<h2 class="modal-title" id="postID" align="center"><%= searchResult[i].post_name %></h2>
 					</div>
 				</div>
 				<div class="modal-body">
@@ -169,8 +172,6 @@
       </div>
 
     </main>
-  </div>
 </body>
-
-
+      <script src="/js/modal.js"></script>
 </html>

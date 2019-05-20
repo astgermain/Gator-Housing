@@ -7,7 +7,7 @@
   
   
   
-      <link rel="stylesheet" href="css/main.css">
+      <link rel="stylesheet" href="/css/main.css">
       <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
       <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -204,7 +204,7 @@
           <h1 class="well">Post a Listing!</h1>
 	<div class="col-lg-12 well">
 	<div class="row">
-				<form action="/userPost" method="POST">
+				<form action="/post" method="POST" enctype="multipart/form-data">
 					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-6 form-group">
@@ -273,10 +273,10 @@
 							<label>Description <font color="red">*</font></label>
 							<textarea placeholder="Enter Description of Listing Here.." rows="3" class="form-control" name="description"></textarea>
 						</div>	
-            <div class="form-group">
+              <div class="form-group">
 								<label>Add Images <font color="red">*</font></label>
-								<input type="text" placeholder="Add Images Here.." class="form-control"><button type="button" class="btn btn-sm btn-info" name="image">Add Image</button>
-							</div>
+								<input type="file" placeholder="Add Images Here.." class="form-control" name="image">
+							</div>  
             
 					<button type="button" onClick="this.form.submit()" class="btn btn-lg btn-info">Submit</button>					
 					</div>
