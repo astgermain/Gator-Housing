@@ -17,9 +17,13 @@ router.get('/', ensureAuthenticated, checkAdmin,  search, functions.viewMessages
         res.render('admin', {
             // Ejs variables being passed into index.ejs
             messageResult: messages,
-            searchResult: searchResult,
+            results: searchResult.length,
             searchTerm: req.searchTerm,
-            searchCategory: req.query.category
+            searchResult: searchResult,
+            searchCategory: req.query.category,
+            sortType: req.query.sortType,
+            priceFilter: req.query.priceFilter,
+            distanceFilter: req.query.distanceFilter
         });
     });
     
