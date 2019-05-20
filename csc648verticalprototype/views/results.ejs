@@ -95,7 +95,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<div class="row">
-						<h2 class="modal-title" id="postID" align="center"><%= searchResult[i].post_name %></h2>
+						<h2 class="modal-title" align="center"><%= searchResult[i].post_name %></h2>
 					</div>
 				</div>
 				<div class="modal-body">
@@ -131,7 +131,8 @@
 								<label for="message">Message</label>
 							</div>
 							<div class="col-md-4">
-								<textarea id="message" name="message" rows="6" cols="38" placeholder="I am interested in this listing"></textarea>
+                <textarea id="message" name="message" rows="6" cols="38" placeholder="I am interested in this listing"></textarea>
+                <input type="hidden" id="postID" name="postID" value="">
 							</div>
             </div>
             <div class="modal-footer">

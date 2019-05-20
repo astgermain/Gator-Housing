@@ -17,7 +17,7 @@ router.post('/', checkMessage, (req, res) => {
     var email = req.body.email;
     var message = req.body.message;
     // Need to fix modal to pass post ID over
-    var postID = 13;
+    var postID = req.body.postID;
     console.log(`Name: ${name}, Phone: ${phone}, Email: ${email} , Message: ${message}, Post ID: ${postID}`);
     let query = ` INSERT INTO messages (name, phone, email, text, post_id)
                    VALUES('${name}', '${phone}', '${email}', '${message}', '${postID}') `;
@@ -44,7 +44,7 @@ function checkMessage(req, res, next){
     req.checkBody('phone').optional().isMobilePhone().withMessage("Invalid Phone Number");
     req.checkBody('email').isEmail().withMessage("Invalid Email");
     req.checkBody('message').not().isEmpty().withMessage("Message Required")
-                           .isAlphanumeric().withMessage("Alphanumeric Characters Only") 
+                           .matches(/^[a-z0-9 ]+$/i).withMessage("Alphanumeric Characters Only") 
         
     
     const errors = req.validationErrors();
