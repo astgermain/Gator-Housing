@@ -74,6 +74,21 @@ router.post('/delete/:id', (req, res) => {
     res.redirect('/userdash');
 });
 
+// Delete message
+router.post('/delete/message/:id', (req, res) => {
+
+    var messageID = req.params.id;
+    console.log("Message id is: " + messageID);    
+    query = "DELETE FROM messages where id = '" + messageID + "'";
+    db.query(query, (err, result) => {
+        if (err){
+            req.searchResult = "Cannot delete message with ID: " + messageID;
+        }
+    });
+ 
+    res.redirect('/userdash');
+});
+
 
 
 
