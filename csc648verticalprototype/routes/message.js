@@ -57,7 +57,8 @@ function checkMessage(req, res, next){
         searchCategory: "",
         sortType: "",
         priceFilter: "",
-        distanceFilter: ""
+        bedFilter: "",
+        bathFilter: ""
         });
     
     } else {

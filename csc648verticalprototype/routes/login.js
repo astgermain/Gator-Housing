@@ -23,7 +23,8 @@ router.get('/', (req, res) => {
         searchCategory: "",
         sortType: "",
         priceFilter: "",
-        distanceFilter: ""
+        bedFilter: "",
+        bathFilter: ""
     });
 });
 

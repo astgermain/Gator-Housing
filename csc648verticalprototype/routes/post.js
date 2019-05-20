@@ -57,7 +57,8 @@ router.get('/', (req, res) => {
         searchCategory: "",
         sortType: "",
         priceFilter: "",
-        distanceFilter: ""
+        bedFilter: "",
+        bathFilter: ""
     });
 });
 
@@ -75,7 +76,8 @@ router.post('/', userPost, (req, res) => {
         searchCategory: "",
         sortType: "",
         priceFilter: "",
-        distanceFilter: ""
+        bedFilter: "",
+        bathFilter: ""
     });
 });
 
@@ -95,7 +97,8 @@ function userPost(req, res) {
                     searchCategory: "",
                     sortType: "",
                     priceFilter: "",
-                    distanceFilter: ""
+                    bedFilter: "",
+                    bathFilter: ""
                 });
             } else {
                 if (req.file == undefined) {
@@ -108,7 +111,8 @@ function userPost(req, res) {
                         searchCategory: "",
                         sortType: "",
                         priceFilter: "",
-                        distanceFilter: ""
+                        bedFilter: "",
+                        bathFilter: ""
                     });
                 } else {
                     // Need validations for each.

@@ -23,7 +23,8 @@ router.get('/', checkSearch, functions.search, (req, res) => {
         searchCategory: req.query.category,
         sortType: req.query.sortType,
         priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
+        bedFilter: req.query.bedFilter,
+        bathFilter: req.query.bathFilter
     });
 });
 
@@ -41,7 +42,8 @@ router.get('/:id', displayPost, (req, res) => {
         searchCategory: req.query.category,
         sortType: req.query.sortType,
         priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
+        bedFilter: req.query.bedFilter,
+        bathFilter: req.query.bathFilter
     });
 });
 
@@ -81,7 +83,8 @@ function displayPost(req, res, next) {
         req.searchCategory = searchCategory;
         req.sortType = "";
         req.priceFilter = "";
-        req.distanceFilter = "";
+        req.bedFilter = "";
+        req.bathFilter = "";
         next();
     });
 }

@@ -26,7 +26,8 @@ router.get('/', (req, res) => {
         searchCategory: "",
         sortType: "",
         priceFilter: "",
-        distanceFilter: ""
+        bedFilter: "",
+        bathFilter: ""
     });
 });
 // Processing registration form
@@ -100,7 +101,8 @@ function checkRegistration(req, res, next) {
         searchCategory: "",
         sortType: "",
         priceFilter: "",
-        distanceFilter: ""
+        bedFilter: "",
+        bathFilter: ""
         });
     
     } else {

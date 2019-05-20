@@ -55,11 +55,10 @@
             <br>
             <div class="input-group">
               <div class="input-group-btn">
-              <select class="form-control" id="pricetype">
-                <option value="All">0+ Bedrooms</option>
-                <option value="House">House</option>
-                <option value="Apartment">Apartment</option>
-                <option value="Room">Room</option>
+                <select class="form-control" name="bedFilter">                
+                  <option value="1"<%if(bedFilter == "1"){%> selected <%}%>> 1+ bedrooms </option>
+                  <option value="2"<%if(bedFilter == "2"){%> selected <%}%>> 2+ bedrooms </option>
+                  <option value="3"<%if(bedFilter == "3"){%> selected <%}%>> 3+ bedrooms </option>
               </select>
               </div>
             </div>
@@ -69,32 +68,15 @@
             <br>
             <div class="input-group">
               <div class="input-group-btn">
-              <select class="form-control" id="pricetype">
-                <option value="All">0+ Bath</option>
-                <option value="House">House</option>
-                <option value="Apartment">Apartment</option>
-                <option value="Room">Room</option>
+                <select class="form-control" name="bathFilter">
+                  <option value="1"<%if(bathFilter == "1"){%> selected <%}%>> 1+ bathrooms </option>
+                  <option value="2"<%if(bathFilter == "2"){%> selected <%}%>> 2+ bathrooms </option>
               </select>
               </div>
             </div>
           </li>
   
-          <li>  
-            <br>
-            <div class="input-group">
-              <div class="input-group-btn">
-              <select class="form-control" name="distanceFilter">
-                <option value=""<%if(distanceFilter == ""){%> selected <%}%>> Distance filter: None </option>
-                  <option value="5"<%if(distanceFilter == "5"){%> selected <%}%>> Under 5 miles </option>
-                  <option value="10"<%if(distanceFilter == "10"){%> selected <%}%>> Under 10 miles </option>
-                  <option value="20"<%if(distanceFilter == "20"){%> selected <%}%>> Under 20 miles </option>
-                  <option value="30"<%if(distanceFilter == "30"){%> selected <%}%>> Under 30 miles </option>
-                  <option value="40"<%if(distanceFilter == "40"){%> selected <%}%>> Under 40 miles </option>
-                  <option value="50"<%if(distanceFilter == "50"){%> selected <%}%>> Under 50 miles </option>
-              </select>
-              </div>
-            
-          </li>
+          
           </div>
          
         </ul>

@@ -18,7 +18,8 @@ router.get('/', functions.search, (req, res) => {
         searchCategory: req.query.category,
         sortType: req.query.sortType,
         priceFilter: req.query.priceFilter,
-        distanceFilter: req.query.distanceFilter
+        bedFilter: req.query.bedFilter,
+        bathFilter: req.query.bathFilter
     });
 });
 
