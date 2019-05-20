@@ -85,7 +85,7 @@ body {
 
 .link-row {
     height: 52px;
-    /* margin-left: 147px; */
+    margin-right: 225px;
     margin-top: 13px;
     border-bottom: none;
 }
@@ -225,7 +225,7 @@ padding-top: 116px;
 
 #link-wrapper {
         position: fixed;
-        /* margin-left: 225px; */
+        width: 100%;
         height: 66px;
         margin-top: 50px;
         background-color: #ffffff;
