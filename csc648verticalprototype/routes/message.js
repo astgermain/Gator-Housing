@@ -37,6 +37,7 @@ router.post('/', checkMessage, (req, res) => {
     }
     
 });
+"Hello, good sir. how are you? great!"
 
 function checkMessage(req, res, next){
     //Make sure to validate each name attribute from the form.
@@ -44,7 +45,7 @@ function checkMessage(req, res, next){
     req.checkBody('phone').optional().isMobilePhone().withMessage("Invalid Phone Number");
     req.checkBody('email').isEmail().withMessage("Invalid Email");
     req.checkBody('message').not().isEmpty().withMessage("Message Required")
-                           .matches(/^[a-z0-9 ]+$/i).withMessage("Alphanumeric Characters Only") 
+                           .matches(/^[-@./#?!,&+\w\s]*$/).withMessage("Alphanumeric Characters Only") 
         
     
     const errors = req.validationErrors();
