@@ -67,21 +67,17 @@
                             </div>
                             <div class="card-read-more">
 
-                                  	<div class="container">
-                                      <div class="row">
-                                        <div class="col-xs-1">
+                                  	<div class="container-fluid">
+                                      <div class="row" style="padding-top: 5px; padding-bottom: 5px;">
+                                        <div class="col-xs-6">
                                           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal" 
                                           data-name="<%=searchResult[i].post_name%>"
                                           data-id="<%=searchResult[i].post_id%>">
                                             Contact
                                           </button>
                                         </div>
-                                      </div>
-                                  </div>
-
-                                  <div class="container">
-                                      <div class="row">
-                                        <div class="col-xs-1">
+                                 
+                                        <div class="col-xs-6">
                                           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#infoModal" 
                                           data-name2="<%=searchResult[i].post_name%>"
                                           data-description="<%=searchResult[i].description%>"
@@ -166,7 +162,7 @@
 					<div class="row">
               </div>
 						<div class="row form-group">
-              <div>
+              <div class="container-fluid">
                 <p class="description"><%=searchResult[i].description%></p>
                 <p class="location"><%=searchResult[i].location%></p>
                 <p class="city"><%=searchResult[i].city%></p>

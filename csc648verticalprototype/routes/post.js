@@ -5,6 +5,12 @@ var db = require('../db');
 const multer = require('multer');
 const ejs = require('ejs');
 const path = require('path');
+const expressValidator = require('express-validator');
+const bodyParser = require('body-parser');
+
+// Middleware
+router.use(expressValidator());
+router.use(bodyParser.urlencoded({extended: true})); 
 
 // Public folder
 router.use(express.static('../public'));
@@ -63,7 +69,7 @@ router.get('/', (req, res) => {
 
 
 // Processing user post data; need to move to user folder
-router.post('/', userPost, (req, res) => {
+router.post('/', checkPost, userPost, (req, res) => {
     // Need to do input validation here
     console.log("Posting");
     // USING DUMMY POST EJS, CHANGE LATER
@@ -81,8 +87,6 @@ router.post('/', userPost, (req, res) => {
 
 // For registered user to be able to post; need to move to user folder
 function userPost(req, res) {
-    
-
     if (req.user != undefined) {
         upload(req, res, (err) => {
             if (err) {
@@ -155,7 +159,42 @@ function userPost(req, res) {
         res.redirect('/login');
     }
 
+}
+
+function checkPost(req, res, next) {
+    // Need validations for each.
+    var postName = req.body.title;
+    var price = req.body.price;
+    var beds = req.body.beds;
+    var baths = req.body.baths;
+    var category = req.body.category;
+    var location = req.body.location;
+    var city = req.body.city;
+    var state = req.body.state;
+    var phone = req.body.phone;
+    var email = req.body.email;
+    var description = req.body.description;
+    req.checkBody('title').is
+        
+    
+    const errors = req.validationErrors();
+    if(errors){
+        res.render('post', {
+        errors: errors,
+        results: 0,
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        distanceFilter: ""
+        });
+    
+    } else {
+        next();
     }
+
+}
 
 
 module.exports = router;
