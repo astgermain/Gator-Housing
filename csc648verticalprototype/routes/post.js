@@ -127,6 +127,9 @@ function userPost(req, res) {
                     // Image validation already done.
                     var image = req.file.filename;
 
+                     // Street address + city + state together for location
+                    
+                    console.log(location);
                     // Handle upload to database.
                     console.log("post user id is: " + id);
                     let query = ` INSERT INTO post (post_name, price, beds, baths, category, user_id, location, city, state, phone, email, description, image)

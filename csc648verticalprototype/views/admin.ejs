@@ -218,19 +218,20 @@
    <table class="table table-sm">
      <thead>
         <tr>
-          <th scope="col">Post ID</th>
           <th scope="col">Image</th>
           <th scope="col">Post Name</th>
           <th scope="col">Price</th>
+          <th scope="col">Location</th>
           <th scope="col">Description</th>
           <th scope="col">Category</th>
           <th scope="col">Status</th>
           <th scope="col">User ID</th>
+
         </tr>
     </thead>
         <form action='/admin'>
       <button type="button" class="btn btn-primary btn-sm get-post" onClick="this.form.submit()" type="submit">
-        Get Posts
+        Refresh
       </button> 
       </form>
       <!-- Table Body -->
@@ -239,14 +240,15 @@
       <%if (result.isLive == 0) {%>
   <tbody class="post">   
   <tr>
-      <th scope="row"><%= result.post_id%> </th>
       <td><img src="/img/<%= result.image %>" class="rounded-circle player-img" alt="" style="width: 100px;"></td>
       <td><%= result.post_name%> </td>
       <td><%= result.price%> </td>
+      <td><%= result.location%> </td>
       <td><%= result.description%> </td>
       <td><%= result.category%> </td>
       <td><%= result.status%> </td>
       <td><%= result.user_id%> </td>
+
       <!-- Deleting -->
       <td>
       <form action='/admin/approve/<%=result.post_id%>' method="POST">

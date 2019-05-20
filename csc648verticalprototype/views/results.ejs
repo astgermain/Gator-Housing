@@ -76,9 +76,22 @@
                                             Contact
                                           </button>
                                         </div>
+                                      </div>
+                                  </div>
 
-
-
+                                  <div class="container">
+                                      <div class="row">
+                                        <div class="col-xs-1">
+                                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#infoModal" 
+                                          data-name2="<%=searchResult[i].post_name%>"
+                                          data-description="<%=searchResult[i].description%>"
+                                          data-location="<%=searchResult[i].location%>"
+                                          data-city="<%=searchResult[i].city%>"
+                                          data-state="<%=searchResult[i].state%>">
+                                                    
+                                            More Info
+                                          </button>
+                                        </div>
                                       </div>
                                   </div>
 	<!-- Modal -->
@@ -137,7 +150,44 @@
 				
 			</div>
 		</div>
-	</div>
+  </div>
+  <!-- End Contact Modal -->
+  
+	<!-- Modal -->
+	<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="row">
+						<h2 class="modal-title" align="center"><%= searchResult[i].post_name %></h2>
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+              </div>
+						<div class="row form-group">
+              <div>
+                <p class="description"><%=searchResult[i].description%></p>
+                <p class="location"><%=searchResult[i].location%></p>
+                <p class="city"><%=searchResult[i].city%></p>
+                <p class="state"><%=searchResult[i].state%></p>
+              </div>
+            </div>
+            <div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+          
+				</div>
+				
+			</div>
+		</div>
+  </div>
+  <!-- End Info Modal -->
+
+
+
+
+
                             </div>
                         </div>
                     </div>
@@ -167,4 +217,5 @@
     </main>
 </body>
       <script src="/js/modal.js"></script>
+      <script src="/js/infoModal.js"></script>
 </html>
