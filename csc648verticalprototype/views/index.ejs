@@ -44,7 +44,7 @@
 				<div class="row">
 					<!-- Displaying ejs variables to html-->
 					<% var i = 5; for (var j = searchResult.length - 1; j > searchResult.length - i; j--) { if (searchResult[i] == null) { break }   if (searchResult[j].isLive != 0) { %>
-					<div class="col-xs-12 col-sm-4 col-lg-3">
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 						<div class="card">
 							<a class="img-card" href="/results/<%=searchResult[j].post_id%>">
 							<img src="/img/<%= searchResult[j].image %>"/>
@@ -105,7 +105,7 @@
 				</div>
 				<div class="row">
 					<% if (searchResult.length > 7) { for (var i = 4; i < 8; i++) { %>
-					<div class="col-xs-12 col-sm-4 col-lg-3">
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 						<div class="card">
 							<a class="img-card" href="/results/<%=searchResult[i].post_id%>">
 							<img src="/img/<%= searchResult[i].image %>"/>
@@ -165,7 +165,7 @@
 				</div>
 				<div class="row">
 					<% if (searchResult.length > 11) { for (var i = 8; i < 12; i++) { %>
-					<div class="col-xs-12 col-sm-4 col-lg-3">
+					<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 						<div class="card">
 							<a class="img-card" href="/results/<%=searchResult[i].post_id%>">
 							<img src="/img/<%= searchResult[i].image %>"/>

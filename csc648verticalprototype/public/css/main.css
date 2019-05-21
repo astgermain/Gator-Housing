@@ -203,6 +203,9 @@ padding-top: 116px;
 .navbar-fixed-top {
     margin-left: 225px !important;
 }
+.navbar-brand{
+  display: none;
+}
 }
 @media (max-width: 767px){
 .navbar-fixed-top {
@@ -456,7 +459,7 @@ padding-top: 116px;
 .card-title {
   margin-top:0px;
   font-weight: 700;
-  font-size: 1.65em;
+  font-size: 1.15em;
   text-decoration: underline;
   text-align: center;
 }
