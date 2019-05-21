@@ -49,6 +49,7 @@ function checkMessage(req, res, next){
         
     
     const errors = req.validationErrors();
+    var livePosts = "";
     if(errors){
         res.render('results', {
         livePost: livePosts,
