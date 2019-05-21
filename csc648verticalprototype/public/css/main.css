@@ -208,6 +208,10 @@ padding-top: 116px;
 .navbar-fixed-top {
     height: 50px;
   }
+
+  .nav.navbar-nav.navbar-right{
+    display: none;
+  }
   
   
   #link-wrapper {
