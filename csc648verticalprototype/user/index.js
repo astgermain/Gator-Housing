@@ -7,22 +7,23 @@ var fs = require('fs');
 var app = express();
 app.set('view engine', 'ejs');
 
-router.get('/', ensureAuthenticated ,userdashfnc, functions.viewMessages, (req, res) => {
+router.get('/', ensureAuthenticated, userdashfnc, functions.viewMessages, (req, res) => {
     var searchResult = req.searchResult;
     var messages = req.messageResult;
-        // Tells node to render this ejs file named user 
-        res.render('userdash', {
-            // Ejs variables being passed into user.ejs
-            messageResult: messages,
-            results: searchResult.length,
-            searchTerm: req.searchTerm,
-            searchResult: searchResult,
-            searchCategory: req.query.category,
-            sortType: req.query.sortType,
-            priceFilter: req.query.priceFilter,
-            distanceFilter: req.query.distanceFilter
-        });
+    // Tells node to render this ejs file named user 
+    res.render('userdash', {
+        // Ejs variables being passed into user.ejs
+        messageResult: messages,
+        results: searchResult.length,
+        searchTerm: req.searchTerm,
+        searchResult: searchResult,
+        searchCategory: req.query.category,
+        sortType: req.query.sortType,
+        priceFilter: req.query.priceFilter,
+        bedFilter: req.query.bedFilter,
+        bathFilter: req.query.bathFilter
     });
+});
 
 router.get('/logout', (req,res) => {
     req.logout();

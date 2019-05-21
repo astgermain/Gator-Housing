@@ -10,22 +10,23 @@ var fs = require('fs');
 app.set('view engine', 'ejs');
 router.use(express.static('../public'));
 
-router.get('/', ensureAuthenticated, checkAdmin,  search, functions.viewMessages, (req, res) => {
+router.get('/', ensureAuthenticated, checkAdmin, search, functions.viewMessages, (req, res) => {
     var searchResult = req.searchResult;
     var messages = req.messageResult;
-        // Tells node to render this ejs file named index 
-        res.render('admin', {
-            // Ejs variables being passed into index.ejs
-            messageResult: messages,
-            results: searchResult.length,
-            searchTerm: req.searchTerm,
-            searchResult: searchResult,
-            searchCategory: req.query.category,
-            sortType: req.query.sortType,
-            priceFilter: req.query.priceFilter,
-            distanceFilter: req.query.distanceFilter
-        });
+    // Tells node to render this ejs file named index 
+    res.render('admin', {
+        // Ejs variables being passed into index.ejs
+        messageResult: messages,
+        results: searchResult.length,
+        searchTerm: req.searchTerm,
+        searchResult: searchResult,
+        searchCategory: req.query.category,
+        sortType: req.query.sortType,
+        priceFilter: req.query.priceFilter,
+        bedFilter: req.query.bedFilter,
+        bathFilter: req.query.bathFilter
     });
+});
     
 // Delete post 
 router.post('/delete/:id', (req, res) => {
