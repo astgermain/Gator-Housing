@@ -8,6 +8,24 @@ body {
   color: #231161 !important; 
 }
 
+.row.centered{
+  padding: 12px;
+  border-top: 1px solid #0000007a;
+  border-bottom: 1px solid #0000007a;
+  text-align: center;
+}
+
+.dividerF{
+  width: 100%;
+  border-top: 2px solid black;
+  padding-bottom: 20px;
+}
+
+.pricecard {
+  text-align: center;
+  font-size: 16px;
+}
+
 .purplink:hover {
   color: #004F71 !important;
 }
@@ -435,13 +453,15 @@ padding-top: 116px;
   margin-top:0px;
   font-weight: 700;
   font-size: 1.65em;
+  text-decoration: underline;
+  text-align: center;
 }
 .card-title a {
   color: #000;
   text-decoration: none !important;
 }
 .card-read-more {
-  border-top: 1px solid #D4D4D4;
+  border-top: 1px solid rgb(71, 71, 71);
 }
 .card-read-more a {
   text-decoration: none !important;

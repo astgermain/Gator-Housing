@@ -39,16 +39,26 @@
                            <img src="/img/<%= searchResult[i].image %>"/>
                            </a>
                            <div class="card-content">
-                              <h4 class="card-title">
-                                 <%= searchResult[i].post_name %>
-                              </h4>
-                              <p> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Font_Awesome_5_solid_bed.svg/512px-Font_Awesome_5_solid_bed.svg.png"height="16" width="16">  Beds: <%= searchResult[i].beds %></p>
-                              <p>   <img src="https://svgsilh.com/svg/145802.svg" height="16" width="16">  Baths: <%= searchResult[i].baths %></p>
-                              <h3> $<%= searchResult[i].price%></h3>
-                           </div>
+                                <h4 class="card-title">
+                                    <a> <%= searchResult[j].post_name %></a>
+                                </h4>
+                                <div class="row centered">
+                                    <div class="col-lg-6">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Font_Awesome_5_solid_bed.svg/512px-Font_Awesome_5_solid_bed.svg.png"height="16" width="16">  Beds: <%= searchResult[j].beds %>  
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <img src="https://svgsilh.com/svg/145802.svg" height="16" width="16">  Baths: <%= searchResult[j].baths %>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="pricecard">
+                                        <h3> $<%= searchResult[j].price%></h3>
+                                    </div>
+                                </div>
+                            </div>
                            <div class="card-read-more">
                               <div class="container-fluid">
-                                 <div class="row" style="padding-top: 5px; padding-bottom: 5px; text-align: center;">
+                                 <div class="row" style="text-align: center;padding: 15px;">
                                     <div class="col-xs-6">
                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contactModal" 
                                           data-name="<%=searchResult[i].post_name%>"
