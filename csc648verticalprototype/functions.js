@@ -9,7 +9,8 @@ module.exports ={
         var searchCategory = req.query.category;
         var sortType = req.query.sortType;
         var priceFilter = req.query.priceFilter;
-        var distanceFilter = req.query.distanceFilter;
+        var bedFilter = req.query.bedFilter;
+        var bathFilter = req.query.bathFilter;
         let query = null;
     
         {
@@ -17,15 +18,17 @@ module.exports ={
     
             if (searchTerm) {
                 query = query + " WHERE (post_name LIKE '%" + searchTerm + "%'" + " OR location LIKE '%" + searchTerm + "%'" +
-                    " OR price LIKE '%" + searchTerm + "%'" + " OR category LIKE '%" + searchTerm + "%'" + " OR distance LIKE '%" +
-                    searchTerm + "%')";
+                    " OR price LIKE '%" + searchTerm + "%'" + " OR category LIKE '%" + searchTerm + "%')";
     
                 if (priceFilter) query = query + " AND price <= '" + priceFilter + "'";
     
                 if (searchCategory) query = query + " AND category = '" + searchCategory + "'";
     
-                if (distanceFilter) query = query + " AND distance <= '" + distanceFilter + "'";
-            } else if (priceFilter || searchCategory || distanceFilter) {
+                if (bedFilter) query = query + " AND beds >= '" + bedFilter + "'";
+
+                if (bathFilter) query = query + " AND baths >= '" + bathFilter +"'";
+
+            } else if (priceFilter || searchCategory || bedFilter || bathFilter) {
                 query = query + ' WHERE';
     
                 if (priceFilter) {
@@ -33,12 +36,25 @@ module.exports ={
     
                     if (searchCategory) query = query + " AND category = '" + searchCategory + "'";
     
-                    if (distanceFilter) query = query + " AND distance <= '" + distanceFilter + "'";
+                    if (bedFilter) query = query + " AND beds >= '" + bedFilter + "'";
+
+                    if (bathFilter) query = query + " AND baths >= '" + bathFilter +"'";
+
                 } else if (searchCategory) {
                     query = query + " category = '" + searchCategory + "'";
     
-                    if (distanceFilter) query = query + " AND distance <= '" + distanceFilter + "'";
-                } else query = query + " distance <= '" + distanceFilter + "'";
+                    if (bedFilter) query = query + " AND beds >= '" + bedFilter + "'";
+
+                    if (bathFilter) query = query + " AND baths >= '" + bathFilter +"'";
+
+                } else if (bedFilter){
+                query = query + " beds >= '" + bedFilter + "'";
+
+                if (bathFilter) query = query + " AND baths >= '" + bathFilter +"'";
+
+                }else {
+                query = query + " baths >= '" + bathFilter + "'";
+                }
     
             }
             if (sortType) query = query + " ORDER BY price " + sortType;
@@ -56,7 +72,8 @@ module.exports ={
             req.searchCategory = searchCategory;
             req.sortType = sortType;
             req.priceFilter = priceFilter;
-            req.distanceFilter = distanceFilter;
+            req.bedFilter = bedFilter;
+            req.bathFilter = bathFilter;
             next();
         });
     },
