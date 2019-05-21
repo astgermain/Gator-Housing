@@ -1,0 +1,60 @@
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+          </div>
+          <div id="navbar-collapse" class="collapse navbar-collapse">
+            <form class="navbar-form navbar" id="search" role="search" action="/results">
+              <div class="input-group">
+                <div class="input-group-btn">
+					<select class="form-control" name="category">
+						<option value=""<%if(searchCategory == ""){%> selected <%}%>> All Categories </option>
+       		<option value="apartment"<%if(searchCategory == "apartment"){%> selected <%}%>> Apartment </option>
+			<option value="house"<%if(searchCategory == "house"){%> selected <%}%>> House </option>
+        	<option value="room"<%if(searchCategory == "room"){%> selected <%}%>> Room </option>
+    </select>
+	</div>
+	 <input id="search" name="search" value="<%=searchTerm%>" type="text" class="form-control" placeholder="Search">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" onClick="this.form.submit()" type="submit">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </button>
+                </span>
+				</div>
+	</div>
+	<ul class="nav navbar-nav navbar-right">
+              
+              <li class="dropdown">
+                <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown" style="
+    margin-top: -49px;
+">Menu</a>
+                <ul class="dropdown-menu dropdown-block" role="menu">
+                  <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/userdash">Profile</a></li>
+                  <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/admin">Admin</a></li>
+                  <%if(locals.user != undefined) {%>
+                  <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/userdash/logout">Logout</a></li>
+                  <% } else{%>
+                   <li><a href="http://ec2-54-153-63-128.us-west-1.compute.amazonaws.com:3000/login">Login</a></li>
+                  <% } 
+                  %>
+            </ul>
+
+
+
+  </div><!-- /btn-group -->
+               
+				
+              </div>
+              
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>

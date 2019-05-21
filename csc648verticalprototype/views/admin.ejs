@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <!------ Include the above in your HEAD tag (sidebar + navbar)---------->
+
+   
+</head>
+<body>
+<!--  Begin Navbar  -->
+      <div id="navbar-wrapper">
+         <!-- Rendering partials -->
+         <% include partials/headerPlusSidebar.ejs%>
+      </div>
+      <div id="link-wrapper">
+         <% include partials/navbar.ejs%>
+      </div>
+      <!--  End Navbar  -->
+
+<!-- Admin Tab Buttons -->
+<section class="wrapper"> 
+      
+        <div class="container-fluid">
+<div class="admin-nav"> 
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item active">
+    <a class="nav-link" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="false">Pending Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
+  </li>
+</ul>
+<!-- Admin Tab Contents -->
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+    <!-- Table -->
+   <table class="table table-sm">
+     <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Post Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Location</th>
+          <th scope="col">Description</th>
+          <th scope="col">Category</th>
+          <th scope="col">Status</th>
+          <th scope="col">User ID</th>
+
+        </tr>
+    </thead>
+        <form action='/admin'>
+      <button type="button" class="btn btn-primary btn-sm get-post" onClick="this.form.submit()" type="submit">
+        Refresh
+      </button> 
+      </form>
+      <!-- Table Body -->
+<!-- Displaying EJS variables from node -->
+    <% searchResult.forEach((result) => { %>
+      <%if (result.isLive == 0) {%>
+  <tbody class="post">   
+  <tr>
+      <td><img src="/img/<%= result.image %>" class="rounded-circle player-img" alt="" style="width: 100px;"></td>
+      <td><%= result.post_name%> </td>
+      <td><%= result.price%> </td>
+      <td><%= result.location%> </td>
+      <td><%= result.description%> </td>
+      <td><%= result.category%> </td>
+      <td><%= result.status%> </td>
+      <td><%= result.user_id%> </td>
+
+      <!-- Deleting -->
+      <td>
+      <form action='/admin/approve/<%=result.post_id%>' method="POST">
+      <button type="button" class="btn btn-success btn-sm approve-post" id="<%=result.post_id%>"
+                onClick="this.form.submit()" type="submit">
+        Approve
+      </button> 
+      </form>
+      <form action='/admin/delete/<%=result.post_id%>' method="POST">
+      <button type="button" class="btn btn-danger btn-sm delete-post" id="<%=result.post_id%>"
+                onClick="this.form.submit()" type="submit">
+        Remove
+      </button> 
+      </form>
+      </td>
+    </tr>
+  </tbody>
+        <%}%>
+   <% });%>
+   <!-- End Table Body -->
+</table>
+<!-- End Table -->    
+</div>
+  <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+  <!-- Table -->
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Post Name</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Message</th>
+        </tr>
+      </thead>
+        <!-- Table Body -->
+        <!-- Displaying EJS variables from node -->
+    <% messageResult.forEach((result) => { %>
+      
+  <tbody class="messages">   
+  <tr>
+      <td><img src="/img/<%= result.image %>" class="rounded-circle player-img" alt="" style="width: 100px;"></td>
+      <td><%= result.post_name%> </td>
+      <td><%= result.name%> </td>
+      <td><%= result.email%> </td>
+      <td><%= result.phone%> </td>
+      <td><%= result.text%> </td>
+      <!-- Deleting -->
+      <td>
+      <form action='/admin/delete/message/<%=result.id%>' method="POST">
+      <button type="button" class="btn btn-danger btn-sm delete-post" id="<%=result.id%>"
+                onClick="this.form.submit()" type="submit">
+        Remove
+      </button> 
+      </form>
+      </td>
+    </tr>
+  </tbody>
+   <% });%>
+        <!-- End Table Body -->
+    </table>
+    <!-- End Table -->
+  </div>
+</div>
+</div>
+</div>
+
+      
+    
+</section>
+
+</body>
+</html>

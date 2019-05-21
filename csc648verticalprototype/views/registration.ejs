@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Registration</title>
+  
+      <link rel="stylesheet" href="/css/main.css">
+      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+<!------ Include the above in your HEAD tag (sidebar + navbar + carousel)---------->
+
+  
+</head>
+
+<body>
+<!--  Begin Navbar  -->
+      <div id="navbar-wrapper">
+         <!-- Rendering partials -->
+         <% include partials/headerPlusSidebar.ejs%>
+      </div>
+      <div id="link-wrapper">
+         <% include partials/navbar.ejs%>
+      </div>
+      <!--  End Navbar  -->
+    
+    
+    <section class="wrapper" role="main">
+
+     <!--- REGISTRATION PAGE --->
+      <div class="container-fluid">
+    <h1 class="well">Registration</h1>
+<% if (typeof errors!='undefined') { %>
+
+      <div class="alert alert-danger" role="alert">
+          
+            <% errors.forEach(function(errors) { %>
+            
+                 <h5><%= errors.msg %> </h5>
+            <% });
+       } 
+ %>
+       
+	<div class="col-lg-12 well">
+	<div class="row">
+				<form action="/registration" method="POST">
+        <%- messages('messages', locals) %>
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>Username <font color="red">*</font></label>
+								<input type="text" placeholder="Enter User Name Here..." class="form-control" name="name">
+							</div>
+							<div class="col-sm-6 form-group">
+								<label>E-mail <font color="red">*</font></label>
+								<input type="text" placeholder="Enter E-mail Here..." class="form-control" name="email">
+							</div>
+              <div class="col-sm-6 form-group">
+							  <label>Password <font color="red">*</font></label>
+						  	<input type="password" placeholder="Enter Password Here..." class="form-control" name="password">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label>Confirm Password <font color="red">*</font></label>
+                <input type="password" placeholder="Confirm Password Here..." class="form-control" name="password2">
+						</div>
+						</div>					
+								
+	
+            
+            <div class="checkbox">
+              <label><input type="checkbox" value="">I agree to the <a class="purplink" href = "">Terms and Services</a></label>
+</div>
+					<button type="button" onClick="this.form.submit()" class="btn btn-lg btn-info">Submit</button>					
+					</div>
+				</form> 
+				</div>
+	</div>
+	</div>
+      </div>
+    </main>
+  </div>
+  </div>
+</body>
+  
+  
+
+    <script type="module" src="js/main.js"></script>
+
+
+
+
+
+
+</html>
