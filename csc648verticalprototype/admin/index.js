@@ -13,9 +13,15 @@ router.use(express.static('../public'));
 router.get('/', ensureAuthenticated, checkAdmin, search, functions.viewMessages, (req, res) => {
     var searchResult = req.searchResult;
     var messages = req.messageResult;
+    var postsToBeApproved = 0;
+    for (let i = 0; i < searchResult.length; i++ ){
+        if (searchResult[i].isLive == 0)
+        postsToBeApproved +=1;
+    }
     // Tells node to render this ejs file named index 
     res.render('admin', {
         // Ejs variables being passed into index.ejs
+        postsToApprove: postsToBeApproved,
         messageResult: messages,
         results: searchResult.length,
         searchTerm: req.searchTerm,

@@ -18,7 +18,7 @@ module.exports ={
     
             if (searchTerm) {
                 query = query + " WHERE (post_name LIKE '%" + searchTerm + "%'" + " OR location LIKE '%" + searchTerm + "%'" +
-                    " OR price LIKE '%" + searchTerm + "%'" + " OR category LIKE '%" + searchTerm + "%')";
+                    " OR price LIKE '%" + searchTerm + "%'" + " OR category LIKE '%" + searchTerm + "%'" + " OR city LIKE '%" + searchTerm + "%')";
     
                 if (priceFilter) query = query + " AND price <= '" + priceFilter + "'";
     

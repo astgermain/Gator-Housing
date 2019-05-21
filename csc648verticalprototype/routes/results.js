@@ -50,7 +50,7 @@ router.get('/:id', displayPost, (req, res) => {
 function checkSearch(req, res, next) {
     //Make sure to validate each name attribute from the form.
     req.checkQuery('search')
-        .isAlphanumeric().withMessage('Please enter a location or price')
+        .matches(/^[-@./#?!,&+\w\s]*$/).withMessage("Alphanumeric Characters Only") 
         .isLength({
             max: 40
         }).withMessage('Only enter up to at most 40 characters');
