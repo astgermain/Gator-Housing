@@ -13,10 +13,16 @@ router.use(bodyParser.urlencoded({extended: true}));
 
 router.get('/', checkSearch, functions.search, (req, res) => {
     var searchResult = req.searchResult;
+    var livePosts = 0;
+    for (let i = 0; i < searchResult.length; i++ ){
+        if (searchResult[i].isLive == 1)
+        livePosts +=1;
+    }
     console.log(searchResult);
     // Tells node to render this ejs file named results
     res.render('results', {
         // Ejs variables being passed into results.ejs
+        livePost: livePosts,
         results: searchResult.length,
         searchTerm: req.searchTerm,
         searchResult: searchResult,
