@@ -23,13 +23,14 @@ router.get('/', (req, res) => {
         // Tells node to render this ejs file named index 
         res.render('andrew', {
             // Ejs variables being passed into index.ejs
-            results: 0,
-            searchTerm: "",
-            searchResult: "",
-            searchCategory: "",
-            sortType: "",
-            priceFilter: "",
-            distanceFilter: ""
+        results: 0,
+        searchTerm: "",
+        searchResult: "",
+        searchCategory: "",
+        sortType: "",
+        priceFilter: "",
+        bedFilter: "",
+        bathFilter: ""
         });
     });
     
@@ -43,7 +44,8 @@ router.get('/', (req, res) => {
             searchCategory: "",
             sortType: "",
             priceFilter: "",
-            distanceFilter: ""
+            bedFilter: "",
+            bathFilter: ""
         });
     });
     
@@ -57,7 +59,8 @@ router.get('/', (req, res) => {
             searchCategory: "",
             sortType: "",
             priceFilter: "",
-            distanceFilter: ""
+            bedFilter: "",
+            bathFilter: ""
         });
     });
     
@@ -71,7 +74,8 @@ router.get('/', (req, res) => {
             searchCategory: "",
             sortType: "",
             priceFilter: "",
-            distanceFilter: ""
+            bedFilter: "",
+            bathFilter: ""
         });
     });
     
@@ -86,7 +90,8 @@ router.get('/', (req, res) => {
             searchCategory: "",
             sortType: "",
             priceFilter: "",
-            distanceFilter: ""
+            bedFilter: "",
+            bathFilter: ""
         });
     });
     
@@ -96,13 +101,14 @@ router.get('/', (req, res) => {
         // Tells node to render this ejs file named index 
         res.render('sunny', {
             // Ejs variables being passed into index.ejs
-        results: 0,
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
+            results: 0,
+            searchTerm: "",
+            searchResult: "",
+            searchCategory: "",
+            sortType: "",
+            priceFilter: "",
+            bedFilter: "",
+            bathFilter: ""
         });
     });
     
@@ -111,12 +117,13 @@ router.get('/zolboo', (req, res) => {
     res.render('zolboo', {
         // Ejs variables being passed into index.ejs
         results: 0,
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
+            searchTerm: "",
+            searchResult: "",
+            searchCategory: "",
+            sortType: "",
+            priceFilter: "",
+            bedFilter: "",
+            bathFilter: ""
     });
 });
 
