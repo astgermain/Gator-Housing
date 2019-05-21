@@ -8,6 +8,11 @@ body {
   color: #231161 !important; 
 }
 
+
+.navbar-default .navbar-collapse{
+  border-color: none;
+}
+
 .row.centered{
   padding: 12px;
   border-top: 1px solid #0000007a;
@@ -34,7 +39,10 @@ body {
   display:block;
   text-align:center;
   width:100%;
+  background: white;
 }
+
+
 
 .form-horizontal {
     max-width: 400px;
@@ -204,6 +212,9 @@ padding-top: 116px;
     margin-left: 225px !important;
 }
 .navbar-brand{
+  display: none;
+}
+.row.mobile{
   display: none;
 }
 }
