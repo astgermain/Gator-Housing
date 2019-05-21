@@ -36,6 +36,7 @@ const upload = multer({
     // Single image upload and retrieves the name tag attribute from EJS
 }).single('image');
 
+
 //Check file type
 function checkFileType(req, file, cb){
     // Allowed extensions
@@ -51,7 +52,6 @@ function checkFileType(req, file, cb){
         cb('Error: Images Only!');
     }
 }
-
 
 router.get('/', (req, res) => {
     // USING DUMMY POST EJS, CHANGE LATER
@@ -70,7 +70,7 @@ router.get('/', (req, res) => {
 
 
 // Processing user post data; need to move to user folder
-router.post('/', checkPost, userPost, (req, res) => {
+router.post('/', checkUpload, checkPost, (req, res) => {
     // Need to do input validation here
     console.log("Posting");
     // USING DUMMY POST EJS, CHANGE LATER
@@ -88,7 +88,7 @@ router.post('/', checkPost, userPost, (req, res) => {
 });
 
 // For registered user to be able to post; need to move to user folder
-function userPost(req, res) {
+function checkUpload(req, res, next) {
     if (req.user != undefined) {
         upload(req, res, (err) => {
             if (err) {
@@ -119,41 +119,8 @@ function userPost(req, res) {
                         bathFilter: ""
                     });
                 } else {
-                    // Need validations for each.
-                    var id = req.user[0].id;
-                    var postName = req.body.title;
-                    var price = req.body.price;
-                    var beds = req.body.beds;
-                    var baths = req.body.baths;
-                    var category = req.body.category;
-                    var location = req.body.location;
-                    var city = req.body.city;
-                    var state = req.body.state;
-                    var phone = req.body.phone;
-                    var email = req.body.email;
-                    var description = req.body.description;
-                    // Image validation already done.
-                    var image = req.file.filename;
-
-                     // Street address + city + state together for location
+                    next();
                     
-                    console.log(location);
-                    // Handle upload to database.
-                    console.log("post user id is: " + id);
-                    let query = ` INSERT INTO post (post_name, price, beds, baths, category, user_id, location, city, state, phone, email, description, image)
-                                   VALUES('${postName}', '${price}', '${beds}', '${baths}', '${category}', '${id}', '${location}', '${city}', '${state}', '${phone}', 
-                                          '${email}', '${description}', '${image}') `;
-
-                    console.log(query);
-                    db.query(query, (err, result) => {
-                        if (err) {
-                            console.log("Failed to insert into post table: " + err)
-                        }
-                        console.log("Inserted row: " + result);
-
-                    });
-                    req.flash('success', "Successfully submitted a post! Please wait at least 24 hours to give us a chance to review your post!")
-                    res.redirect('/');
                 }
             }
         });
@@ -178,15 +145,30 @@ function checkPost(req, res, next) {
     var phone = req.body.phone;
     var email = req.body.email;
     var description = req.body.description;
-    req.checkBody('title').matches(/^[\w\s]*$/).withMessage("Alphanumeric Characters Only") 
-                          
-    //req.checkBody('price').isNumeric().withMessage("Numbers only")
+    req.checkBody('title').not().isEmpty().withMessage("Title cannot be empty")
+                          .matches(/^[-/?!,&+\w\s]*$/).withMessage("Alphanumeric Characters Only")                      
+    req.checkBody('price').not().isEmpty().isNumeric({no_symbols: true}).withMessage("Numbers only") 
+    req.checkBody('beds').not().isEmpty().withMessage("Beds Selection Required") 
+    req.checkBody('baths').not().isEmpty().withMessage("Baths Selection Required") 
+    req.checkBody('category').not().isEmpty().withMessage("Category Selection Required")
+    req.checkBody('location').not().isEmpty().withMessage("Street Address Required")
+                             .matches(/^[-@./#?!,&+\w\s]*$/).withMessage("Alphanumeric Characters Only") 
 
+    req.checkBody('city').not().isEmpty().withMessage("City Required")
+                        .matches(/^[-@./#?!,&+\w\s]*$/).withMessage("Alpha Characters Only") 
 
+    req.checkBody('state').not().isEmpty().withMessage("State Required")
+                            .matches(/^[-@./#?!,&+\w\s]*$/).withMessage("Alphanumeric Characters Only")
+                            
+    req.checkBody('phone').not().isEmpty().withMessage("Phone Required") 
+                            .isMobilePhone().withMessage("Invalid Phone Number")
 
-                           
-        
-    
+    req.checkBody('email').not().isEmpty().withMessage("Email cannot be empty") 
+                            .isEmail().withMessage("Invalid Email");
+
+    req.checkBody('description').not().isEmpty().withMessage("Description required")   
+                                .matches(/^[-@./#?!,&+\w\s]*$/).withMessage("Alphanumeric Characters Only") 
+                                
     const errors = req.validationErrors();
     if (errors) {
         res.render('post', {
@@ -202,6 +184,39 @@ function checkPost(req, res, next) {
         });
 
     } else {
+        // Need validations for each.
+        var id = req.user[0].id;
+        var postName = req.body.title;
+        var price = req.body.price;
+        var beds = req.body.beds;
+        var baths = req.body.baths;
+        var category = req.body.category;
+        var location = req.body.location;
+        var city = req.body.city;
+        var state = req.body.state;
+        var phone = req.body.phone;
+        var email = req.body.email;
+        var description = req.body.description;
+        // Image validation already done.
+        var image = req.file.filename;
+        
+        console.log(location);
+        // Handle upload to database.
+        console.log("post user id is: " + id);
+        let query = ` INSERT INTO post (post_name, price, beds, baths, category, user_id, location, city, state, phone, email, description, image)
+                       VALUES('${postName}', '${price}', '${beds}', '${baths}', '${category}', '${id}', '${location}', '${city}', '${state}', '${phone}', 
+                              '${email}', '${description}', '${image}') `;
+
+        console.log(query);
+        db.query(query, (err, result) => {
+            if (err) {
+                console.log("Failed to insert into post table: " + err)
+            }
+            console.log("Inserted row: " + result);
+
+        });
+        req.flash('success', "Successfully submitted a post! Please wait at least 24 hours to give us a chance to review your post!")
+        res.redirect('/');
         next();
     }
 
