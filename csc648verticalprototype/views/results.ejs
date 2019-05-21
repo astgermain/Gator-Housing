@@ -30,6 +30,11 @@
                   } 
                   %>
                <%- messages('messages', locals) %>
+               <div class ="row">
+					<div class = "container-fluid">
+						<p> Number of Listings on Gator Housing: <%= results %> </p>
+					</div>
+				</div>
                <div class="content">
                   <div class="row">
                      <% var j = 16; for (var i = 0; i < j; i++) { if (searchResult[i] == null) { break } if (searchResult[i].isLive != 0) { %>
@@ -40,19 +45,19 @@
                            </a>
                            <div class="card-content">
                                 <h4 class="card-title">
-                                    <a> <%= searchResult[j].post_name %></a>
+                                    <a> <%= searchResult[i].post_name %></a>
                                 </h4>
                                 <div class="row centered">
                                     <div class="col-lg-6">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Font_Awesome_5_solid_bed.svg/512px-Font_Awesome_5_solid_bed.svg.png"height="16" width="16">  Beds: <%= searchResult[j].beds %>  
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Font_Awesome_5_solid_bed.svg/512px-Font_Awesome_5_solid_bed.svg.png"height="16" width="16">  Beds: <%= searchResult[i].beds %>  
                                     </div>
                                     <div class="col-lg-6">
-                                        <img src="https://svgsilh.com/svg/145802.svg" height="16" width="16">  Baths: <%= searchResult[j].baths %>
+                                        <img src="https://svgsilh.com/svg/145802.svg" height="16" width="16">  Baths: <%= searchResult[i].baths %>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="pricecard">
-                                        <h3> $<%= searchResult[j].price%></h3>
+                                        <h3> $<%= searchResult[i].price%></h3>
                                     </div>
                                 </div>
                             </div>
