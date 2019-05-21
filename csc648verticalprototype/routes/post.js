@@ -178,22 +178,29 @@ function checkPost(req, res, next) {
     var phone = req.body.phone;
     var email = req.body.email;
     var description = req.body.description;
-    req.checkBody('title').is
+    req.checkBody('title').matches(/^[\w\s]*$/).withMessage("Alphanumeric Characters Only") 
+                          
+    //req.checkBody('price').isNumeric().withMessage("Numbers only")
+
+
+
+                           
         
     
     const errors = req.validationErrors();
-    if(errors){
+    if (errors) {
         res.render('post', {
-        errors: errors,
-        results: 0,
-        searchTerm: "",
-        searchResult: "",
-        searchCategory: "",
-        sortType: "",
-        priceFilter: "",
-        distanceFilter: ""
+            errors: errors,
+            results: 0,
+            searchTerm: "",
+            searchResult: "",
+            searchCategory: "",
+            sortType: "",
+            priceFilter: "",
+            bedFilter: "",
+            bathFilter: ""
         });
-    
+
     } else {
         next();
     }
