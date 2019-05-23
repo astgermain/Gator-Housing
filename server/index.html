@@ -1,103 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Team 12</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom fonts for this template -->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/grayscale.min.css" rel="stylesheet">
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src=app.js></script>
 </head>
-
-<body id="page-top">
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Team 12</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="index.html">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="about/andrew.html">Andrew St Germain</a>
-                  <a class="dropdown-item" href="about/david.html">David Adams</a>
-                  <a class="dropdown-item" href="about/peter.html">Peter Lin</a>
-                  <a class="dropdown-item" href="about/sagar.html">Sagar Pandya</a>
-                  <a class="dropdown-item" href="about/steven.html">Steven Apicella</a>
-                  <a class="dropdown-item" href="about/sunny.html">Sunny Wong</a>
-                  <a class="dropdown-item" href="about/zolboo.html">Zolboo</a>
-                </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
-            </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Header -->
-  <header class="masthead">
-    <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase">Team 12</h1>
-        <h2 class="text-white-50 mx-auto mt-2 mb-5">A group of guys doing their best.</h2>
-        <a href="#about" class="btn btn-primary js-scroll-trigger">Mission Statement</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- About Section -->
-  <section id="about" class="about-section text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2 class="text-white mb-4">Mission Statement</h2>
-          <p class="text-white-50">We're here to learn new things and how to develop software in a group setting so that we can achieve success applying our knowledge in the future.
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Footer -->
-  <footer class="bg-black small text-center text-white-50">
-    <div class="container">
-      Copyright &copy; Team 12's Website 2019
-    </div>
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="js/grayscale.min.js"></script>
-
+<body>
+   <h1>Hello There</h1> 
 </body>
+<!-- Search Bar -->
+<form>
+    <input id="search" type="text" name="search" value="" placeholder="Search...">
+    <!-- Category Dropdown -->
+    <select name="category" onchange="this.form.submit()">
+        <option value=""> All Categories </option>
+        <option value="Apartment"> Apartment </option>
+        <option value="House"> House </option>
+        <option value="Room"> Room </option>
+    </select>
+</form>
+
 
 </html>
