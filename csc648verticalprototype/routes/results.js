@@ -38,10 +38,16 @@ router.get('/', checkSearch, functions.search, (req, res) => {
 router.get('/:id', displayPost, (req, res) => {
     console.log(req.method, req.path)
     var searchResult = req.searchResult;
+    var livePosts = 0;
+    for (let i = 0; i < searchResult.length; i++ ){
+        if (searchResult[i].isLive == 1)
+        livePosts +=1;
+    }
     //console.log("ID for post is: " + req.params.id);
     console.log(searchResult);
     res.render('results', {
         // Ejs variables being passed into results.ejs
+        livePost: livePosts,
         results: searchResult.length,
         searchTerm: req.searchTerm,
         searchResult: searchResult,
