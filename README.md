@@ -1,8 +1,6 @@
-# csc648-848-sp19-Section2-Team12
+# Gator Housing
 
-## Milestone 0 Completed 2/22
-
-# Members
+# Project done in collaboration with:
 ### Andrew St Germain - Team Lead
 ### David Adams - Backend/Documenter
 ### Peter Lin - Frontend
